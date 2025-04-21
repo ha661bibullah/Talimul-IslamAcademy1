@@ -1,0 +1,2209 @@
+<!DOCTYPE html>
+<html lang="bn">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ইলমুস ছরফ</title>
+        <!-- all linksall linksall links -->
+        <!-- all linksall linksall links -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&family=Aref+Ruqaa:wght@400;700&family=Arima:wght@100..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,600;0,700;1,300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- <link rel="stylesheet" href="container.css"> -->
+    </head>   
+<body>
+
+
+
+<!-- নেববার style-->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+    }
+    
+    body {
+        font-family: "Anek Bangla", serif;
+        background-color: white;
+        padding-top: 100px;
+    }
+    
+    nav {
+        width: 100%;
+        height: 80px;
+        background-color: white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        z-index: 90;
+    }
+    
+    nav .imgPath {
+        margin-left: 70px;
+        margin-top: 13px;
+        z-index: 90;
+    }
+    
+    nav .ulControl {
+        width: 100%;
+        height: 30px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        position: absolute;
+        top: 35%;
+        left: 0;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    nav .ulControl ul {
+        font-size: 14px;
+        display: inline-block;
+        margin-left: 30px;
+    }
+    
+    nav .ulControl ul li {
+        list-style: none;
+    }
+    
+    .ulControl a {
+        text-decoration: none;
+        color: black;
+        font-weight: normal;
+        font-size: 14px;
+        position: relative;
+    }
+    
+    nav .ulControl .Login_controller {
+        color: #44AB56;
+    }
+    
+    nav .ulControl a:hover {
+        transition: 0.4s;
+        color: #44AB56;
+    }
+    
+    nav .ulControl ul ul {
+        display: none;
+    }
+    
+    nav .ulControl ul:hover li ul {
+        display: block;
+        position: absolute;
+        top: 30px;
+        margin-left: -30px;
+        width: 100px;
+        text-align: center;
+        background-color: aliceblue;
+    }
+    
+    nav .ulControl ul ul a:hover {
+        color: rgb(247, 153, 0);
+    }
+    
+    nav .ulControl .just_Fix {
+        margin-right: 70px;
+    }
+    
+    .hamburger {
+        display: none;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: 25px;
+        z-index: 95;
+        width: 30px;
+        height: 30px;
+        transition: all 0.3s ease-in-out;
+        padding: 5px;
+    }
+    
+    .hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: #333;
+        margin: 5px;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    @media screen and (max-width: 1200px) {
+        .hamburger {
+            display: block;
+            line-height: 0;
+        }
+        .hamburger .line1{
+            padding: 0;
+            margin: 0;
+        }
+        .hamburger .line2{
+            padding: 0;
+            margin: 0;
+            margin-top: 5px;
+        }
+        .hamburger .line3{
+            padding: 0;
+            margin: 0;
+            margin-top: 5px;
+        }
+        nav .ulControl {
+            position: fixed;
+            flex-direction: column;
+            justify-content: flex-start;
+            top: 80px;
+            height: calc(100vh - 80px);
+            width: 280px;
+            background-color: white;
+            padding-top: 30px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* বাম সাইডে শ্যাডো */
+            right: -280px; /* ডান দিকে বাইরে */
+            left: auto; /* এটি যোগ করা হয়েছে */
+            opacity: 0;
+            overflow-y: scroll;
+            padding-bottom: 30px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            pointer-events: none; /* বন্ধ থাকা অবস্থায় ক্লিক গ্রহণ করবে না */
+        }
+        
+        nav .ulControl.active {
+            right: 0; /* ডান দিকে ০-তে */
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        /* WebKit ব্রাউজার (Chrome, Safari ইত্যাদি) এর জন্য */
+        nav .ulControl::-webkit-scrollbar {
+            display: none;
+        }
+        
+        nav .ulControl a:hover {
+            transition: none;
+            color: black;
+        }
+        
+        nav .ulControl ul ul a:hover {
+            color: black;
+        }
+        
+        nav .ulControl .just_Fix {
+            margin-right: 0px;
+        }
+        
+        nav .ulControl ul {
+            margin: 0;
+            width: 100%;
+            text-align: center;
+            transform: translateX(20px);
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+            padding: 12px 0;
+        }
+        
+        nav .ulControl ul:hover{
+            background-color: #ea9400;
+            transition: none;
+        }
+        
+        nav .ulControl.active ul {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        nav .ulControl ul li {
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        nav .ulControl ul li a {
+            display: block;
+            line-height: 1;
+            padding: 8px 0;
+            font-size: 16px;
+        }
+        
+        nav .ulControl ul:hover li ul {
+            position: static;
+            width: 100%;
+            margin: 5px 0;
+            background-color: white;
+            border-radius: 4px;
+            padding: 5px 0;
+            background-color: transparent;
+        }
+        
+        nav .ulControl ul:hover li ul li a {
+            padding: 6px 0;
+            font-size: 15px;
+        }
+        
+        nav .imgPath {
+            margin-left: 20px;
+        }
+        
+        /* Hamburger to X animation */
+        .hamburger.active .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active .line2 {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .hamburger.active .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        /* Add delay to menu items with smoother transition */
+        nav .ulControl ul:nth-child(1) { transition-delay: 0.1s; }
+        nav .ulControl ul:nth-child(2) { transition-delay: 0.15s; }
+        nav .ulControl ul:nth-child(3) { transition-delay: 0.2s; }
+        nav .ulControl ul:nth-child(4) { transition-delay: 0.25s; }
+        nav .ulControl ul:nth-child(5) { transition-delay: 0.3s; }
+        nav .ulControl ul:nth-child(6) { transition-delay: 0.35s; }
+        nav .ulControl ul:nth-child(7) { transition-delay: 0.4s; }
+        
+        /* Center align dropdown icon */
+        .fa-chevron-down {
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+    }
+
+
+
+
+
+
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+/* ... (keeping other base styles the same) ... */
+
+.ulControl a {
+    text-decoration: none;
+    color: black;
+    font-weight: normal;
+    font-size: 14px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* New hover effect for main menu items */
+.ulControl a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    background-color: #44AB56;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.ulControl a:hover::after {
+    width: 100%;
+}
+
+/* Enhanced dropdown styles */
+nav .ulControl ul:hover li ul {
+    display: block;
+    position: absolute;
+    top: 30px;
+    margin-left: -30px;
+    width: 160px;
+    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: dropdownFade 0.3s ease forwards;
+}
+
+@keyframes dropdownFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced dropdown item hover effects */
+nav .ulControl ul ul a {
+    display: block;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+nav .ulControl ul ul a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background-color: rgba(68, 171, 86, 0.1);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+nav .ulControl ul ul a:hover::before {
+    width: 100%;
+}
+
+nav .ulControl ul ul a:hover {
+    color: #44AB56;
+    transform: translateX(5px);
+}
+
+/* Mobile-specific modifications */
+@media screen and (max-width: 1200px) {
+    nav .ulControl ul:hover li ul {
+        position: static;
+        width: 100%;
+        margin: 5px 0;
+        box-shadow: none;
+        background-color: rgba(68, 171, 86, 0.05);
+        border-radius: 4px;
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    nav .ulControl ul ul a {
+        padding: 10px 20px;
+    }
+
+    nav .ulControl ul ul a:hover {
+        transform: translateX(0);
+        background-color: rgba(68, 171, 86, 0.1);
+    }
+
+    nav .ulControl ul:hover {
+        background-color: transparent;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Remove underline effect on mobile */
+    .ulControl a::after {
+        display: none;
+    }
+}
+</style>
+
+<!-- নেববার html-->
+<nav>
+    <a class="imgPath" href="TalimulIslamAcademy.html">
+        <img src="/img/ChatGPT Image.png" width="170" alt="">
+    </a>
+    <div class="hamburger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+    <div class="ulControl">
+        <ul><li><a href="TalimulIslamAcademy.html">হোম</a></li></ul>
+        <ul><li><a href="Academic_courses.html">একাডেমিক</a></li></ul>
+        <ul><li><a href="">কোর্স <i class="fa-solid fa-chevron-down"></i></a>
+            <ul>
+                <li><a href="">সকল কোর্স</a></li>
+                <li><a href="">লাইভ কোর্স</a></li>
+            </ul>
+        </li></ul>
+        <ul><li><a href="">বই</a></li></ul>
+        <ul><li><a href="">শিক্ষক</a></li></ul>
+        <ul><li><a href="">উপদেষ্টা</a></li></ul>
+        <ul><li><a href="">আমাদের সম্পর্কে</a></li></ul>
+        <ul style="display: none;"><li><a class="from_top" href="my_course.html">আমার কোর্স</a></li></ul>
+        <ul style="display: none;"><li><a class="from_top" href="profile_ifNamber.html">প্রোফাইল</a></li></ul>
+        <ul><li><a class="just_Fix" href="LoginFrom.html">লগইন</a></li></ul>
+    </div>
+</nav>
+
+<!-- রেস্পন্সিপ নেববার স্ক্রিপ্ট -->
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const ulControl = document.querySelector('.ulControl');
+    const nav = document.querySelector('nav');
+    
+    hamburger.addEventListener('click', function(e) {
+        e.stopPropagation(); // স্টপ ইভেন্ট বাবলিং
+        hamburger.classList.toggle('active');
+        ulControl.classList.toggle('active');
+    });
+    
+    // মেনু লিংক ক্লিক করলে মেনু বন্ধ হবে
+    document.querySelectorAll('.ulControl a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            ulControl.classList.remove('active');
+        });
+    });
+
+    // বাইরে ক্লিক করলে মেনু বন্ধ হবে
+    document.addEventListener('click', function(e) {
+        if (!nav.contains(e.target) || (!hamburger.contains(e.target) && !ulControl.contains(e.target))) {
+            hamburger.classList.remove('active');
+            ulControl.classList.remove('active');
+        }
+    });
+    
+    // মেনু ভিতরে ক্লিক করলে বাবলিং বন্ধ করবে
+    ulControl.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    .course-details {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    background-color: white;
+    border: 0.5mm solid #e6e6e6;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    margin: 20px auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.6s ease-out;
+    position: relative;
+    clear: both; /* Prevents overlapping with floated elements */
+    overflow: visible;
+    z-index: 1;
+}
+
+.course-details:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.course-details h3 {
+    font-size: 22px;
+    margin-bottom: 18px;
+    color: #2c3e50;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+}
+
+.course-details h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #44AC56;
+    border-radius: 2px;
+}
+
+.course-details p {
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.course-details .info-section {
+    margin-bottom: 20px;
+}
+
+.course-details .feature-list {
+    list-style-type: none;
+    margin: 20px 0;
+}
+
+.course-details .feature-list li {
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 28px;
+    font-size: 16px;
+    color: #555;
+}
+
+.course-details .feature-list li:before {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #44AC56;
+    position: absolute;
+    left: 0;
+    top: 3px;
+}
+
+
+/* Responsive adjustments */
+@media (min-width: 1024px) {
+    .course-wrapper {
+        flex-direction: row-reverse;
+        gap: 40px;
+        align-items: flex-start;
+    }
+    .course-details {
+        width: 65%;
+    }
+}
+
+@media (max-width: 767px) {
+    .course-details {
+        padding: 20px 15px;
+        margin: 15px auto;
+    }
+    .course-details h3 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .course-details {
+        padding: 15px 12px;
+    }
+    .course-details h3 {
+        font-size: 18px;
+    }
+    .course-details p, 
+    .course-details .feature-list li {
+        font-size: 14px;
+    }
+}
+</style>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Noto Sans Bengali', "Anek Bangla", serif;
+        background-color: #f8f9fa;
+        line-height: 1.6;
+        color: #333;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px 15px;
+    }
+    
+    .course-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+    
+    .course-fee {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        background-color: white;
+        border: 0.5mm solid #e6e6e6;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        padding-bottom: 20px;
+        margin: 20px auto;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeInUp 0.6s ease-out;
+    }
+    
+    .course-fee:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+    
+    .course-fee img {
+        width: 100%;
+        height: auto;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        object-fit: cover;
+    }
+    
+    .course-fee h2 {
+        margin-left: 6%;
+        font-size: 24px;
+        margin-top: 15px;
+        margin-bottom: 18px;
+        color: #2c3e50;
+    }
+    
+    .course-fee h2 del {
+        font-size: 18px;
+        font-weight: 300;
+        color: #95a5a6;
+        margin-left: 5px;
+    }
+    
+    .course-fee .buy-course {
+        width: 90%;
+        height: 48px;
+        background-color: #44AC56;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        text-decoration: none;
+        color: white;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 16px;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(68, 172, 86, 0.2);
+    }
+    
+    .course-fee .buy-course:hover {
+        background-color: #3d9a4d;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(68, 172, 86, 0.3);
+    }
+    
+    .course-fee .buy-course:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(68, 172, 86, 0.2);
+    }
+    
+    .course-fee .buy-course i {
+        color: white;
+        font-size: 16px;
+        margin-right: 10px;
+    }
+    
+    .course-fee i {
+        margin-right: 10px;
+        color: #44AC56;
+        font-size: 14px;
+    }
+    
+    .course-fee p {
+        display: flex;
+        align-items: center;
+        margin-left: 6%;
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+    
+    .first_line {
+        margin-bottom: 25px;
+        animation: fadeIn 0.5s ease;
+    }
+    
+    .first_line h3 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #2c3e50;
+        position: relative;
+        display: inline-block;
+        padding-bottom: 8px;
+    }
+    
+    .first_line h3::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background-color: #44AC56;
+        border-radius: 2px;
+    }
+    
+    .tab-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 25px;
+        animation: fadeIn 0.6s ease;
+    }
+    
+    .tab-button {
+        padding: 12px 20px;
+        border: 1px solid #ddd;
+        background: #fff;
+        cursor: pointer;
+        border-radius: 8px;
+        font-family: 'Noto Sans Bengali', "Anek Bangla", serif;
+        flex-grow: 1;
+        text-align: center;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        font-size: 16px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    
+    .tab-button:hover {
+        border-color: #0066cc;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,102,204,0.1);
+    }
+    
+    .tab-button.active {
+        background: #0066cc;
+        color: white;
+        border-color: #0066cc;
+        box-shadow: 0 5px 15px rgba(0,102,204,0.2);
+    }
+    
+    .content-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        /* box-shadow: 0 5px 20px rgba(0,0,0,0.05); */
+        animation: fadeInUp 0.7s ease-out;
+    }
+    
+    .details-content {
+        padding: 25px;
+        margin-bottom: 15px;
+    }
+    
+    .imgAndtext {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .imgAndtext:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+    
+    .imgAndtext img {
+        width: 85px;
+        height: 85px;
+        border-radius: 10px;
+        object-fit: cover;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+    
+    .imgAndtext:hover img {
+        transform: scale(1.05);
+    }
+    
+    .imgAndtext-text {
+        flex: 1;
+    }
+    
+    .imgAndtext-text h3 {
+        margin-bottom: 8px;
+        font-size: 20px;
+        color: #2c3e50;
+        font-weight: 600;
+    }
+    
+    .show_text {
+        margin-top: 30px;
+        animation: fadeIn 0.8s ease;
+    }
+    
+    .show_text h3 {
+        margin-bottom: 15px;
+        font-size: 22px;
+        color: #2c3e50;
+        font-weight: 600;
+        position: relative;
+        display: inline-block;
+        padding-bottom: 8px;
+    }
+    
+    .show_text h3::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background-color: #44AC56;
+        border-radius: 2px;
+    }
+    
+    .open_text_p {
+        line-height: 1.8;
+        text-align: justify;
+        color: #555;
+        font-size: 16px;
+    }
+    
+    .expanded-text {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.6s cubic-bezier(0, 1, 0, 1);
+        opacity: 0;
+    }
+    
+    .expanded-text.show {
+        max-height: 2000px;
+        transition: max-height 0.6s ease-in-out, opacity 0.6s ease;
+        opacity: 1;
+    }
+    
+    .hide_text {
+        padding: 20px 0;
+    }
+    
+    .hide_text h4 {
+        margin: 20px 0 15px;
+        font-size: 20px;
+        color: #2c3e50;
+        font-weight: 600;
+    }
+    
+    .hide_text ul {
+        list-style-type: none;
+        margin-left: 5px;
+        margin-bottom: 20px;
+    }
+    
+    .hide_text li {
+        margin-bottom: 12px;
+        position: relative;
+        padding-left: 28px;
+        font-size: 16px;
+        color: #555;
+    }
+    
+    .hide_text li:before {
+        content: "\f00c";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        color: #44AC56;
+        position: absolute;
+        left: 0;
+        top: 3px;
+    }
+    
+    .read-more-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 220px;
+        margin: 25px auto 0;
+        padding: 12px 20px;
+        background-color: white;
+        color: #44AC56;
+        border: 2px solid #44AC56;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: 'Noto Sans Bengali', "Anek Bangla", serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(68, 172, 86, 0.1);
+    }
+    
+    .read-more-btn:hover {
+        background-color: #44AC56;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(68, 172, 86, 0.2);
+    }
+    
+    .read-more-btn:active {
+        transform: translateY(-1px);
+    }
+    
+    .read-more-btn i {
+        margin-right: 10px;
+        transition: transform 0.3s ease;
+    }
+    
+    .read-more-btn:hover i.fa-plus {
+        transform: rotate(90deg);
+    }
+    
+    .read-more-btn:hover i.fa-minus {
+        transform: rotate(90deg);
+    }
+    
+    .list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 25px;
+        background: linear-gradient(to right, #f5f7fa, #f9f9f9);
+        border-radius: 8px 8px 0 0;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+    
+    .list-header:hover {
+        background: linear-gradient(to right, #e9eef5, #f5f5f5);
+    }
+    
+    .list-header h3 {
+        font-size: 20px;
+        color: #2c3e50;
+        font-weight: 600;
+    }
+    
+    .arrow {
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid #555;
+        transition: transform 0.4s ease;
+    }
+    
+    .arrow.down {
+        transform: rotate(0deg);
+    }
+    
+    .arrow.right {
+        transform: rotate(-90deg);
+    }
+    
+    .list-content {
+        max-height: 600px;
+        overflow-y: auto;
+        padding: 0 25px 25px;
+        transition: all 0.5s ease;
+        scrollbar-width: thin;
+        scrollbar-color: #ccc #f5f5f5;
+    }
+    
+    .list-content::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    .list-content::-webkit-scrollbar-track {
+        background: #f5f5f5;
+        border-radius: 10px;
+    }
+    
+    .list-content::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 10px;
+    }
+    
+    .list-item, .list-item1 {
+        display: flex;
+        align-items: center;
+        padding: 18px;
+        border: 1px solid #e6e6e6;
+        margin-top: 15px;
+        border-radius: 8px;
+        background-color: #fff;
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInItems 0.5s forwards;
+    }
+    
+    .list-item:hover, .list-item1:hover {
+        transform: translateY(-3px) scale(1.01);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        border-color: #d0d0d0;
+    }
+    
+    .icon {
+        width: 28px;
+        height: 28px;
+        margin-right: 18px;
+        color: #0066cc;
+        transition: transform 0.3s ease;
+    }
+    
+    .list-item:hover .icon, .list-item1:hover .icon {
+        transform: scale(1.15);
+        color: #0055b3;
+    }
+    
+    .list-item span, .list-item1 span {
+        flex: 1;
+        font-size: 16px;
+        color: #333;
+    }
+    
+    .video-icon {
+        color: #ff6b6b;
+        font-size: 18px;
+        margin-left: 15px;
+        transition: transform 0.3s ease;
+    }
+    
+    .list-item:hover .video-icon {
+        transform: scale(1.2);
+        color: #ff5252;
+    }
+    
+    .reviews-container {
+        max-height: 500px;
+        overflow-y: auto;
+        padding: 20px 25px;
+        scrollbar-width: thin;
+        scrollbar-color: #ccc #f5f5f5;
+    }
+    
+    .reviews-container::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    .reviews-container::-webkit-scrollbar-track {
+        background: #f5f5f5;
+        border-radius: 10px;
+    }
+    
+    .reviews-container::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 10px;
+    }
+    
+    .review-card {
+        border-bottom: 1px solid #eee;
+        padding: 20px 0;
+        transition: transform 0.3s ease;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInItems 0.5s forwards;
+        animation-delay: calc(var(--item-index) * 0.1s);
+    }
+    
+    .review-card:hover {
+        transform: translateY(-2px);
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 20px 15px;
+    }
+    
+    .review-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+    }
+    
+    .reviewer-name {
+        font-weight: 600;
+        color: #2c3e50;
+        font-size: 16px;
+    }
+    
+    .stars {
+        color: #ffc107;
+        letter-spacing: 2px;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes fadeInItems {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(68, 172, 86, 0.4);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(68, 172, 86, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(68, 172, 86, 0);
+        }
+    }
+
+    /* Responsive Styles - Enhanced */
+    @media (min-width: 1024px) {
+        .course-wrapper {
+            flex-direction: row-reverse;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .course-fee {
+            width: 30%;
+            position: sticky;
+            top: 20px;
+            margin: 0;
+        }
+        .course-details {
+            width: 70%;
+        }
+        .expanded-text.show {
+            max-height: 2000px;
+        }
+        .tab-button {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .tab-button:hover {
+            transform: translateY(-4px);
+        }
+        .buy-course {
+            animation: pulse 2s infinite;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .course-wrapper {
+            gap: 30px;
+        }
+        .course-fee {
+            max-width: 350px;
+        }
+        .imgAndtext-text h3 {
+            font-size: 18px;
+        }
+        .expanded-text.show {
+            max-height: 1800px;
+        }
+        .tab-buttons {
+            justify-content: center;
+        }
+        .tab-button {
+            max-width: 150px;
+        }
+        .container {
+            padding: 20px 30px;
+        }
+        .list-item, .list-item1 {
+            padding: 16px;
+        }
+        .details-content {
+            padding: 20px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .container {
+            padding: 15px;
+        }
+        .course-fee {
+            margin-top: 10px;
+            margin-bottom: 25px;
+        }
+        .first_line h3 {
+            font-size: 22px;
+        }
+        .tab-button {
+            font-size: 14px;
+            padding: 10px;
+            flex: 1 0 45%;
+        }
+        .tab-buttons {
+            gap: 10px;
+        }
+        .imgAndtext {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px 15px;
+        }
+        .imgAndtext img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 5px;
+        }
+        .imgAndtext-text h3 {
+            margin-top: 5px;
+        }
+        .details-content {
+            padding: 20px 15px;
+        }
+        .list-header {
+            padding: 15px;
+        }
+        .list-content {
+            padding: 0 15px 15px;
+        }
+        .list-item, .list-item1 {
+            padding: 12px;
+        }
+        .list-item span, .list-item1 span {
+            font-size: 14px;
+        }
+        .read-more-btn {
+            max-width: 100%;
+        }
+        .expanded-text.show {
+            max-height: 2500px;
+        }
+        .reviews-container {
+            padding: 15px;
+        }
+        .show_text h3, .hide_text h4 {
+            font-size: 18px;
+        }
+        .course-fee p, .open_text_p, .hide_text li {
+            font-size: 15px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .course-fee h2 {
+            font-size: 20px;
+            text-align: center;
+            margin-left: 0;
+        }
+        .course-fee p {
+            margin-left: 10%;
+        }
+        .tab-buttons {
+            gap: 8px;
+        }
+        .tab-button {
+            padding: 8px 5px;
+            font-size: 13px;
+            flex: 1 0 45%;
+        }
+        .show_text h3 {
+            font-size: 18px;
+        }
+        .hide_text h4 {
+            font-size: 16px;
+        }
+        .details-content, .list-content, .reviews-container {
+            padding: 12px 10px;
+        }
+        .expanded-text.show {
+            max-height: 3000px;
+        }
+        .first_line h3 {
+            font-size: 20px;
+        }
+        .imgAndtext-text h3 {
+            font-size: 17px;
+        }
+        .list-header h3 {
+            font-size: 17px;
+        }
+        .list-item .icon, .list-item1 .icon {
+            width: 22px;
+            height: 22px;
+            margin-right: 10px;
+        }
+        .read-more-btn {
+            font-size: 14px;
+            padding: 10px 15px;
+        }
+        .open_text_p, .hide_text li {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+    }
+</style>
+
+<div class="course-wrapper">
+    <div class="course-fee">
+        <!-- Your existing course fee content -->
+        <img src="/img/1.jpg" alt="Course cover image">
+        <h2>কোর্স ফি ৳ 490<del> ৳ 1960</del></h2>
+        <a class="buy-course" href="PaymentPag.html"><i class="fa-solid fa-check"></i> কোর্সটি কিনুন</a>
+        <p><i class="fa-solid fa-video"></i>ক্লাস ৯৮টি</p>
+        <p><i class="fa-solid fa-clock"></i>সময় লাগবে ৮ ঘন্টা ২৫ মিনিট</p>
+        <p><i class="fa-solid fa-file"></i>পিডিএফ নোট ৫ টি</p>
+    </div>
+    <div class="course-details">
+            <div class="first_line">
+                <h3>ইলমুস সরফ (বেসিক টু এডভ্যান্স)</h3>
+            </div>
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="details">বিস্তারিত</button>
+                <button class="tab-button" data-tab="videos">ভিডিও</button>
+                <button class="tab-button" data-tab="notes">নোট</button>
+                <button class="tab-button" data-tab="reviews">কোর্স রিভিউ</button>
+            </div>
+
+            <div class="content-card">
+                <!-- Details Tab -->
+                <div class="tab-content details-content" id="details">
+                    <div class="default-text">
+                        <div class="imgAndtext">
+                            <img src="img/ইলমুস সরফ.png" alt="ইলমুস সরফ">
+                            <div class="imgAndtext-text">
+                                <h3>মাওলানা ফরিদ বিন আবদুল আউয়াল</h3>
+                                <p>উপাধ্যক্ষ, দারুন্নাজাত মাদরাসা কিতাব বিভাগ।<br>
+                                    অভিজ্ঞতা ১৯ বছর</p>
+                            </div>
+                        </div>
+                        <div class="show_text">
+                            <h3>কোর্সটি সম্পর্কে জানুন</h3>
+                            <p class="open_text_p">প্রতিটি ভাষা শেখার জন্য ঐ ভাষার ব্যাকরণ জানা খুবই গুরুত্বপূর্ণ। আরবি ভাষার ব্যাকরণ কয়েকটি অংশে বিভক্ত তন্মধ্যে ইলমুস সরফ একটি গুরুত্বপূর্ণ অংশ। সরফ শব্দের অর্থ হচ্ছে "শব্দতত্ত্ব"। ইলমুস সরফ অংশে শব্দের পরিবর্তনের জ্ঞান নিয় আলোচনা করা হয়। কেউ যদি আরবি ভাষা শিখতে চায় তার কিছু মৌলিক করনীয় রয়েছে তন্মধ্যে একটি হলো বেশি বেশি শব্দ আয়ত্ব করা। যদি আমরা শব্দ না জানি তাহলে ব্যাকরণ এর সঠিক ব্যবহার করতে পারবোনা।  আর এই শব্দের রূপান্তর নিয়ে আলোচনা করে ইলমুস সরফ। 
+                                ভাষার মূল হচ্ছে অর্থবোধক শব্দ। শব্দ ছাড়া ভাষা কল্পনা করা যায়না। আর শব্দের মত এতো গুরুত্বপূর্ণ বিষয় নিয়ে ইলমুস সরফ আলোচনা করে।</p>
+                        </div>
+                    </div>
+                    <div class="expanded-text" id="expandableContent">
+                        <div class="hide_text">
+                            <h4>কোর্সটি করে যা শিখবেন?</h4>
+                            <ul>
+                                <li>যেকোনো শব্দের বিশ্লেষণ করতে পারবেন।</li>
+                                <li>তালিলের বেসিক বিষয় জানতে পরবেন।</li>
+                                <li>ইলমুস সরফের কঠিন বিষয়গুলোর সহজ পদ্ধতিতে সমাধান পাবেন।</li>
+                                <li>কুরআন মাজিদের যেকোনো শব্দের তাহকীক করতে পারবেন।</li>
+                                <li>কুরআন মাজিদে ব্যবহৃত সকল মাসদার শিখতে পারবেন।</li>
+                                <li>খুব সহজেই যেকোনো শব্দের বাব নির্ণয় করতে পারবেন।</li>
+                                <li>সর্বোপরি সরফ শাস্ত্রের মৌলিক ধারণা পাবেন।</li>
+                            </ul>
+                            <h4>কোর্সটি যাদের জন্য:</h4>
+                            <ul>
+                                <li>যারা একেবারে শুরু থেকে ইলমুস সরফ শিখতে চাচ্ছেন।</li>
+                                <li>ইলমুস সরফের ব্যাসিক যারা ক্লিয়ার করতে চাচ্ছেন।</li>
+                                <li>যার সরফ পড়ার ভীতি দূর করতে চাচ্ছেন।</li>
+                                <li>কুরআন মাজিদে ব্যবহৃত সকল মাসদার যারা শিখতে চাচ্ছেন।</li>
+                                <li>যারা যেকোনো শব্দের বিশ্লেষণ করার যোগ্যতা অর্জন করতে চাচ্ছেন।</li>
+                                <li>সরফ শাস্ত্রের মাজা যারা উপভোগ করতে চাচ্ছেন।</li>
+                                <li>যারা জেনারেল লাইনে পড়েন কিন্তু আরবি ব্যকরণ শিখতে চাচ্ছেন।</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="read-more-btn"><i class="fa-solid fa-plus"></i> আরো পড়ুন</button>
+                </div>
+
+                <!-- Videos Tab -->
+                <div class="tab-content hidden" id="videos">
+                    <div class="list-header">
+                        <h3>ভিডিও লিষ্ট</h3>
+                        <span class="arrow down"></span>
+                    </div>
+                    <div class="list-content">
+                        <!-- Video list items here -->
+                        <div class="list-item">
+                            <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                            <span>লেকচার 1-علم الصرف এর সংজ্ঞা, আলোচ্য বিষয় ও উদ্দেশ্য <br>8:50</span>
+                            <a href="video/YouTube Thumbnail 1280x720 px (16).mp4" class="video-icon">
+                                <i class="fa-solid fa-video"></i>
+                            </a>
+                        </div>
+                        <!-- More video items... -->
+                    </div>
+                </div>
+
+                <!-- Notes Tab -->
+                <div class="tab-content hidden" id="notes">
+                    <div class="list-header">
+                        <h3>নোট লিষ্ট</h3>
+                        <span class="arrow down"></span>
+                    </div>
+                    <div class="list-content">
+                        <!-- Note list items here -->
+                        <div class="list-item1">
+                            <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                            <span>সবক নং-১ থেকে সবক নং- ৩০ পর্যন্ত একসাথে</span>
+                        </div>
+                        <!-- More note items... -->
+                    </div>
+                </div>
+
+                <!-- Reviews Tab -->
+                <div class="tab-content hidden" id="reviews">
+                    <div class="reviews-container">
+                        <!-- Review items here -->
+                        <div class="review-card">
+                            <div class="review-header">
+                                <span class="reviewer-name">রহিম আহমেদ</span>
+                                <span class="stars">★★★★★</span>
+                            </div>
+                            <p>খুবই ভালো কোর্স। স্টেপ বাই স্টেপ শেখানো হয়েছে।</p>
+                        </div>
+                        <!-- More review items... -->
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab Switching
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                
+                // Update active button
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Show selected content
+                tabContents.forEach(content => {
+                    content.classList.add('hidden');
+                    if (content.id === tabId) {
+                        content.classList.remove('hidden');
+                    }
+                });
+            });
+        });
+
+        // Improved Read More/Less with smooth animation
+        const readMoreBtn = document.querySelector('.read-more-btn');
+        const expandableContent = document.getElementById('expandableContent');
+        let isExpanded = false;
+
+        readMoreBtn.addEventListener('click', function() {
+            isExpanded = !isExpanded;
+            
+            if (isExpanded) {
+                // Expand content
+                expandableContent.classList.add('show');
+                readMoreBtn.innerHTML = '<i class="fa-solid fa-minus"></i> কম পড়ুন';
+                
+                // Smooth scroll to show expanded content
+                setTimeout(() => {
+                    expandableContent.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest'
+                    });
+                }, 300);
+            } else {
+                // Collapse content
+                expandableContent.classList.remove('show');
+                readMoreBtn.innerHTML = '<i class="fa-solid fa-plus"></i> আরো পড়ুন';
+            }
+        });
+
+        // List Toggle with improved animation
+        const listHeaders = document.querySelectorAll('.list-header');
+
+   
+        // Initialize responsive behaviors
+        function handleResize() {
+            const windowWidth = window.innerWidth;
+            
+            // Adjust expanded content max-height based on screen size
+            if (expandableContent.classList.contains('show')) {
+                if (windowWidth >= 1024) {
+                    expandableContent.style.maxHeight = '1200px';
+                } else if (windowWidth >= 768) {
+                    expandableContent.style.maxHeight = '1100px';
+                } else if (windowWidth >= 480) {
+                    expandableContent.style.maxHeight = '1400px';
+                } else {
+                    expandableContent.style.maxHeight = '1800px';
+                }
+            }
+        }
+
+        
+        // Listen for window resize events
+        window.addEventListener('resize', handleResize);
+        
+        // Initial setup
+        handleResize();
+    });
+</script>
+
+
+
+
+<!-- Footer Footer Footer Footer Footer Footer Footer    -->
+<!-- Footer Footer Footer Footer Footer Footer Footer -->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    /* Add this to the existing CSS */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+}
+
+footer {
+    margin-top: auto;
+}
+
+/* Adjust the expanded content style */
+.expanded-text.show {
+    max-height: none !important; /* Override any inline height setting */
+    height: auto !important;
+}
+
+/* Additional styles to ensure proper spacing */
+.course-wrapper {
+    margin-bottom: 30px;
+}
+
+    .footer_area {
+        width: 100%;
+        background-color: #348B57;
+        padding: 30px 20px;
+        color: white;
+    }
+
+    .footer_content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .biodata {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .biodata img {
+        max-width: 200px;
+        height: auto;
+    }
+
+    .biodata p {
+        font-size: 15px;
+        margin-top: 15px;
+        line-height: 1.6;
+    }
+
+    .link, .support {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .link h2, .support h2, .address h2 {
+        font-weight: 400;
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .link li, .support li {
+        list-style: none;
+        line-height: 25px;
+    }
+
+    .link a, .support a {
+        color: white;
+        text-decoration: none;
+        font-size: 15px;
+        transition: color 0.3s;
+    }
+
+    .link a:hover, .support a:hover {
+        color: #ea9400;
+    }
+
+    .address {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .gmail_div, .location_div {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+
+    .email_cover, .location_cover {
+        width: 50px;
+        height: 60px;
+        background-color: #348B57;
+        box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+    }
+
+    .gmail_div i, .location_div i {
+        font-size: 25px;
+    }
+
+    .contact_info {
+        flex: 1;
+    }
+
+    .contact_info h4 {
+        font-weight: 400;
+        margin-bottom: 5px;
+    }
+
+    .all_accounts {
+        width: 100%;
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .all_accounts img {
+        max-width: 90%;
+        height: auto;
+    }
+
+    .license {
+        background-color: #215E3A;
+        padding: 10px;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .license p {
+        font-family: 'Gill Sans', sans-serif;
+        font-size: 15px;
+    }
+
+    .holud_color {
+        color: rgb(211, 137, 0);
+        display: inline;
+    }
+
+    @media screen and (max-width: 768px) {
+        .footer_content {
+            gap: 20px;
+        }
+        
+        .biodata, .link, .support, .address {
+            flex: 100%;
+        }
+
+        .link, .support {
+            min-width: 45%;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .footer_area {
+            padding: 20px 15px;
+        }
+
+        .link, .support {
+            min-width: 100%;
+        }
+
+        .all_accounts img {
+            max-width: 100%;
+        }
+    }
+</style>
+<footer>
+    <div class="footer_area">
+        <div class="footer_content">
+            <div class="biodata">
+                <img src="img/At Tadrees.png" alt="At Tadrees">
+                <p>আত তাদরীস অনলাইন মাদরাসা, ২০২১ সালে প্রতিষ্ঠিত বাংলাদেশের মাদরাসা কেন্দ্রিক সর্বাধুনিক শিক্ষা প্রতিষ্ঠান। সবার জন্য মানসম্মত পড়াশোনা নিশ্চিত করতে অভিজ্ঞ উস্তাদ এবং অত্যাধুনিক প্রযুক্তির মাধ্যমে আমরা গড়ে তুলেছি সহজে ইলম শেখার বিশ্বস্ত অনলাইন প্রতিষ্ঠান।</p>
+            </div>
+            
+            <div class="link">
+                <h2>লিঙ্কস</h2>
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Course</a></li>
+                    <li><a href="">Privacy Policy</a></li>
+                    <li><a href="">Refund Policy</a></li>
+                    <li><a href="">Terms and Condition</a></li>
+                </ul>
+            </div>
+
+            <div class="support">
+                <h2>সাপোর্ট</h2>
+                <ul>
+                    <li><a href="">মেসেজ করুন</a></li>
+                    <li><a href="">ফোন করুন</a></li>
+                </ul>
+            </div>
+
+            <div class="address">
+                <h2>ঠিকানা</h2>
+                <div class="gmail_div">
+                    <div class="email_cover">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="contact_info">
+                        <h4>ই-মেইল</h4>
+                        <p>support@attadrees.com</p>
+                    </div>
+                </div>
+
+                <div class="location_div">
+                    <div class="location_cover">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <div class="contact_info">
+                        <p>মাদরাসা রোড, দারুননাজাত সিদ্দীকিয়া কামিল মাদরাসা, সারুলিয়া, ডেমরা, ঢাকা।</p>
+                        <p style="margin-top: 10px;">Trade License: TRAD/DSCC/029395/2022</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="all_accounts">
+            <img src="/img/accounts.png" alt="Accounts">
+        </div>
+
+        <div class="license">
+            <p>© Copyright 2025. All Rights Reserved by <span class="holud_color">At-Tadrees</span></p>
+        </div>
+    </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Tab Switching
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const tabId = button.getAttribute('data-tab');
+            
+            // Update active button
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Show selected content
+            tabContents.forEach(content => {
+                content.classList.add('hidden');
+                if (content.id === tabId) {
+                    content.classList.remove('hidden');
+                }
+            });
+        });
+    });
+
+    // Improved Read More/Less with footer always at bottom
+    const readMoreBtn = document.querySelector('.read-more-btn');
+    const expandableContent = document.getElementById('expandableContent');
+    let isExpanded = false;
+
+    readMoreBtn.addEventListener('click', function() {
+        isExpanded = !isExpanded;
+        
+        if (isExpanded) {
+            // Expand content
+            expandableContent.classList.add('show');
+            readMoreBtn.innerHTML = '<i class="fa-solid fa-minus"></i> কম পড়ুন';
+            
+            // Remove any fixed height constraints
+            expandableContent.style.maxHeight = 'none';
+            
+            // Smooth scroll to expanded content
+            setTimeout(() => {
+                expandableContent.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest'
+                });
+            }, 300);
+        } else {
+            // Collapse content
+            expandableContent.classList.remove('show');
+            readMoreBtn.innerHTML = '<i class="fa-solid fa-plus"></i> আরো পড়ুন';
+            
+            // Reset height
+            expandableContent.style.maxHeight = '0';
+            
+            // Scroll back to main content
+            setTimeout(() => {
+                document.querySelector('.first_line').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 100);
+        }
+    });
+
+    // List Toggle with improved animation
+    const listHeaders = document.querySelectorAll('.list-header');
+
+    listHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const arrow = header.querySelector('.arrow');
+            const content = header.nextElementSibling;
+            
+            arrow.classList.toggle('down');
+            arrow.classList.toggle('right');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                content.style.maxHeight = content.scrollHeight + 'px';
+            } else {
+                content.style.maxHeight = '0px';
+                setTimeout(() => {
+                    content.classList.add('hidden');
+                }, 300);
+            }
+        });
+    });
+    
+    // Remove the handleResize function that was setting fixed heights
+    // as we want the content to naturally expand and push the footer down
+});
+</script> 
+
+
+
+
+
+
+
+<!-- লগআউট দেখানোর কোড -->
+<script>
+    // আমার কোর্স পেইজের জন্য লগইন/লগআউট হ্যান্ডলার
+document.addEventListener('DOMContentLoaded', function() {
+    // লগইন বাটন এলিমেন্ট
+    const loginButton = document.querySelector('nav ul li a[href="LoginFrom.html"]');
+    // আমার কোর্স লিংক
+    const myCourseLink = document.querySelector('nav ul li a[href="my_course.html"]');
+    // প্রোফাইল লিংক
+    const profileLink = document.querySelector('nav ul li a[href="profile_ifNamber.html"]');
+    
+    // চেক করা যে ইউজার লগড ইন কিনা
+    function checkLoginStatus() {
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        
+        if (userData) {
+            // ইউজার লগড ইন অবস্থায় আছে
+            if (loginButton) {
+                loginButton.textContent = 'লগআউট';
+                loginButton.href = '#';
+                loginButton.classList.add('logout-btn');
+                
+                // লগআউট বাটনে ক্লিক ইভেন্ট হ্যান্ডলার যোগ করা
+                loginButton.addEventListener('click', handleLogout);
+            }
+            
+            // আমার কোর্স এবং প্রোফাইল লিংক দৃশ্যমান করা
+            if (myCourseLink) myCourseLink.style.display = 'block';
+            if (profileLink) profileLink.style.display = 'block';
+            
+        } else {
+            // ইউজার লগড আউট অবস্থায় আছে
+            if (loginButton) {
+                loginButton.textContent = 'লগইন';
+                loginButton.href = 'LoginFrom.html';
+                loginButton.classList.remove('logout-btn');
+                
+                // পুরানো ইভেন্ট লিসেনার রিমুভ করা
+                loginButton.removeEventListener('click', handleLogout);
+            }
+            
+            // আমার কোর্স এবং প্রোফাইল লিংক লুকানো
+            if (myCourseLink) myCourseLink.style.display = 'none';
+            if (profileLink) profileLink.style.display = 'none';
+        }
+    }
+    
+    // লগআউট ফাংশন
+    function handleLogout(event) {
+        event.preventDefault();
+        
+        // লোকাল স্টোরেজ থেকে ইউজার ডাটা মুছে ফেলা
+        localStorage.removeItem('userData');
+        
+        // লগইন পেইজে রিডাইরেক্ট
+        window.location.href = 'LoginFrom.html';
+    }
+    
+    // পেইজ লোড হওয়ার সময় লগইন স্ট্যাটাস চেক করা
+    checkLoginStatus();
+    
+    // লগইন ফর্ম সাবমিশন হ্যান্ডল করা (যদি এই পেইজে লগইন ফর্ম থাকে)
+    const loginForm = document.querySelector('#loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // ইউজার ডাটা সেভ করা
+            const userData = {
+                // আপনার প্রয়োজনীয় ইউজার ডাটা
+                isLoggedIn: true,
+                loginTime: new Date().toISOString()
+            };
+            
+            localStorage.setItem('userData', JSON.stringify(userData));
+            
+            // লগইন স্ট্যাটাস আপডেট করা
+            checkLoginStatus();
+            
+            // আমার কোর্স পেইজে রিডাইরেক্ট
+            window.location.href = 'my_course.html';
+        });
+    }
+});
+
+// CSS স্টাইল যোগ করা
+const style = document.createElement('style');
+style.textContent = `
+    .logout-btn {
+        color: black !important;
+    }
+    
+    .logout-btn:hover {
+        color: black !important;
+    }
+`;
+document.head.appendChild(style);
+</script>
+
+<!-- প্রোফাইল এবং আমার কোর্স hide and show -->
+<script>
+    // হোম পেইজে নেভিগেশন মেনু আপডেট স্ক্রিপ্ট
+document.addEventListener('DOMContentLoaded', function() {
+    const ulControl = document.querySelector('.ulControl');
+    
+    // চেক করা যে ইউজার লগড ইন কিনা
+    function checkLoginStatus() {
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        
+        if (userData) {
+            // ইউজার লগড ইন অবস্থায় আছে
+            // লগইন বাটন কে লগআউট এ পরিবর্তন
+            const loginButton = document.querySelector('a[href="LoginFrom.html"]').parentElement;
+            
+            // লগইন বাটনের আগে নতুন মেনু আইটেম যোগ করা
+            // প্রোফাইল লিংক যোগ
+            if (!document.querySelector('a[href="profile_ifNamber.html"]')) {
+                const profileLi = document.createElement('ul');
+                profileLi.innerHTML = '<li><a href="profile_ifNamber.html">প্রোফাইল</a></li>';
+                loginButton.parentElement.insertBefore(profileLi, loginButton.parentElement);
+            }
+            
+            // আমার কোর্স লিংক যোগ
+            if (!document.querySelector('a[href="my_course.html"]')) {
+                const myCourseLi = document.createElement('ul');
+                myCourseLi.innerHTML = '<li><a class="Login_controller" href="my_course.html">আমার কোর্স</a></li>';
+                loginButton.parentElement.insertBefore(myCourseLi, loginButton.parentElement);
+            }
+            
+            // লগইন বাটন কে লগআউট এ পরিবর্তন
+            loginButton.querySelector('a').textContent = 'লগআউট';
+            loginButton.querySelector('a').href = '#';
+            loginButton.querySelector('a').addEventListener('click', handleLogout);
+        }
+    }
+    
+    // লগআউট ফাংশন
+    function handleLogout(event) {
+        event.preventDefault();
+        
+        // লোকাল স্টোরেজ থেকে ইউজার ডাটা মুছে ফেলা
+        localStorage.removeItem('userData');
+        
+        // প্রোফাইল এবং আমার কোর্স মেনু আইটেম রিমুভ করা
+        const profileLink = document.querySelector('a[href="profile_ifNamber.html"]');
+        const myCourseLink = document.querySelector('a[href="my_course.html"]');
+        
+        if (profileLink) profileLink.parentElement.parentElement.remove();
+        if (myCourseLink) myCourseLink.parentElement.parentElement.remove();
+        
+        // লগআউট বাটন কে লগইন এ পরিবর্তন
+        const logoutButton = event.target;
+        logoutButton.textContent = 'লগইন';
+        logoutButton.href = 'LoginFrom.html';
+        logoutButton.removeEventListener('click', handleLogout);
+        
+        // লগইন পেইজে রিডাইরেক্ট
+        window.location.href = 'LoginFrom.html';
+    }
+    
+    // পেইজ লোড হওয়ার সময় লগইন স্ট্যাটাস চেক করা
+    checkLoginStatus();
+});
+</script>
+
+<!-- আমার কোর্স ও প্রোফাইল এখান থেকে দেখার জন্য -->
+<script>
+    // Constants
+const AUTH_STORAGE_KEY = 'userData';
+const NAV_ITEMS = {
+    PROFILE: {
+        href: 'my_course.html',
+        text: 'আমার কোর্স'
+    },
+    MY_COURSES: {
+        href: 'profile_ifNamber.html',
+        text: 'প্রোফাইল'
+    }
+};
+
+// Navigation Manager
+class NavigationManager {
+    constructor() {
+        this.navContainer = document.querySelector('.ulControl');
+        this.loginLink = document.querySelector('.just_Fix');
+        this.init();
+    }
+
+    init() {
+        // Check login status on every page load
+        this.checkAuthState();
+        
+        // Add event listeners for navigation changes
+        this.setupEventListeners();
+    }
+
+    checkAuthState() {
+        const userData = localStorage.getItem(AUTH_STORAGE_KEY);
+        
+        if (userData) {
+            this.showAuthenticatedNav();
+        } else {
+            this.showUnauthenticatedNav();
+        }
+    }
+
+    showAuthenticatedNav() {
+        if (!this.navContainer) return;
+
+        // Find the login link's parent element
+        const loginLi = this.loginLink?.closest('ul');
+        
+        // Create profile and courses menu items
+        Object.values(NAV_ITEMS).forEach(item => {
+            const menuItem = this.createMenuItem(item);
+            
+            // Insert before login link
+            if (loginLi) {
+                this.navContainer.insertBefore(menuItem, loginLi);
+            } else {
+                this.navContainer.appendChild(menuItem);
+            }
+        });
+
+        // Update login link to show logout
+        if (this.loginLink) {
+            this.loginLink.textContent = 'লগআউট';
+            this.loginLink.href = '#';
+            this.loginLink.addEventListener('click', this.handleLogout.bind(this));
+        }
+    }
+
+    showUnauthenticatedNav() {
+        if (!this.navContainer) return;
+
+        // Remove authenticated menu items
+        Object.values(NAV_ITEMS).forEach(item => {
+            const existingItem = this.navContainer.querySelector(`a[href="${item.href}"]`);
+            if (existingItem) {
+                const parentUl = existingItem.closest('ul');
+                if (parentUl) {
+                    parentUl.remove();
+                }
+            }
+        });
+
+        // Reset login link
+        if (this.loginLink) {
+            this.loginLink.textContent = 'লগইন';
+            this.loginLink.href = 'LoginFrom.html';
+        }
+    }
+
+    createMenuItem(item) {
+        const ul = document.createElement('ul');
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        
+        a.href = item.href;
+        a.textContent = item.text;
+        a.className = 'from_top';
+        
+        li.appendChild(a);
+        ul.appendChild(li);
+        
+        return ul;
+    }
+
+    handleLogout(e) {
+        e.preventDefault();
+        
+        // Clear auth data
+        localStorage.removeItem(AUTH_STORAGE_KEY);
+        
+        // Reset navigation
+        this.showUnauthenticatedNav();
+        
+        // Redirect to home
+        window.location.href = 'TalimulIslamAcademy.html';
+    }
+
+    setupEventListeners() {
+        // Listen for storage events (for multi-tab support)
+        window.addEventListener('storage', (e) => {
+            if (e.key === AUTH_STORAGE_KEY) {
+                this.checkAuthState();
+            }
+        });
+    }
+}
+
+// Initialize navigation manager on page load
+document.addEventListener('DOMContentLoaded', () => {
+    new NavigationManager();
+});
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,294 @@
+/* এখান বিস্তারিত পড়ুন ভিডিও নোট কোর্স রিভিউ থাকবে */
+/* এখান বিস্তারিত পড়ুন ভিডিও নোট কোর্স রিভিউ থাকবে */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: "Anek Bangla", serif;
+    background-color:white;
+
+}        
+.container {
+            width: 60%;
+            max-height: 800px;
+            min-height: 600px;
+            margin: 20px auto;
+            /* padding: 20px; */
+            /* margin-top: 130px; */
+            /* background-color: #666; */
+            margin-left: 55px;
+            padding-top: 50px;
+            position: relative;
+        }
+ .first_line{
+    width: 300px;
+    height: 40px;
+    /* background-color: red; */
+    display: block;
+    position: absolute;
+    margin-top: -40px;
+ }
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            background: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: "Anek Bangla", serif;  
+        }
+
+        .tab-button.active {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+        }
+
+        .content-card {
+            /* border: 1px solid #ddd; */
+            /* padding: 20px; */
+            border-radius: 8px;
+            background: white;
+        }
+
+        /* details content */
+        .details-content {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .details-content .imgAndtext{
+            width: 100%;
+            height: 100px;
+            /* background-color: #666; */
+            margin: 0;
+            padding: 0;
+            border-radius: 5px;
+            border: 0.5px solid black;
+        }
+        .details-content .imgAndtext img{
+            margin-left: 0px;
+            margin-top: 0px;
+            margin-top: 15px;
+            margin-left: 15px;
+            border-radius: 5px;
+            display: inline-block;
+            position: relative;
+        }
+        .details-content .imgAndtext h3{
+            display: inline-block;
+            margin-top: 15px;
+            margin-left: 10px;
+            position: absolute;
+        }
+        .details-content .imgAndtext p{
+            margin-top: -50px;
+            margin-left: 100px;
+            line-height: 20px;
+            font-size: 14px;
+        }
+        .details-content .show_text{
+            width: 100%;
+            height: 170px;
+            /* background-color: #0066cc; */
+            padding-top: 20px;
+        }
+        .details-content .open_text_p{
+            font-size: 14px;
+        }
+         .hide_text_p{
+            font-size: 13px;
+        }
+
+
+        .read-more-btn {
+            color: #ffffff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            background-color: #44AC56;
+            border-radius: 5px;
+            padding: 7px 25px;
+            font-size: 16px;
+            margin-top: 20px;
+            margin-left: 35%;
+    font-family: "Anek Bangla", serif;
+        }
+         i{
+            font-size: 13px;
+        }
+
+        .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            cursor: pointer;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+
+        .list-header h3 {
+            font-size: 18px;
+        }
+
+        .arrow {
+            border: solid #666;
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 3px;
+            transition: transform 0.3s;
+        }
+
+        .arrow.down {
+            transform: rotate(45deg);
+        }
+
+        .arrow.right {
+            transform: rotate(-45deg);
+        }
+
+/* video */
+
+         .list-content{
+            width: 100%;
+            height: 380px;
+            /* background-color: #44AC56; */
+            overflow-y: scroll;
+         }
+        .list-item {
+            width: 100%;
+            height: 60px;
+            background-color: #F7F7F7;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            cursor:all-scroll;
+        }
+        /* .list-item */
+        .list-item1{
+            width: 100%;
+            height: 60px;
+            background-color: #F7F7F7;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            cursor:all-scroll;
+        }
+        .list-item1 .icon{
+            /* margin-right: 10px; */
+            width: 25px;
+            height: 25px;
+            /* margin-top: -20px; */
+            margin-right: auto;
+            color: #ADDFAD;  
+        }
+        .list-item1 span{
+            margin-right: 450px;
+            font-size: 13px;
+            color: #3E3E3E;
+        }
+
+        .list-item .icon {
+            /* margin-right: 10px; */
+            width: 25px;
+            height: 25px;
+            margin-top: -20px;
+            margin-right: auto;
+            color: #ADDFAD;  
+        }
+        .list-item span{
+            margin-right: 340px;
+        }
+        .list-item .fa-clock{
+            font-size: 15px;
+            margin-left: -63px;
+            margin-top: 30px;
+            font-size: 17px; 
+            color: #ADDFAD;
+        }
+        .list-item i{
+            color: #44AC56;
+            margin-left: auto;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .list-item .video-icon{
+            margin-left: auto;
+        }
+
+        .list-item .lock-icon {
+            margin-left: auto;
+            width: 16px;
+            height: 16px;
+        }
+        .list-item span{
+            margin-top: 5px;
+            margin-left: 10px;
+            line-height: 23px;
+            color: #3E3E3E;
+            font-weight: 300;
+            font-size: 13px;
+        }
+
+        .reviews-container {
+            max-height: 400px;
+            /* background-color: #0066cc; */
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+       
+        .review-card {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            margin-bottom: 15px;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .review-header img{
+            background-color: #44AC56;
+            margin-left: 0px;
+        }
+        .review-header span{
+            font-size: 22px;
+            /* margin-left: 10px; */
+        }
+        .review-header p{
+            margin-top: 50px;
+            margin-left: -140px;
+        }
+
+        .reviewer-name {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .stars {
+            color: gold;
+        }
+
+        .hidden {
+            display: none;
+        }
+  /* add */
+
+  

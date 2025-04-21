@@ -1,0 +1,542 @@
+<style>
+    /* আপনার CSS ফাইলে বা At_tadrees.html ফাইলের <style> টাগে এই CSS যোগ করুন */
+
+.payment-methods-container {
+    margin-bottom: 2rem;
+}
+
+.payment-methods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.payment-method-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.payment-method-option img {
+    height: 24px;
+    width: auto;
+}
+
+.payment-method-option.active {
+    border-color: #4CAF50;
+    background-color: #f0f9f0;
+}
+
+.payment-form-container {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+}
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+}
+
+.bkash-info {
+    background-color: #fff;
+    border-left: 4px solid #e2136e; /* বিকাশ ব্র্যান্ড কালার */
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+}
+
+.bkash-info ol {
+    padding-left: 1.5rem;
+}
+
+.bkash-info li {
+    margin-bottom: 0.5rem;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #e2136e;
+    border-radius: 50%;
+    margin: 1rem auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.success-icon, .error-icon {
+    font-size: 3rem;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.success-icon {
+    color: #4CAF50;
+}
+
+.error-icon {
+    color: #f44336;
+}
+
+.payment-button {
+    display: block;
+    width: 100%;
+    background-color: #e2136e; /* বিকাশ ব্র্যান্ড কালার */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+}
+
+.payment-button:hover {
+    background-color: #c3105c;
+}
+
+.access-course-button {
+    display: block;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+}
+
+.access-course-button:hover {
+    background-color: #45a049;
+}
+
+.retry-button {
+    display: block;
+    width: 100%;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+}
+
+.retry-button:hover {
+    background-color: #d32f2f;
+}
+
+/* রেসপন্সিভ স্টাইল */
+@media (max-width: 768px) {
+    .payment-methods {
+        flex-direction: column;
+    }
+    
+    .payment-method-option {
+        width: 100%;
+    }
+}
+</style>
+<!-- At_tadrees.html ফাইলে পেমেন্ট সেকশনে এই কোড যোগ করুন -->
+<div class="payment-methods-container">
+    <h3>পেমেন্ট মেথড নির্বাচন করুন</h3>
+    
+    <div class="payment-methods">
+        <!-- বিকাশ পেমেন্ট অপশন -->
+        <div class="payment-method-option active" data-method="bkash">
+            <img src="images/bkash-logo.png" alt="বিকাশ">
+            <span>বিকাশ</span>
+        </div>
+        
+        <!-- অন্যান্য পেমেন্ট অপশন -->
+        <div class="payment-method-option" data-method="card">
+            <img src="images/card-logo.png" alt="কার্ড">
+            <span>ক্রেডিট/ডেবিট কার্ড</span>
+        </div>
+        
+        <div class="payment-method-option" data-method="nagad">
+            <img src="images/nagad-logo.png" alt="নগদ">
+            <span>নগদ</span>
+        </div>
+    </div>
+    
+    <!-- পেমেন্ট ফর্ম আলাদা আলাদা -->
+    <div class="payment-form-container">
+        <!-- বিকাশ পেমেন্ট ফর্ম -->
+        <div class="payment-form" id="bkash-payment-form">
+            <div class="bkash-payment-flow">
+                <div class="step active" id="bkash-step-1">
+                    <h4>বিকাশ পেমেন্ট (৪৯০ টাকা)</h4>
+                    <div class="bkash-info">
+                        <p><strong>পেমেন্ট প্রক্রিয়া:</strong></p>
+                        <ol>
+                            <li>'পেমেন্ট করুন' বাটনে ক্লিক করুন</li>
+                            <li>বিকাশ পেমেন্ট পেজে রিডাইরেক্ট হবেন</li>
+                            <li>আপনার বিকাশ মোবাইল নাম্বার দিন</li>
+                            <li>OTP ভেরিফিকেশন সম্পন্ন করুন</li>
+                            <li>বিকাশ পিন দিয়ে পেমেন্ট কনফার্ম করুন</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" id="customer-mobile" placeholder="আপনার মোবাইল নাম্বার" required>
+                    </div>
+                    
+                    <div class="coupon-form" id="couponForm">
+                        <input type="text" class="coupon-input" id="couponCode" placeholder="কুপন কোড (যদি থাকে)" required>
+                        <button type="button" class="apply-btn" id="applyCoupon">এপ্লাই করুন</button>
+                    </div>
+                    
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="termsCheck" required>
+                        <label for="termsCheck">আমি টার্মস এন্ড কন্ডিশনস, প্রাইভেসি পলিসি, রিটার্ন ও রিফান্ড পলিসি মেনে পেমেন্ট করছি</label>
+                    </div>
+                    
+                    <button id="bkash-payment-button" class="payment-button">বিকাশে পেমেন্ট করুন</button>
+                </div>
+                
+                <div class="step" id="bkash-step-2">
+                    <h4>পেমেন্ট প্রসেসিং...</h4>
+                    <div class="loading-spinner"></div>
+                    <p>দয়া করে অপেক্ষা করুন, আপনাকে বিকাশ পেমেন্ট পেজে নিয়ে যাওয়া হচ্ছে।</p>
+                </div>
+                
+                <div class="step" id="bkash-step-3">
+                    <h4>পেমেন্ট সফল!</h4>
+                    <div class="success-icon">✓</div>
+                    <p>আপনার পেমেন্ট সফলভাবে সম্পন্ন হয়েছে।</p>
+                    <p>ট্রানজেকশন আইডি: <span id="txn-id">N/A</span></p>
+                    <p>কোর্সে প্রবেশ করতে নিচের বাটনে ক্লিক করুন।</p>
+                    <button class="access-course-button">কোর্সে প্রবেশ করুন</button>
+                </div>
+                
+                <div class="step" id="bkash-step-error">
+                    <h4>পেমেন্ট ব্যর্থ হয়েছে!</h4>
+                    <div class="error-icon">✗</div>
+                    <p>দুঃখিত, আপনার পেমেন্ট প্রসেস করা যায়নি।</p>
+                    <p>এরর মেসেজ: <span id="error-message">Unknown error</span></p>
+                    <button class="retry-button">আবার চেষ্টা করুন</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- অন্যান্য পেমেন্ট ফর্ম -->
+        <div class="payment-form" id="card-payment-form" style="display:none;">
+            <!-- কার্ড পেমেন্ট ফর্ম এখানে যোগ করুন -->
+        </div>
+        
+        <div class="payment-form" id="nagad-payment-form" style="display:none;">
+            <!-- নগদ পেমেন্ট ফর্ম এখানে যোগ করুন -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // জাভাস্ক্রিপ্ট ফাইলে বা At_tadrees.html ফাইলের <script> টাগে এই কোড যোগ করুন
+
+// বিকাশ পেমেন্ট কনফিগারেশন
+const bkashConfig = {
+    // বিকাশের ড্যাশবোর্ড থেকে প্রাপ্ত এই ভ্যালুগুলি
+    username: 'your_bkash_username',
+    password: 'your_bkash_password',
+    appKey: 'your_app_key',
+    appSecret: 'your_app_secret',
+    isSandbox: true, // টেস্টিং এর জন্য true, লাইভ এর জন্য false
+    
+    // বিকাশ API এন্ডপয়েন্টস
+    baseURL: 'https://checkout.sandbox.bka.sh/v1.2.0-beta', // স্যান্ডবক্স URL
+    // baseURL: 'https://checkout.pay.bka.sh/v1.2.0-beta', // প্রোডাকশন URL
+    
+    // আপনার সার্ভারের এন্ডপয়েন্টস
+    callbackURL: window.location.origin + '/bkash-callback.html',
+    
+    // পেমেন্ট ডিটেইলস
+    amount: 490,
+    intent: 'sale',
+    currency: 'BDT',
+    merchantInvoiceNumber: 'INV-' + Math.floor(100000 + Math.random() * 900000)
+};
+
+// ক্লাস ও আইডি সিলেক্টর ফাংশন
+const $ = selector => document.querySelector(selector);
+const $$ = selector => document.querySelectorAll(selector);
+
+// পেমেন্ট মেথড সিলেক্ট করার ফাংশন
+function initPaymentMethodSelection() {
+    const paymentMethods = $$('.payment-method-option');
+    
+    paymentMethods.forEach(method => {
+        method.addEventListener('click', () => {
+            // অ্যাক্টিভ ক্লাস মুছে ফেলুন
+            paymentMethods.forEach(m => m.classList.remove('active'));
+            
+            // ক্লিক করা মেথডে অ্যাক্টিভ ক্লাস যোগ করুন
+            method.classList.add('active');
+            
+            // সব পেমেন্ট ফর্ম লুকান
+            $$('.payment-form').forEach(form => form.style.display = 'none');
+            
+            // সিলেক্টেড মেথডের ফর্ম দেখান
+            const selectedMethod = method.getAttribute('data-method');
+            $(`#${selectedMethod}-payment-form`).style.display = 'block';
+        });
+    });
+}
+
+// বিকাশ পেমেন্ট ইন্টিগ্রেশন
+let bkashAuthToken = '';
+
+// বিকাশ অথোরাইজেশন টোকেন পাওয়ার ফাংশন
+async function getBkashToken() {
+    try {
+        const response = await fetch(bkashConfig.baseURL + '/checkout/token/grant', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'username': bkashConfig.username,
+                'password': bkashConfig.password
+            },
+            body: JSON.stringify({
+                app_key: bkashConfig.appKey,
+                app_secret: bkashConfig.appSecret
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (data.id_token) {
+            bkashAuthToken = data.id_token;
+            return true;
+        } else {
+            console.error('Error getting bKash token:', data);
+            showError('বিকাশ পেমেন্ট সিস্টেমে সংযোগ করা যাচ্ছে না। দয়া করে আবার চেষ্টা করুন।');
+            return false;
+        }
+    } catch (error) {
+        console.error('Error in bKash token API call:', error);
+        showError('নেটওয়ার্ক সমস্যা। দয়া করে আবার চেষ্টা করুন।');
+        return false;
+    }
+}
+
+// বিকাশ পেমেন্ট শুরু করার ফাংশন
+async function createBkashPayment() {
+    try {
+        const mobileNumber = $('#customer-mobile').value;
+        
+        if (!mobileNumber || mobileNumber.length !== 11) {
+            alert('দয়া করে সঠিক মোবাইল নাম্বার দিন');
+            return;
+        }
+        
+        if (!$('#termsCheck').checked) {
+            alert('অনুগ্রহ করে টার্মস এন্ড কন্ডিশনস এর বক্সটি চেক করুন');
+            return;
+        }
+        
+        // স্টেপ আপডেট করুন
+        showStep('bkash-step-2');
+        
+        // টোকেন না পাওয়া থাকলে নতুন টোকেন নিন
+        if (!bkashAuthToken) {
+            const tokenSuccess = await getBkashToken();
+            if (!tokenSuccess) {
+                showStep('bkash-step-error');
+                return;
+            }
+        }
+        
+        // পেমেন্ট ক্রিয়েট করুন
+        const response = await fetch(bkashConfig.baseURL + '/checkout/payment/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': bkashAuthToken,
+                'X-APP-Key': bkashConfig.appKey
+            },
+            body: JSON.stringify({
+                amount: bkashConfig.amount,
+                currency: bkashConfig.currency,
+                intent: bkashConfig.intent,
+                merchantInvoiceNumber: bkashConfig.merchantInvoiceNumber,
+                callbackURL: bkashConfig.callbackURL
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (data.paymentID) {
+            // পেমেন্ট আইডি সংরক্ষণ করুন এবং বিকাশ চেকআউট পেজে যান
+            localStorage.setItem('bkash_payment_id', data.paymentID);
+            
+            // ইউজার ডেটা সংরক্ষণ করুন - আসল সিস্টেমে ডাটাবেসে সেভ করা উচিত
+            localStorage.setItem('customer_mobile', mobileNumber);
+            localStorage.setItem('payment_amount', bkashConfig.amount);
+            localStorage.setItem('invoice_number', bkashConfig.merchantInvoiceNumber);
+            
+            // বিকাশ পেমেন্ট পেজে রিডাইরেক্ট করুন
+            window.location.href = data.bkashURL;
+        } else {
+            console.error('Error creating bKash payment:', data);
+            showError(data.errorMessage || 'পেমেন্ট শুরু করতে সমস্যা হচ্ছে। দয়া করে আবার চেষ্টা করুন।');
+        }
+    } catch (error) {
+        console.error('Error in bKash create payment API call:', error);
+        showError('নেটওয়ার্ক সমস্যা। দয়া করে আবার চেষ্টা করুন।');
+    }
+}
+
+// কুপন কোড চেক ও প্রয়োগ করার ফাংশন
+function applyCoupon() {
+    const couponCode = $('#couponCode').value.trim();
+    
+    if (!couponCode) {
+        alert('দয়া করে কুপন কোড লিখুন');
+        return;
+    }
+    
+    // এখানে আপনার সার্ভারে কুপন কোড চেক করার API কল করতে পারেন
+    // এই উদাহরণে সিম্পল কিছু কুপন কোড হার্ডকোড করা হয়েছে
+    const coupons = {
+        'NEW10': 10,  // 10% ছাড়
+        'WELCOME20': 20, // 20% ছাড়
+        'SPECIAL50': 50  // 50% ছাড়
+    };
+    
+    if (coupons[couponCode]) {
+        const discount = (bkashConfig.amount * coupons[couponCode]) / 100;
+        const newAmount = bkashConfig.amount - discount;
+        
+        // পেমেন্ট অ্যামাউন্ট আপডেট করুন
+        bkashConfig.amount = newAmount;
+        
+        // UI আপডেট করুন
+        $('.total').textContent = `সর্বমোট পেমেন্ট করতে হবে: ${newAmount} টাকা`;
+        $('#bkash-payment-button').textContent = `বিকাশে ${newAmount} টাকা পেমেন্ট করুন`;
+        
+        alert(`কুপন কোড সফলভাবে প্রয়োগ করা হয়েছে! ${coupons[couponCode]}% ছাড় পেয়েছেন।`);
+    } else {
+        alert('অবৈধ কুপন কোড। দয়া করে সঠিক কুপন কোড দিন।');
+    }
+}
+
+// পেমেন্ট স্টেপ দেখানোর ফাংশন
+function showStep(stepId) {
+    $$('.step').forEach(step => step.classList.remove('active'));
+    $(`#${stepId}`).classList.add('active');
+}
+
+// এরর দেখানোর ফাংশন
+function showError(message) {
+    showStep('bkash-step-error');
+    $('#error-message').textContent = message;
+}
+
+// পেমেন্ট স্ট্যাটাস চেক করার ফাংশন (পেমেন্ট কমপ্লিট হলে কল হবে)
+async function checkBkashPaymentStatus(paymentID) {
+    try {
+        // টোকেন না পাওয়া থাকলে নতুন টোকেন নিন
+        if (!bkashAuthToken) {
+            const tokenSuccess = await getBkashToken();
+            if (!tokenSuccess) {
+                showStep('bkash-step-error');
+                return;
+            }
+        }
+        
+        const response = await fetch(bkashConfig.baseURL + '/checkout/payment/execute/' + paymentID, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': bkashAuthToken,
+                'X-APP-Key': bkashConfig.appKey
+            }
+        });
+        
+        const data = await response.json();
+        
+        if (data.transactionStatus === 'Completed') {
+            // পেমেন্ট সফল হয়েছে
+            $('#txn-id').textContent = data.trxID;
+            
+            // এখানে সার্ভারে পেমেন্ট রেকর্ড আপডেট করার কোড যোগ করুন
+            
+            showStep('bkash-step-3');
+        } else {
+            console.error('Payment not completed:', data);
+            showError(data.errorMessage || 'পেমেন্ট সম্পন্ন হয়নি। দয়া করে আবার চেষ্টা করুন।');
+        }
+    } catch (error) {
+        console.error('Error checking payment status:', error);
+        showError('পেমেন্ট স্ট্যাটাস চেক করতে সমস্যা হচ্ছে। দয়া করে আবার চেষ্টা করুন।');
+    }
+}
+
+// কলব্যাক পেজ থেকে ডাটা পার্স করার ফাংশন (পেমেন্ট কমপ্লিট হলে কল হবে)
+function parseQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get('status');
+    const paymentID = params.get('paymentID');
+    
+    if (status === 'success' && paymentID) {
+        checkBkashPaymentStatus(paymentID);
+    } else if (status === 'cancel') {
+        showError('পেমেন্ট বাতিল করা হয়েছে।');
+    } else if (status === 'failure') {
+        showError('পেমেন্ট ব্যর্থ হয়েছে। দয়া করে আবার চেষ্টা করুন।');
+    }
+}
+
+// পেজ লোড হলে এই ফাংশনগুলি কল করুন
+document.addEventListener('DOMContentLoaded', function() {
+    initPaymentMethodSelection();
+    
+    // বিকাশ পেমেন্ট বাটন ক্লিক হ্যান্ডলিং
+    $('#bkash-payment-button').addEventListener('click', createBkashPayment);
+    
+    // কুপন কোড অ্যাপ্লাই বাটন ক্লিক হ্যান্ডলিং
+    $('#applyCoupon').addEventListener('click', applyCoupon);
+    
+    // পুনরায় চেষ্টা করার বাটন ক্লিক হ্যান্ডলিং
+    $('.retry-button').addEventListener('click', () => {
+        showStep('bkash-step-1');
+    });
+    
+    // কোর্সে প্রবেশ বাটন ক্লিক হ্যান্ডলিং
+    $('.access-course-button').addEventListener('click', () => {
+        window.location.href = 'course-dashboard.html';
+    });
+    
+    // কলব্যাক URL থেকে আসা ডাটা চেক করুন
+    if (window.location.search.includes('status=')) {
+        parseQueryParams();
+    }
+});
+</script>

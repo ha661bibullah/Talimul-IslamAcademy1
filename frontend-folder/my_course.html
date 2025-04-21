@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- all linksall linksall links -->
+<!-- all linksall linksall links -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&family=Aref+Ruqaa:wght@400;700&family=Arima:wght@100..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,600;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<title>my course</title>
+
+</head>
+<body>
+
+<!-- নেববার style-->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+    }
+    
+    body {
+        font-family: "Anek Bangla", serif;
+        background-color: white;
+        padding-top: 100px;
+    }
+    
+    nav {
+        width: 100%;
+        height: 80px;
+        background-color: white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        z-index: 90;
+    }
+    
+    nav .imgPath {
+        margin-left: 70px;
+        margin-top: 13px;
+        z-index: 90;
+    }
+    
+    nav .ulControl {
+        width: 100%;
+        height: 30px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        position: absolute;
+        top: 35%;
+        left: 0;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    nav .ulControl ul {
+        font-size: 14px;
+        display: inline-block;
+        margin-left: 30px;
+    }
+    
+    nav .ulControl ul li {
+        list-style: none;
+    }
+    
+    .ulControl a {
+        text-decoration: none;
+        color: black;
+        font-weight: normal;
+        font-size: 14px;
+        position: relative;
+    }
+    
+    nav .ulControl .Login_controller {
+        color: #44AB56;
+    }
+    
+    nav .ulControl a:hover {
+        transition: 0.4s;
+        color: #44AB56;
+    }
+    
+    nav .ulControl ul ul {
+        display: none;
+    }
+    
+    nav .ulControl ul:hover li ul {
+        display: block;
+        position: absolute;
+        top: 30px;
+        margin-left: -30px;
+        width: 100px;
+        text-align: center;
+        background-color: aliceblue;
+    }
+    
+    nav .ulControl ul ul a:hover {
+        color: rgb(247, 153, 0);
+    }
+    
+    nav .ulControl .just_Fix {
+        margin-right: 70px;
+    }
+    
+    .hamburger {
+        display: none;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: 25px;
+        z-index: 95;
+        width: 30px;
+        height: 30px;
+        transition: all 0.3s ease-in-out;
+        padding: 5px;
+    }
+    
+    .hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: #333;
+        margin: 5px;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    @media screen and (max-width: 1200px) {
+        .hamburger {
+            display: block;
+            line-height: 0;
+        }
+        .hamburger .line1{
+            padding: 0;
+            margin: 0;
+        }
+        .hamburger .line2{
+            padding: 0;
+            margin: 0;
+            margin-top: 5px;
+        }
+        .hamburger .line3{
+            padding: 0;
+            margin: 0;
+            margin-top: 5px;
+        }
+        nav .ulControl {
+            position: fixed;
+            flex-direction: column;
+            justify-content: flex-start;
+            top: 80px;
+            height: calc(100vh - 80px);
+            width: 280px;
+            background-color: white;
+            padding-top: 30px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* বাম সাইডে শ্যাডো */
+            right: -280px; /* ডান দিকে বাইরে */
+            left: auto; /* এটি যোগ করা হয়েছে */
+            opacity: 0;
+            overflow-y: scroll;
+            padding-bottom: 30px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            pointer-events: none; /* বন্ধ থাকা অবস্থায় ক্লিক গ্রহণ করবে না */
+        }
+        
+        nav .ulControl.active {
+            right: 0; /* ডান দিকে ০-তে */
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        /* WebKit ব্রাউজার (Chrome, Safari ইত্যাদি) এর জন্য */
+        nav .ulControl::-webkit-scrollbar {
+            display: none;
+        }
+        
+        nav .ulControl a:hover {
+            transition: none;
+            color: black;
+        }
+        
+        nav .ulControl ul ul a:hover {
+            color: black;
+        }
+        
+        nav .ulControl .just_Fix {
+            margin-right: 0px;
+        }
+        
+        nav .ulControl ul {
+            margin: 0;
+            width: 100%;
+            text-align: center;
+            transform: translateX(20px);
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+            padding: 12px 0;
+        }
+        
+        nav .ulControl ul:hover{
+            background-color: #ea9400;
+            transition: none;
+        }
+        
+        nav .ulControl.active ul {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        nav .ulControl ul li {
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        nav .ulControl ul li a {
+            display: block;
+            line-height: 1;
+            padding: 8px 0;
+            font-size: 16px;
+        }
+        
+        nav .ulControl ul:hover li ul {
+            position: static;
+            width: 100%;
+            margin: 5px 0;
+            background-color: white;
+            border-radius: 4px;
+            padding: 5px 0;
+            background-color: transparent;
+        }
+        
+        nav .ulControl ul:hover li ul li a {
+            padding: 6px 0;
+            font-size: 15px;
+        }
+        
+        nav .imgPath {
+            margin-left: 20px;
+        }
+        
+        /* Hamburger to X animation */
+        .hamburger.active .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active .line2 {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .hamburger.active .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        /* Add delay to menu items with smoother transition */
+        nav .ulControl ul:nth-child(1) { transition-delay: 0.1s; }
+        nav .ulControl ul:nth-child(2) { transition-delay: 0.15s; }
+        nav .ulControl ul:nth-child(3) { transition-delay: 0.2s; }
+        nav .ulControl ul:nth-child(4) { transition-delay: 0.25s; }
+        nav .ulControl ul:nth-child(5) { transition-delay: 0.3s; }
+        nav .ulControl ul:nth-child(6) { transition-delay: 0.35s; }
+        nav .ulControl ul:nth-child(7) { transition-delay: 0.4s; }
+        
+        /* Center align dropdown icon */
+        .fa-chevron-down {
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+    }
+
+
+
+
+
+
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+/* ... (keeping other base styles the same) ... */
+
+.ulControl a {
+    text-decoration: none;
+    color: black;
+    font-weight: normal;
+    font-size: 14px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* New hover effect for main menu items */
+.ulControl a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    background-color: #44AB56;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.ulControl a:hover::after {
+    width: 100%;
+}
+
+/* Enhanced dropdown styles */
+nav .ulControl ul:hover li ul {
+    display: block;
+    position: absolute;
+    top: 30px;
+    margin-left: -30px;
+    width: 160px;
+    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: dropdownFade 0.3s ease forwards;
+}
+
+@keyframes dropdownFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced dropdown item hover effects */
+nav .ulControl ul ul a {
+    display: block;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+nav .ulControl ul ul a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background-color: rgba(68, 171, 86, 0.1);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+nav .ulControl ul ul a:hover::before {
+    width: 100%;
+}
+
+nav .ulControl ul ul a:hover {
+    color: #44AB56;
+    transform: translateX(5px);
+}
+
+/* Mobile-specific modifications */
+@media screen and (max-width: 1200px) {
+    nav .ulControl ul:hover li ul {
+        position: static;
+        width: 100%;
+        margin: 5px 0;
+        box-shadow: none;
+        background-color: rgba(68, 171, 86, 0.05);
+        border-radius: 4px;
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    nav .ulControl ul ul a {
+        padding: 10px 20px;
+    }
+
+    nav .ulControl ul ul a:hover {
+        transform: translateX(0);
+        background-color: rgba(68, 171, 86, 0.1);
+    }
+
+    nav .ulControl ul:hover {
+        background-color: transparent;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Remove underline effect on mobile */
+    .ulControl a::after {
+        display: none;
+    }
+}
+</style>
+
+<!-- নেববার html-->
+<nav>
+    <a class="imgPath" href="TalimulIslamAcademy.html">
+        <img src="/img/ChatGPT Image.png" width="170" alt="">
+    </a>
+    <div class="hamburger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+    <div class="ulControl">
+        <ul><li><a href="TalimulIslamAcademy.html">হোম</a></li></ul>
+        <ul><li><a href="Academic_courses.html">একাডেমিক</a></li></ul>
+        <ul><li><a href="">কোর্স <i class="fa-solid fa-chevron-down"></i></a>
+            <ul>
+                <li><a href="">সকল কোর্স</a></li>
+                <li><a href="">লাইভ কোর্স</a></li>
+            </ul>
+        </li></ul>
+        <ul><li><a href="">বই</a></li></ul>
+        <ul><li><a href="">শিক্ষক</a></li></ul>
+        <ul><li><a href="">উপদেষ্টা</a></li></ul>
+        <ul><li><a href="">আমাদের সম্পর্কে</a></li></ul>
+        <ul><li><a class="from_top" href="my_course.html">আমার কোর্স</a></li></ul>
+        <ul><li><a class="from_top" href="profile_ifNamber.html">প্রোফাইল</a></li></ul>
+        <ul><li><a class="just_Fix" href="LoginFrom.html">লগইন</a></li></ul>
+    </div>
+</nav>
+
+<!-- রেস্পন্সিপ নেববার স্ক্রিপ্ট -->
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const ulControl = document.querySelector('.ulControl');
+    const nav = document.querySelector('nav');
+    
+    hamburger.addEventListener('click', function(e) {
+        e.stopPropagation(); // স্টপ ইভেন্ট বাবলিং
+        hamburger.classList.toggle('active');
+        ulControl.classList.toggle('active');
+    });
+    
+    // মেনু লিংক ক্লিক করলে মেনু বন্ধ হবে
+    document.querySelectorAll('.ulControl a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            ulControl.classList.remove('active');
+        });
+    });
+
+    // বাইরে ক্লিক করলে মেনু বন্ধ হবে
+    document.addEventListener('click', function(e) {
+        if (!nav.contains(e.target) || (!hamburger.contains(e.target) && !ulControl.contains(e.target))) {
+            hamburger.classList.remove('active');
+            ulControl.classList.remove('active');
+        }
+    });
+    
+    // মেনু ভিতরে ক্লিক করলে বাবলিং বন্ধ করবে
+    ulControl.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+</script>
+
+
+
+
+
+
+<!-- আমার কোর্স style -->
+<!-- আমার কোর্স style -->
+ <style>
+.my_course{
+    width: 100%;
+    height: 350px;
+    /* background-color: #ea9400; */
+    /* margin-top: 120px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.my_course .my_course_img_text{
+    width: 400px;
+    height: 250px;
+    /* background-color: antiquewhite; */
+   text-align: center;
+}
+.my_course .my_course_img_text h2{
+font-weight: normal;
+font-size: 18px;
+}
+.my_course .my_course_img_text img{
+margin: 0 auto;
+padding: 20px;
+}
+ </style>
+<!-- আমার কোর্স html -->
+<!-- আমার কোর্স html -->
+<div class="my_course">
+    <div class="my_course_img_text">
+        <h2>আমার কোর্স সমূহ</h2>
+        <img src="img/my course.png" width="100px" alt="my course">
+        <h2>দুঃখিত, কোন কোর্স পাওয়া যায়নি!</h2>
+    </div>
+</div>
+
+
+
+
+<!-- লগআউট দেখানোর কোড -->
+<script>
+    // আমার কোর্স পেইজের জন্য লগইন/লগআউট হ্যান্ডলার
+document.addEventListener('DOMContentLoaded', function() {
+    // লগইন বাটন এলিমেন্ট
+    const loginButton = document.querySelector('nav ul li a[href="LoginFrom.html"]');
+    // আমার কোর্স লিংক
+    const myCourseLink = document.querySelector('nav ul li a[href="my_course.html"]');
+    // প্রোফাইল লিংক
+    const profileLink = document.querySelector('nav ul li a[href="profile_ifNamber.html"]');
+    
+    // চেক করা যে ইউজার লগড ইন কিনা
+    function checkLoginStatus() {
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        
+        if (userData) {
+            // ইউজার লগড ইন অবস্থায় আছে
+            if (loginButton) {
+                loginButton.textContent = 'লগআউট';
+                loginButton.href = '#';
+                loginButton.classList.add('logout-btn');
+                
+                // লগআউট বাটনে ক্লিক ইভেন্ট হ্যান্ডলার যোগ করা
+                loginButton.addEventListener('click', handleLogout);
+            }
+            
+            // আমার কোর্স এবং প্রোফাইল লিংক দৃশ্যমান করা
+            if (myCourseLink) myCourseLink.style.display = 'block';
+            if (profileLink) profileLink.style.display = 'block';
+            
+        } else {
+            // ইউজার লগড আউট অবস্থায় আছে
+            if (loginButton) {
+                loginButton.textContent = 'লগইন';
+                loginButton.href = 'LoginFrom.html';
+                loginButton.classList.remove('logout-btn');
+                
+                // পুরানো ইভেন্ট লিসেনার রিমুভ করা
+                loginButton.removeEventListener('click', handleLogout);
+            }
+            
+            // আমার কোর্স এবং প্রোফাইল লিংক লুকানো
+            if (myCourseLink) myCourseLink.style.display = 'none';
+            if (profileLink) profileLink.style.display = 'none';
+        }
+    }
+    
+    // লগআউট ফাংশন
+    function handleLogout(event) {
+        event.preventDefault();
+        
+        // লোকাল স্টোরেজ থেকে ইউজার ডাটা মুছে ফেলা
+        localStorage.removeItem('userData');
+        
+        // লগইন পেইজে রিডাইরেক্ট
+        window.location.href = 'LoginFrom.html';
+    }
+    
+    // পেইজ লোড হওয়ার সময় লগইন স্ট্যাটাস চেক করা
+    checkLoginStatus();
+    
+    // লগইন ফর্ম সাবমিশন হ্যান্ডল করা (যদি এই পেইজে লগইন ফর্ম থাকে)
+    const loginForm = document.querySelector('#loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // ইউজার ডাটা সেভ করা
+            const userData = {
+                // আপনার প্রয়োজনীয় ইউজার ডাটা
+                isLoggedIn: true,
+                loginTime: new Date().toISOString()
+            };
+            
+            localStorage.setItem('userData', JSON.stringify(userData));
+            
+            // লগইন স্ট্যাটাস আপডেট করা
+            checkLoginStatus();
+            
+            // আমার কোর্স পেইজে রিডাইরেক্ট
+            window.location.href = 'my_course.html';
+        });
+    }
+});
+
+// CSS স্টাইল যোগ করা
+const style = document.createElement('style');
+style.textContent = `
+    .logout-btn {
+        color: black !important;
+    }
+    
+    .logout-btn:hover {
+        color: black !important;
+    }
+`;
+document.head.appendChild(style);
+</script>
+
+<!-- লগআউট দেখানোর কোড ২য় কোড -->
+<script>
+    // Login/Logout toggle functionality
+function updateLoginLogoutButton() {
+    // Get the login button element
+    const loginButton = document.querySelector('nav .ulControl .just_Fix');
+    // Get user data from localStorage
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    
+    if (loginButton) {
+        if (userData) {
+            // If user is logged in
+            loginButton.textContent = 'লগআউট';
+            loginButton.href = '#';
+            loginButton.style.color = '#44AB56'; // Keep the green color
+            // Add logout click handler
+            loginButton.onclick = function(e) {
+                e.preventDefault();
+                // Clear user data
+                localStorage.removeItem('userData');
+                // Hide profile menu items
+                toggleProfileMenuVisibility(false);
+                // Redirect to login page
+                window.location.href = 'LoginFrom.html';
+            };
+        } else {
+            // If user is logged out
+            loginButton.textContent = 'লগইন';
+            loginButton.href = 'LoginFrom.html';
+            loginButton.style.color = '#44AB56';
+            // Remove click handler
+            loginButton.onclick = null;
+        }
+    }
+}
+
+// Call this function when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    updateLoginLogoutButton();
+});
+
+// Add this to your existing checkLoginStatus function
+function checkLoginStatus() {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    
+    if (userData) {
+        toggleProfileMenuVisibility(true);
+        updateProfileWithUserData(userData);
+        updateLoginLogoutButton(); // Update login/logout button state
+    } else {
+        toggleProfileMenuVisibility(false);
+        updateLoginLogoutButton(); // Update login/logout button state
+    }
+}
+
+// Add this to your existing handleRegistration function
+function handleRegistration(event) {
+    // ... existing registration code ...
+    
+    updateLoginLogoutButton(); // Update login/logout button after registration
+    
+    return false;
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Footer Footer Footer Footer Footer Footer Footer    -->
+<!-- Footer Footer Footer Footer Footer Footer Footer -->
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+    }
+    
+    body {
+        font-family: "Anek Bangla", serif;
+        background-color: white;
+        padding-top: 100px;
+    }
+        .footer_area {
+            width: 100%;
+            background-color: #348B57;
+            padding: 30px 20px;
+            color: white;
+        }
+
+        .footer_content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .biodata {
+            flex: 1 1 300px;
+        }
+
+        .biodata img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .biodata p {
+            font-size: 15px;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        .link, .support {
+            flex: 1 1 200px;
+        }
+
+        .link h2, .support h2, .address h2 {
+            font-weight: 400;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .link li, .support li {
+            list-style: none;
+            line-height: 25px;
+        }
+
+        .link a, .support a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .link a:hover, .support a:hover {
+            color: #ea9400;
+        }
+
+        .address {
+            flex: 1 1 300px;
+        }
+
+        .gmail_div, .location_div {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .email_cover, .location_cover {
+            width: 50px;
+            height: 60px;
+            background-color: #348B57;
+            box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+
+        .gmail_div i, .location_div i {
+            font-size: 25px;
+        }
+
+        .contact_info {
+            flex: 1;
+        }
+
+        .contact_info h4 {
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+
+        .all_accounts {
+            width: 100%;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .all_accounts img {
+            max-width: 90%;
+            height: auto;
+            transition: max-width 0.3s ease;
+        }
+
+        .license {
+            background-color: #215E3A;
+            padding: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .license p {
+            font-family: 'Gill Sans', sans-serif;
+            font-size: 15px;
+        }
+
+        .holud_color {
+            color: rgb(211, 137, 0);
+            display: inline;
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+            .all_accounts img {
+                max-width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .footer_content {
+                gap: 20px;
+            }
+            
+            .biodata, .link, .support, .address {
+                flex: 1 1 100%;
+            }
+
+            .link, .support {
+                flex: 1 1 45%;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .footer_area {
+                padding: 20px 15px;
+            }
+
+            .link, .support {
+                flex: 1 1 100%;
+            }
+
+            .all_accounts img {
+                max-width: 100%;
+            }
+        }
+    </style>
+    <footer>
+        <div class="footer_area">
+            <div class="footer_content">
+                <div class="biodata">
+                    <img src="img/At Tadrees.png" alt="At Tadrees">
+                    <p>আত তাদরীস অনলাইন মাদরাসা, ২০২১ সালে প্রতিষ্ঠিত বাংলাদেশের মাদরাসা কেন্দ্রিক সর্বাধুনিক শিক্ষা প্রতিষ্ঠান। সবার জন্য মানসম্মত পড়াশোনা নিশ্চিত করতে অভিজ্ঞ উস্তাদ এবং অত্যাধুনিক প্রযুক্তির মাধ্যমে আমরা গড়ে তুলেছি সহজে ইলম শেখার বিশ্বস্ত অনলাইন প্রতিষ্ঠান।</p>
+                </div>
+                
+                <div class="link">
+                    <h2>লিঙ্কস</h2>
+                    <ul>
+                        <li><a href="">Home</a></li>
+                        <li><a href="">Course</a></li>
+                        <li><a href="">Privacy Policy</a></li>
+                        <li><a href="">Refund Policy</a></li>
+                        <li><a href="">Terms and Condition</a></li>
+                    </ul>
+                </div>
+
+                <div class="support">
+                    <h2>সাপোর্ট</h2>
+                    <ul>
+                        <li><a href="">মেসেজ করুন</a></li>
+                        <li><a href="">ফোন করুন</a></li>
+                    </ul>
+                </div>
+
+                <div class="address">
+                    <h2>ঠিকানা</h2>
+                    <div class="gmail_div">
+                        <div class="email_cover">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="contact_info">
+                            <h4>ই-মেইল</h4>
+                            <p>support@attadrees.com</p>
+                        </div>
+                    </div>
+
+                    <div class="location_div">
+                        <div class="location_cover">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <div class="contact_info">
+                            <p>মাদরাসা রোড, দারুননাজাত সিদ্দীকিয়া কামিল মাদরাসা, সারুলিয়া, ডেমরা, ঢাকা।</p>
+                            <p style="margin-top: 10px;">Trade License: TRAD/DSCC/029395/2022</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="all_accounts">
+                <img src="/img/accounts.png" alt="Accounts">
+            </div>
+
+            <div class="license">
+                <p>© Copyright 2025. All Rights Reserved by <span class="holud_color">At-Tadrees</span></p>
+            </div>
+        </div>
+    </footer>
+
+
+
+</body>
+</html>

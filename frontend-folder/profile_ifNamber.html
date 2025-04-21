@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <!-- all linksall linksall links -->
+        <!-- all linksall linksall links -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&family=Aref+Ruqaa:wght@400;700&family=Arima:wght@100..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,600;0,700;1,300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=contacts_product" />
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+<!-- নেববার style-->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+    }
+    
+    body {
+        font-family: "Anek Bangla", serif;
+        background-color: white;
+        padding-top: 100px;
+    }
+    
+    nav {
+        width: 100%;
+        height: 80px;
+        background-color: white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        z-index: 90;
+    }
+    
+    nav .imgPath {
+        margin-left: 70px;
+        margin-top: 13px;
+        z-index: 90;
+    }
+    
+    nav .ulControl {
+        width: 100%;
+        height: 30px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        position: absolute;
+        top: 35%;
+        left: 0;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    nav .ulControl ul {
+        font-size: 14px;
+        display: inline-block;
+        margin-left: 30px;
+    }
+    
+    nav .ulControl ul li {
+        list-style: none;
+    }
+    
+    .ulControl a {
+        text-decoration: none;
+        color: black;
+        font-weight: normal;
+        font-size: 14px;
+        position: relative;
+    }
+    
+    nav .ulControl .Login_controller {
+        color: #44AB56;
+    }
+    
+    nav .ulControl a:hover {
+        transition: 0.4s;
+        color: #44AB56;
+    }
+    
+    nav .ulControl ul ul {
+        display: none;
+    }
+    
+    nav .ulControl ul:hover li ul {
+        display: block;
+        position: absolute;
+        top: 30px;
+        margin-left: -30px;
+        width: 100px;
+        text-align: center;
+        background-color: aliceblue;
+    }
+    
+    nav .ulControl ul ul a:hover {
+        color: rgb(247, 153, 0);
+    }
+    
+    nav .ulControl .just_Fix {
+        margin-right: 70px;
+    }
+    
+    .hamburger {
+        display: none;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: 25px;
+        z-index: 95;
+        width: 30px;
+        height: 30px;
+        transition: all 0.3s ease-in-out;
+        padding: 5px;
+    }
+    
+    .hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: #333;
+        margin: 5px;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    @media screen and (max-width: 1200px) {
+        .hamburger {
+            display: block;
+            line-height: 0;
+        }
+        .hamburger .line1{
+            padding: 0;
+            margin: 0;
+        }
+        .hamburger .line2{
+            padding: 0;
+            margin: 0;
+            margin-top: 5px;
+        }
+        .hamburger .line3{
+            padding: 0;
+            margin: 0;
+            margin-top: 5px;
+        }
+        nav .ulControl {
+            position: fixed;
+            flex-direction: column;
+            justify-content: flex-start;
+            top: 80px;
+            height: calc(100vh - 80px);
+            width: 280px;
+            background-color: white;
+            padding-top: 30px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* বাম সাইডে শ্যাডো */
+            right: -280px; /* ডান দিকে বাইরে */
+            left: auto; /* এটি যোগ করা হয়েছে */
+            opacity: 0;
+            overflow-y: scroll;
+            padding-bottom: 30px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            pointer-events: none; /* বন্ধ থাকা অবস্থায় ক্লিক গ্রহণ করবে না */
+        }
+        
+        nav .ulControl.active {
+            right: 0; /* ডান দিকে ০-তে */
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        /* WebKit ব্রাউজার (Chrome, Safari ইত্যাদি) এর জন্য */
+        nav .ulControl::-webkit-scrollbar {
+            display: none;
+        }
+        
+        nav .ulControl a:hover {
+            transition: none;
+            color: black;
+        }
+        
+        nav .ulControl ul ul a:hover {
+            color: black;
+        }
+        
+        nav .ulControl .just_Fix {
+            margin-right: 0px;
+        }
+        
+        nav .ulControl ul {
+            margin: 0;
+            width: 100%;
+            text-align: center;
+            transform: translateX(20px);
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+            padding: 12px 0;
+        }
+        
+        nav .ulControl ul:hover{
+            background-color: #ea9400;
+            transition: none;
+        }
+        
+        nav .ulControl.active ul {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        nav .ulControl ul li {
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        nav .ulControl ul li a {
+            display: block;
+            line-height: 1;
+            padding: 8px 0;
+            font-size: 16px;
+        }
+        
+        nav .ulControl ul:hover li ul {
+            position: static;
+            width: 100%;
+            margin: 5px 0;
+            background-color: white;
+            border-radius: 4px;
+            padding: 5px 0;
+            background-color: transparent;
+        }
+        
+        nav .ulControl ul:hover li ul li a {
+            padding: 6px 0;
+            font-size: 15px;
+        }
+        
+        nav .imgPath {
+            margin-left: 20px;
+        }
+        
+        /* Hamburger to X animation */
+        .hamburger.active .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active .line2 {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .hamburger.active .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        /* Add delay to menu items with smoother transition */
+        nav .ulControl ul:nth-child(1) { transition-delay: 0.1s; }
+        nav .ulControl ul:nth-child(2) { transition-delay: 0.15s; }
+        nav .ulControl ul:nth-child(3) { transition-delay: 0.2s; }
+        nav .ulControl ul:nth-child(4) { transition-delay: 0.25s; }
+        nav .ulControl ul:nth-child(5) { transition-delay: 0.3s; }
+        nav .ulControl ul:nth-child(6) { transition-delay: 0.35s; }
+        nav .ulControl ul:nth-child(7) { transition-delay: 0.4s; }
+        
+        /* Center align dropdown icon */
+        .fa-chevron-down {
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+    }
+
+
+
+
+
+
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+/* ... (keeping other base styles the same) ... */
+
+.ulControl a {
+    text-decoration: none;
+    color: black;
+    font-weight: normal;
+    font-size: 14px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* New hover effect for main menu items */
+.ulControl a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    background-color: #44AB56;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.ulControl a:hover::after {
+    width: 100%;
+}
+
+/* Enhanced dropdown styles */
+nav .ulControl ul:hover li ul {
+    display: block;
+    position: absolute;
+    top: 30px;
+    margin-left: -30px;
+    width: 160px;
+    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: dropdownFade 0.3s ease forwards;
+}
+
+@keyframes dropdownFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced dropdown item hover effects */
+nav .ulControl ul ul a {
+    display: block;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+nav .ulControl ul ul a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background-color: rgba(68, 171, 86, 0.1);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+nav .ulControl ul ul a:hover::before {
+    width: 100%;
+}
+
+nav .ulControl ul ul a:hover {
+    color: #44AB56;
+    transform: translateX(5px);
+}
+
+/* Mobile-specific modifications */
+@media screen and (max-width: 1200px) {
+    nav .ulControl ul:hover li ul {
+        position: static;
+        width: 100%;
+        margin: 5px 0;
+        box-shadow: none;
+        background-color: rgba(68, 171, 86, 0.05);
+        border-radius: 4px;
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    nav .ulControl ul ul a {
+        padding: 10px 20px;
+    }
+
+    nav .ulControl ul ul a:hover {
+        transform: translateX(0);
+        background-color: rgba(68, 171, 86, 0.1);
+    }
+
+    nav .ulControl ul:hover {
+        background-color: transparent;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Remove underline effect on mobile */
+    .ulControl a::after {
+        display: none;
+    }
+}
+</style>
+
+<!-- নেববার html-->
+<nav>
+    <a class="imgPath" href="TalimulIslamAcademy.html">
+        <img src="/img/ChatGPT Image.png" width="170" alt="">
+    </a>
+    <div class="hamburger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+    <div class="ulControl">
+        <ul><li><a href="TalimulIslamAcademy.html">হোম</a></li></ul>
+        <ul><li><a href="Academic_courses.html">একাডেমিক</a></li></ul>
+        <ul><li><a href="">কোর্স <i class="fa-solid fa-chevron-down"></i></a>
+            <ul>
+                <li><a href="">সকল কোর্স</a></li>
+                <li><a href="">লাইভ কোর্স</a></li>
+            </ul>
+        </li></ul>
+        <ul><li><a href="">বই</a></li></ul>
+        <ul><li><a href="">শিক্ষক</a></li></ul>
+        <ul><li><a href="">উপদেষ্টা</a></li></ul>
+        <ul><li><a href="">আমাদের সম্পর্কে</a></li></ul>
+        <ul ><li><a class="from_top" href="my_course.html">আমার কোর্স</a></li></ul>
+        <ul ><li><a class="from_top" href="profile_ifNamber.html">প্রোফাইল</a></li></ul>
+        <ul><li><a class="just_Fix" href="LoginFrom.html">লগইন</a></li></ul>
+    </div>
+</nav>
+
+<!-- রেস্পন্সিপ নেববার স্ক্রিপ্ট -->
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const ulControl = document.querySelector('.ulControl');
+    const nav = document.querySelector('nav');
+    
+    hamburger.addEventListener('click', function(e) {
+        e.stopPropagation(); // স্টপ ইভেন্ট বাবলিং
+        hamburger.classList.toggle('active');
+        ulControl.classList.toggle('active');
+    });
+    
+    // মেনু লিংক ক্লিক করলে মেনু বন্ধ হবে
+    document.querySelectorAll('.ulControl a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            ulControl.classList.remove('active');
+        });
+    });
+
+    // বাইরে ক্লিক করলে মেনু বন্ধ হবে
+    document.addEventListener('click', function(e) {
+        if (!nav.contains(e.target) || (!hamburger.contains(e.target) && !ulControl.contains(e.target))) {
+            hamburger.classList.remove('active');
+            ulControl.classList.remove('active');
+        }
+    });
+    
+    // মেনু ভিতরে ক্লিক করলে বাবলিং বন্ধ করবে
+    ulControl.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+<!-- প্রোফাইল style 1 -->
+<!-- প্রোফাইল style 1 -->
+<style>       
+            .container {
+                width: 100%;
+                max-height: 800px;
+                min-height: 600px;
+                /* margin: 20px auto; */
+                /* padding: 20px; */
+                margin-top: -5px;
+                /* background-color: #666; */
+                /* margin-left: 55px; */
+                padding-top: 50px;
+                position: relative;
+            }
+            .tab-buttons {
+                display: flex;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+    
+            .tab-button {
+                padding: 10px 20px;
+                border: 1px solid #ddd;
+                background: #fff;
+                cursor: pointer;
+                border-radius: 4px;
+                font-family: "Anek Bangla", serif;  
+            }
+    
+            .tab-button.active {
+                background:#44AC56;
+                color: white;
+                /* border-color: #0066cc; */
+            }
+    
+            .content-card {
+                /* border: 1px solid #ddd; */
+                /* padding: 20px; */
+                border-radius: 8px;
+                background: white;
+                position: relative;
+                z-index: 1;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            }
+            .content-card:hover {
+    transform: scale(1.0);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+            .content-card:hover::before {
+    opacity: 1;
+}
+
+.content-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #ff6b6b, #f9ca24, #12cbc4, #5758bb, #ff9ff3);
+    z-index: -1;
+    border-radius: 10px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
+}
+
+           
+    
+            /* details content */
+            .details-content {
+                margin-bottom: 15px;
+                line-height: 1.6;
+            }
+    
+            .hidden {
+                display: none;
+            }
+      /* add */
+    
+      
+</style>
+
+<!-- প্রোফাইল style 2 -->
+<!-- প্রোফাইল style 2 -->
+
+
+
+<style>
+    /* Common Styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Container Styles */
+    .container {
+        width: 100%;
+        min-height: auto;
+        padding: 15px;
+        position: relative;
+    }
+
+    /* Profile Layout */
+    .profile {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Left Side Styles */
+    .left_side {
+        width: 100%;
+        height: auto;
+        padding: 20px 15px;
+        text-align: center;
+    }
+
+    .left_side h3 {
+        margin: 20px 0;
+        font-size: 1.2rem;
+    }
+
+    .left_side h4 {
+        margin: 15px 0;
+        font-size: 1rem;
+    }
+
+    .left_side a {
+        display: inline-block;
+        padding: 8px 20px;
+        background-color: #449D44;
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        border-radius: 4px;
+        transition: opacity 0.3s;
+    }
+
+    .left_side a:hover {
+        opacity: 0.9;
+    }
+
+    /* Right Side Styles */
+    .right_side {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Tab Buttons */
+    .tab-buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+
+    .tab-button {
+        padding: 8px 16px;
+        border: 1px solid #ddd;
+        background: #fff;
+        cursor: pointer;
+        border-radius: 4px;
+        font-family: "Anek Bangla", serif;
+        font-size: 14px;
+    }
+
+    .tab-button.active {
+        background: #44AC56;
+        color: white;
+    }
+
+    /* Details Content */
+    .details-content {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .img_div {
+        width: 100px;
+        height: 100px;
+        background-color: black;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        background-size: cover;
+    }
+
+    .details-content .name,
+    .details-content .mobile,
+    .details-content .address1,
+    .details-content .date {
+        width: 100%;
+        min-height: 40px;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.11);
+        display: flex;
+        align-items: center;
+        /* flex-wrap: wrap; */
+    }
+
+    .details-content span,
+    .details-content i {
+        color: #449D44;
+        margin-right: 10px;
+    }
+
+    .details-content p {
+        font-size: 14px;
+        margin-right: auto;
+    }
+
+    .details-content h5 {
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    /* Edit Profile */
+    .edit_profile {
+        padding: 15px;
+    }
+
+    .edit_profile p {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .edit_profile input[type="text"],
+    .edit_profile input[type="file"] {
+        width: 100%;
+        height: 40px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        padding: 0 10px;
+        margin-bottom: 15px;
+        font-family: "Anek Bangla", serif;
+        font-size: 13px;
+    }
+
+    .chooseFile {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+
+    .update {
+        width: 120px;
+        height: 40px;
+        background-color: #449D44;
+        border-radius: 4px;
+        margin-top: 20px;
+    }
+
+    .update a {
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    /* Responsive Design */
+    @media screen and (min-width: 576px) {
+        .edit_profile input[type="text"],
+        .edit_profile .chooseFile {
+            max-width: 400px;
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        .profile {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .left_side {
+            width: 35%;
+            padding: 20px;
+        }
+
+        .right_side {
+            width: 65%;
+            padding: 20px;
+        }
+
+        .details-content {
+            padding-right: 30px;
+        }
+    }
+
+    @media screen and (min-width: 992px) {
+        .container {
+            padding: 30px;
+        }
+
+        .left_side {
+            width: 30%;
+        }
+
+        .right_side {
+            width: 70%;
+        }
+
+        .details-content {
+            padding-right: 50px;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        .left_side {
+            width: 25%;
+        }
+
+        .right_side {
+            width: 75%;
+        }
+    }
+</style>
+
+<!-- কোড স্ট্রাকচার অপরিবর্তিত থাকবে -->
+
+<div class="profile">
+    <div class="left_side">
+        <h3>আমার কোর্স</h3>
+        <h4>দুঃখিত, কোন কোর্স পাওয়া যায় নি!</h4>
+        <a href="#">আমাদের সকল কোর্স দেখুন</a>
+    </div>
+
+<!-- প্রোফাইল html -->
+<!-- প্রোফাইল html -->
+<div class="right_side">
+        <div class="container">
+            <!-- profile and edit profile -->
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="details">প্রোফাইল</button>
+                <button class="tab-button" data-tab="videos">এডিট প্রোফাইল</button>
+            </div>
+    <style>
+        .details-content{
+            width: 100%;
+            height: 400px;
+            /* background-color: #449D44; */
+            box-sizing: border-box;
+            padding-right: 80px;
+            margin-top: -10px;
+        }
+        .details-content .img_div{
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            border-radius: 100px;
+            margin: 0 auto;
+            background-image: url(img/security.png);
+            width: 100px; /* আপনার পছন্দমতো প্রস্থ */
+            height: 100px; /* আপনার পছন্দমতো উচ্চতা */
+            background-size: cover;
+        }
+        .details-content .name{
+            width: 100%;
+            height: 40px;
+            /* background-color: antiquewhite; */
+            border-bottom: 1px solid rgba(0, 0, 0, 0.11); /* 0.5 হল 50% অপাসিটি */
+            display: inline-block;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+        .details-content .name span{
+            display: inline-block;
+            color: #449D44;
+            
+        }
+        .details-content .name p{
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 14px;
+
+        }
+        .details-content .name h5{
+            width: 100%;
+            height: 40px;
+            /* background-color: #348B57; */
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            font-size: 14px;
+            font-weight: normal;
+
+        }
+        .details-content .mobile{
+            width: 100%;
+            height: 40px;
+            /* background-color: antiquewhite; */
+            border-bottom: 1px solid black;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.11); /* 0.5 হল 50% অপাসিটি */
+            display: inline-block;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+        .details-content .mobile i{
+            font-size: 16px;
+            margin-left: 5px;
+            color: #449D44;
+        }
+        .details-content .mobile p{
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 14px;
+        }
+        .details-content .mobile h5{
+            width: 100%;
+            height: 40px;
+            /* background-color: #348B57; */
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            font-size: 14px;
+            font-weight: normal;
+        }
+        .details-content .address1{
+            width: 100%;
+            height: 40px;
+            /* background-color: antiquewhite; */
+            border-bottom: 1px solid black;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.11); /* 0.5 হল 50% অপাসিটি */
+            display: inline-block;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+        .details-content .address1 i{
+            font-size: 17px;
+            margin-left: 5px;
+            color: #449D44;
+        }
+        .details-content .address1 p{
+            display: inline-block;
+            margin-left: 12px;
+            font-size: 14px;
+        }
+        .details-content .address1 h5{
+            width: 100%;
+            height: 40px;
+            /* background-color: #348B57; */
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            font-size: 14px;
+            font-weight: normal;
+        }
+        .details-content  .date{
+            width: 100%;
+            height: 40px;
+            /* background-color: antiquewhite; */
+            border-bottom: 1px solid black;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.11); /* 0.5 হল 50% অপাসিটি */
+            display: inline-block;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+        .details-content  .date i{
+            font-size: 17px;
+            margin-left: 5px;
+            color: #449D44;
+        }
+        .details-content  .date p{
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        .details-content  .date h5{
+            width: 100%;
+            height: 40px;
+            /* background-color: #348B57; */
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            font-size: 14px;
+            font-weight: normal;
+        }
+    </style>
+            <div class="content-card">
+                <!-- Details Tab -->
+                <div class="tab-content details-content" id="details">
+                    <div class="img_div"></div>
+                    <div class="name"><span class="material-symbols-outlined">contacts_product</span><p>নাম</p><h5>Arif Billah</h5></div>
+                    <div class="mobile"><i class="fa-solid fa-phone"></i><p>মোবাইল</p> <h5>01326198456</h5></div>
+                    <div class="address1"><i class="fa-solid fa-location-dot"></i> <p>ঠিকানা</p> <h5></h5></div>
+                    <div class="date"><i class="fa-solid fa-calendar"></i><p>রেজিঃতারিখ</p> <h5>22-JAN-2025</h5></div>
+                </div>
+    <style>
+        .edit_profile{
+            width: 100%;
+            height: 400px;
+            box-sizing: border-box;
+            padding-right: 55px;
+            /* background-color: blueviolet; */
+        }
+        .edit_profile .your_nameBangla{
+           /* background-color: aquamarine; */
+           padding: 0;
+           margin: 0;
+        }
+        .edit_profile .your_nameBangla p{
+            font-size: 14px;
+            padding-bottom: 5px;
+        }
+        .edit_profile .your_nameEnglish input{
+            width: 250px;
+            height: 40px;
+            border-radius: 2px;
+            /* border: 1px solid rgba(255, 255, 255, 0.2); */
+            outline: none;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            padding-left: 10px;
+        }
+        .edit_profile .your_nameEnglish input[type="text"] {
+            font-family: "Anek Bangla", serif;
+            font-size: 13px;
+        }
+        .edit_profile .profile_photo{
+            /* background-color: brown; */
+            margin-top: 20px;
+        }
+        .edit_profile .profile_photo p{
+            font-size: 14px;
+            padding-bottom: 5px;
+        }
+        .edit_profile .chooseFile{
+            width: 100%;
+            height: 50px;
+            /* background-color: burlywood; */
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+        }
+        .edit_profile .chooseFile{
+            /* background-color: aquamarine; */
+            padding-left: 10px;
+            padding-top: 3px;
+        }
+        .edit_profile .address2{
+            /* background-color: #449D44; */
+            padding: 0;
+            margin: 0;
+            margin-top: 20px;
+        }
+        .edit_profile .address2 input{
+            width: 100%;
+            height: 50px;
+            /* background-color: bisque; */
+            outline: none;
+            padding-left: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+        }
+        .edit_profile .address2 p{
+            font-size: 14px;
+            padding-bottom: 5px;
+        }
+        .edit_profile .address2 input[type="text"] {
+            font-family: "Anek Bangla", serif;
+            font-size: 13px;
+        }
+        .edit_profile .update{
+            width: 120px;
+            height: 40px;
+            background-color: #449D44;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+
+        }
+        .edit_profile .update a{
+            text-decoration: none;
+            color: white;
+            font-size: 15px;
+        }
+    </style>
+                <!-- Videos Tab -->
+                <div class="tab-content hidden" id="videos">
+                    <div class="edit_profile">
+                        <div class="your_nameBangla"><p>আপনার নাম</p></div>
+                        <div class="your_nameEnglish">
+                            <input type="text" name="" id="">
+                        </div>
+                        <div class="profile_photo"><p>প্রোফাইল পিকচার</p></div>
+                        <div class="chooseFile">
+                            <input type="file" id="myFile" name="filename" placeholder="Choose File">
+                        </div>
+                        <div class="address2">
+                            <p>ঠিকানা</p>
+                            <input type="text" name="" id="">
+                        </div>
+                        <div class="update">
+                        <a class="update_btn" href="#">আপডেট করুন</a>
+                    </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- আরো পড়ুন js -->
+<!-- আরো পড়ুন js -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab Switching
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                
+                // Update active button
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Show selected content
+                tabContents.forEach(content => {
+                    content.classList.add('hidden');
+                    if (content.id === tabId) {
+                        content.classList.remove('hidden');
+                    }
+                });
+            });
+        });
+
+        // Read More/Less
+        const readMoreBtn = document.querySelector('.read-more-btn');
+        const expandedText = document.querySelector('.expanded-text');
+
+        readMoreBtn.addEventListener('click', () => {
+            expandedText.classList.toggle('hidden');
+                readMoreBtn.innerHTML = expandedText.classList.contains('hidden') ? 
+               '<i class="fa-solid fa-plus"></i> আরো পড়ুন' : 
+               'কম পড়ুন';
+        });
+
+        // List Toggle
+        const listHeaders = document.querySelectorAll('.list-header');
+
+        listHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const arrow = header.querySelector('.arrow');
+                const content = header.nextElementSibling;
+                
+                arrow.classList.toggle('down');
+                arrow.classList.toggle('right');
+                content.classList.toggle('hidden');
+            });
+        });
+    });
+</script>
+
+<!-- প্রোফাইল এবং এডিট প্রোফাইল js -->
+<!-- প্রোফাইল এবং এডিট প্রোফাইল js -->
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+    const nameInput = document.querySelector('.edit_profile .your_nameEnglish input');
+    const addressInput = document.querySelector('.edit_profile .address2 input');
+    const fileInput = document.querySelector('.edit_profile .chooseFile input[type="file"]');
+    const updateButton = document.querySelector('.update_btn');
+
+    // Profile elements to update
+    const profileNameElement = document.querySelector('.details-content .name h5');
+    const profileAddressElement = document.querySelector('.details-content .address1 h5');
+    const profileImageElement = document.querySelector('.details-content .img_div');
+
+    // Load saved profile data
+    function loadProfileData() {
+        const savedName = localStorage.getItem('profileName');
+        const savedAddress = localStorage.getItem('profileAddress');
+        const savedImage = localStorage.getItem('profileImage');
+
+        if (savedName) profileNameElement.textContent = savedName;
+        if (savedAddress) profileAddressElement.textContent = savedAddress;
+        if (savedImage) profileImageElement.style.backgroundImage = savedImage;
+    }
+
+    // Initial load of profile data
+    loadProfileData();
+
+    updateButton.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        // Update name if input is not empty
+        if (nameInput.value.trim()) {
+            const newName = nameInput.value;
+            profileNameElement.textContent = newName;
+            localStorage.setItem('profileName', newName);
+        }
+
+        // Update address if input is not empty
+        if (addressInput.value.trim()) {
+            const newAddress = addressInput.value;
+            profileAddressElement.textContent = newAddress;
+            localStorage.setItem('profileAddress', newAddress);
+        }
+
+        // Update profile image if a file is selected
+        if (fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const imageUrl = `url(${e.target.result})`;
+                profileImageElement.style.backgroundImage = imageUrl;
+                localStorage.setItem('profileImage', imageUrl);
+            };
+            
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+
+        // Optional: Switch back to profile tab
+        document.querySelector('.tab-button[data-tab="details"]').click();
+    });
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- লগইন রেজিস্ট্রেশন তথ্য এখানে আপলোড হয় -->
+<!-- Add to existing login script -->
+<script>
+    // Add to existing login script
+function toggleProfileMenuVisibility(isVisible) {
+    const profileMenuItem = document.querySelector('ul a[href="profile_ifNamber.html"]');
+    const myCoursesMenuItem = document.querySelector('ul a[href="my_course.html"]');
+    
+    if (profileMenuItem) {
+        profileMenuItem.style.display = isVisible ? 'block' : 'none';
+    }
+    if (myCoursesMenuItem) {
+        myCoursesMenuItem.style.display = isVisible ? 'block' : 'none';
+    }
+}
+
+// Modify handleRegistration function
+function handleRegistration(event) {
+    event.preventDefault();
+    const fullName = document.getElementById('fullName').value.trim();
+    const password = document.getElementById('regPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const errorMessage = document.getElementById('regErrorMessage');
+    
+    // Existing validation...
+    if (password !== confirmPassword) {
+        errorMessage.textContent = 'পাসওয়ার্ড মিলছে না';
+        errorMessage.style.display = 'block';
+        return false;
+    }
+
+    if (password.length < 6) {
+        errorMessage.textContent = 'পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে';
+        errorMessage.style.display = 'block';
+        return false;
+    }
+
+    // Store User Data with additional details
+    const userInput = document.getElementById('userInput').value;
+    const userData = {
+        fullName: fullName,
+        contact: userInput,
+        loginTimestamp: Date.now(),
+        loginDate: new Date().toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+        })
+    };
+
+    localStorage.setItem('userData', JSON.stringify(userData));
+    
+    // Update Profile with User Data
+    updateProfileWithUserData(userData);
+    
+    // Show Profile and My Courses menu items
+    toggleProfileMenuVisibility(true);
+
+    // Redirect to Profile
+    window.location.href = 'profile_ifNamber.html';
+
+    return false;
+}
+
+// Update Profile with User Data
+function updateProfileWithUserData(userData) {
+    // Update Name
+    const profileNameElement = document.querySelector('.details-content .name h5');
+    if (profileNameElement) {
+        profileNameElement.textContent = userData.fullName;
+    }
+
+    // Update Contact (Mobile/Email)
+    const profileContactElement = document.querySelector('.details-content .mobile h5');
+    if (profileContactElement) {
+        profileContactElement.textContent = userData.contact;
+    }
+
+    // Update Registration Date
+    const profileDateElement = document.querySelector('.details-content .date h5');
+    if (profileDateElement) {
+        profileDateElement.textContent = userData.loginDate;
+    }
+}
+
+// Modify checkLoginStatus to handle menu visibility
+function checkLoginStatus() {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    
+    if (userData) {
+        // Profile is logged in
+        toggleProfileMenuVisibility(true);
+        updateProfileWithUserData(userData);
+    } else {
+        // No active login
+        toggleProfileMenuVisibility(false);
+    }
+}
+
+// Initial setup on page load
+document.addEventListener('DOMContentLoaded', () => {
+    // Existing event listeners...
+    checkLoginStatus();
+});
+
+</script>
+
+
+<!-- এডিট প্রোফাইলে যা যা লেখা হবে তা স্থায়ী ভাবে থেকে যাবে -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Elements from Edit Profile
+    const nameInput = document.querySelector('.edit_profile .your_nameEnglish input');
+    const addressInput = document.querySelector('.edit_profile .address2 input');
+    const fileInput = document.querySelector('.edit_profile .chooseFile input[type="file"]');
+    const updateButton = document.querySelector('.update_btn');
+
+    // Elements from Profile View
+    const profileNameElement = document.querySelector('.details-content .name h5');
+    const profileAddressElement = document.querySelector('.details-content .address1 h5');
+    const profileImageElement = document.querySelector('.details-content .img_div');
+    const profileMobileElement = document.querySelector('.details-content .mobile h5');
+    const profileDateElement = document.querySelector('.details-content .date h5');
+
+    // Function to load profile data from localStorage
+    function loadProfileData() {
+        try {
+            const profileData = JSON.parse(localStorage.getItem('permanentProfileData')) || {};
+            const userData = JSON.parse(localStorage.getItem('userData')) || {};
+
+            // Update profile view with saved data
+            if (profileData.name) {
+                profileNameElement.textContent = profileData.name;
+                nameInput.value = profileData.name;
+            } else if (userData.fullName) {
+                profileNameElement.textContent = userData.fullName;
+                nameInput.value = userData.fullName;
+            }
+
+            if (profileData.address) {
+                profileAddressElement.textContent = profileData.address;
+                addressInput.value = profileData.address;
+            }
+
+            if (profileData.image) {
+                profileImageElement.style.backgroundImage = profileData.image;
+            }
+
+            // Keep user registration data intact
+            if (userData.contact) {
+                profileMobileElement.textContent = userData.contact;
+            }
+            if (userData.loginDate) {
+                profileDateElement.textContent = userData.loginDate;
+            }
+        } catch (error) {
+            console.error('Error loading profile data:', error);
+        }
+    }
+
+    // Function to save profile data permanently
+    function saveProfileData(updates) {
+        try {
+            const existingData = JSON.parse(localStorage.getItem('permanentProfileData')) || {};
+            const updatedData = { ...existingData, ...updates };
+            localStorage.setItem('permanentProfileData', JSON.stringify(updatedData));
+
+            // Also update userData to keep everything in sync
+            const userData = JSON.parse(localStorage.getItem('userData')) || {};
+            if (updates.name) {
+                userData.fullName = updates.name;
+                localStorage.setItem('userData', JSON.stringify(userData));
+            }
+        } catch (error) {
+            console.error('Error saving profile data:', error);
+        }
+    }
+
+    // Handle profile update
+    updateButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        const updates = {};
+
+        // Update name
+        if (nameInput.value.trim()) {
+            const newName = nameInput.value.trim();
+            updates.name = newName;
+            profileNameElement.textContent = newName;
+        }
+
+  // Update address
+if (addressInput.value.trim()) {
+    const newAddress = addressInput.value.trim();
+    updates.address = newAddress || ''; // ডিফল্ট খালি স্ট্রিং
+    profileAddressElement.textContent = newAddress || ''; 
+} else {
+    updates.address = '...';
+    profileAddressElement.textContent = '...';
+}
+
+        // Handle profile image
+        if (fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageUrl = `url(${e.target.result})`;
+                updates.image = imageUrl;
+                profileImageElement.style.backgroundImage = imageUrl;
+                saveProfileData(updates);
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        } else {
+            // Save updates if no image is being uploaded
+            saveProfileData(updates);
+        }
+
+        // Switch back to profile tab
+        document.querySelector('.tab-button[data-tab="details"]').click();
+    });
+
+    // Watch for storage changes from other tabs/windows
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'permanentProfileData' || e.key === 'userData') {
+            loadProfileData();
+        }
+    });
+
+    // Initial load of profile data
+    loadProfileData();
+});
+</script>
+
+
+<!-- লগআউট দেখানোর কোড -->
+<script>
+    // নেভিগেশন মেনুতে লগইন/লগআউট টগল করার জন্য ফাংশন
+function updateLoginLogoutButton() {
+    const loginButton = document.querySelector('nav ul li a[href="LoginFrom.html"]');
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    
+    if (loginButton) {
+        if (userData) {
+            // ইউজার লগড ইন অবস্থায় আছে
+            loginButton.textContent = 'লগআউট';
+            loginButton.href = '#';
+            loginButton.addEventListener('click', handleLogout);
+        } else {
+            // ইউজার লগড আউট অবস্থায় আছে
+            loginButton.textContent = 'লগইন';
+            loginButton.href = 'LoginFrom.html';
+            loginButton.removeEventListener('click', handleLogout);
+        }
+    }
+}
+
+// লগআউট হ্যান্ডলার ফাংশন
+function handleLogout(event) {
+    event.preventDefault();
+    
+    // লোকাল স্টোরেজ থেকে ইউজার ডাটা মুছে ফেলা
+    localStorage.removeItem('userData');
+    
+    // প্রোফাইল এবং মাই কোর্সেস মেনু আইটেম লুকানো
+    toggleProfileMenuVisibility(false);
+    
+    // লগইন পেইজে রিডাইরেক্ট
+    window.location.href = 'LoginFrom.html';
+}
+
+// পেইজ লোড হওয়ার সময় চেক করা
+document.addEventListener('DOMContentLoaded', () => {
+    // লগইন স্ট্যাটাস চেক করা
+    checkLoginStatus();
+    
+    // লগইন/লগআউট বাটন আপডেট করা
+    updateLoginLogoutButton();
+});
+
+// checkLoginStatus ফাংশন আপডেট করা
+function checkLoginStatus() {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    
+    if (userData) {
+        // ইউজার লগড ইন অবস্থায় আছে
+        toggleProfileMenuVisibility(true);
+        updateProfileWithUserData(userData);
+        updateLoginLogoutButton();
+    } else {
+        // ইউজার লগড আউট অবস্থায় আছে
+        toggleProfileMenuVisibility(false);
+        updateLoginLogoutButton();
+    }
+}
+
+// handleRegistration ফাংশনে আপডেট যোগ করা
+function handleRegistration(event) {
+    // ... existing registration code ...
+    
+    // রেজিস্ট্রেশন সফল হলে লগইন/লগআউট বাটন আপডেট করা
+    updateLoginLogoutButton();
+    
+    return false;
+}
+</script>
+ 
+<!-- লগআউট দেখানোর কোড ২য় কোড -->
+<script>
+    // Login/Logout toggle functionality
+function updateLoginLogoutButton() {
+    // Get the login button element
+    const loginButton = document.querySelector('nav .ulControl .just_Fix');
+    // Get user data from localStorage
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    
+    if (loginButton) {
+        if (userData) {
+            // If user is logged in
+            loginButton.textContent = 'লগআউট';
+            loginButton.href = '#';
+            loginButton.style.color = '#44AB56'; // Keep the green color
+            // Add logout click handler
+            loginButton.onclick = function(e) {
+                e.preventDefault();
+                // Clear user data
+                localStorage.removeItem('userData');
+                // Hide profile menu items
+                toggleProfileMenuVisibility(false);
+                // Redirect to login page
+                window.location.href = 'LoginFrom.html';
+            };
+        } else {
+            // If user is logged out
+            loginButton.textContent = 'লগইন';
+            loginButton.href = 'LoginFrom.html';
+            loginButton.style.color = '#44AB56';
+            // Remove click handler
+            loginButton.onclick = null;
+        }
+    }
+}
+
+// Call this function when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    updateLoginLogoutButton();
+});
+
+// Add this to your existing checkLoginStatus function
+function checkLoginStatus() {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    
+    if (userData) {
+        toggleProfileMenuVisibility(true);
+        updateProfileWithUserData(userData);
+        updateLoginLogoutButton(); // Update login/logout button state
+    } else {
+        toggleProfileMenuVisibility(false);
+        updateLoginLogoutButton(); // Update login/logout button state
+    }
+}
+
+// Add this to your existing handleRegistration function
+function handleRegistration(event) {
+    // ... existing registration code ...
+    
+    updateLoginLogoutButton(); // Update login/logout button after registration
+    
+    return false;
+}
+</script>
+
+
+
+
+
+
+
+
+<!-- Footer Footer Footer Footer Footer Footer Footer    -->
+<!-- Footer Footer Footer Footer Footer Footer Footer -->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+    }
+    
+    body {
+        font-family: "Anek Bangla", serif;
+        background-color: white;
+        padding-top: 100px;
+    }
+        .footer_area {
+            width: 100%;
+            background-color: #348B57;
+            padding: 30px 20px;
+            color: white;
+        }
+
+        .footer_content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .biodata {
+            flex: 1 1 300px;
+        }
+
+        .biodata img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .biodata p {
+            font-size: 15px;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        .link, .support {
+            flex: 1 1 200px;
+        }
+
+        .link h2, .support h2, .address h2 {
+            font-weight: 400;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .link li, .support li {
+            list-style: none;
+            line-height: 25px;
+        }
+
+        .link a, .support a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .link a:hover, .support a:hover {
+            color: #ea9400;
+        }
+
+        .address {
+            flex: 1 1 300px;
+        }
+
+        .gmail_div, .location_div {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .email_cover, .location_cover {
+            width: 50px;
+            height: 60px;
+            background-color: #348B57;
+            box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+
+        .gmail_div i, .location_div i {
+            font-size: 25px;
+        }
+
+        .contact_info {
+            flex: 1;
+        }
+
+        .contact_info h4 {
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+
+        .all_accounts {
+            width: 100%;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .all_accounts img {
+            max-width: 90%;
+            height: auto;
+            transition: max-width 0.3s ease;
+        }
+
+        .license {
+            background-color: #215E3A;
+            padding: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .license p {
+            font-family: 'Gill Sans', sans-serif;
+            font-size: 15px;
+        }
+
+        .holud_color {
+            color: rgb(211, 137, 0);
+            display: inline;
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+            .all_accounts img {
+                max-width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .footer_content {
+                gap: 20px;
+            }
+            
+            .biodata, .link, .support, .address {
+                flex: 1 1 100%;
+            }
+
+            .link, .support {
+                flex: 1 1 45%;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .footer_area {
+                padding: 20px 15px;
+            }
+
+            .link, .support {
+                flex: 1 1 100%;
+            }
+
+            .all_accounts img {
+                max-width: 100%;
+            }
+        }
+    </style>
+    <footer>
+        <div class="footer_area">
+            <div class="footer_content">
+                <div class="biodata">
+                    <img src="img/At Tadrees.png" alt="At Tadrees">
+                    <p>আত তাদরীস অনলাইন মাদরাসা, ২০২১ সালে প্রতিষ্ঠিত বাংলাদেশের মাদরাসা কেন্দ্রিক সর্বাধুনিক শিক্ষা প্রতিষ্ঠান। সবার জন্য মানসম্মত পড়াশোনা নিশ্চিত করতে অভিজ্ঞ উস্তাদ এবং অত্যাধুনিক প্রযুক্তির মাধ্যমে আমরা গড়ে তুলেছি সহজে ইলম শেখার বিশ্বস্ত অনলাইন প্রতিষ্ঠান।</p>
+                </div>
+                
+                <div class="link">
+                    <h2>লিঙ্কস</h2>
+                    <ul>
+                        <li><a href="">Home</a></li>
+                        <li><a href="">Course</a></li>
+                        <li><a href="">Privacy Policy</a></li>
+                        <li><a href="">Refund Policy</a></li>
+                        <li><a href="">Terms and Condition</a></li>
+                    </ul>
+                </div>
+
+                <div class="support">
+                    <h2>সাপোর্ট</h2>
+                    <ul>
+                        <li><a href="">মেসেজ করুন</a></li>
+                        <li><a href="">ফোন করুন</a></li>
+                    </ul>
+                </div>
+
+                <div class="address">
+                    <h2>ঠিকানা</h2>
+                    <div class="gmail_div">
+                        <div class="email_cover">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="contact_info">
+                            <h4>ই-মেইল</h4>
+                            <p>support@attadrees.com</p>
+                        </div>
+                    </div>
+
+                    <div class="location_div">
+                        <div class="location_cover">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <div class="contact_info">
+                            <p>মাদরাসা রোড, দারুননাজাত সিদ্দীকিয়া কামিল মাদরাসা, সারুলিয়া, ডেমরা, ঢাকা।</p>
+                            <p style="margin-top: 10px;">Trade License: TRAD/DSCC/029395/2022</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="all_accounts">
+                <img src="/img/accounts.png" alt="Accounts">
+            </div>
+
+            <div class="license">
+                <p>© Copyright 2025. All Rights Reserved by <span class="holud_color">At-Tadrees</span></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

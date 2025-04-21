@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>At-Tadrees</title>
+    <!-- Font Awesome CDN লিংক যোগ করতে হবে -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS ফাইল লিংক -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+    <!-- উপরের হেডার সেকশন - যোগাযোগ তথ্য এবং দ্রুত লিংক -->
+    <div class="top-header">
+        <div class="contact-info">
+            <!-- ফোন নম্বর লিংক -->
+            <a href="tel:09638113322" class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>09638-113322 <span style="color:red;">(10AM–5PM)</span></span>
+            </a>
+            <!-- ইমেইল লিংক -->
+            <a href="mailto:info@iom.edu.bd" class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>info@iom.edu.bd</span>
+            </a>
+        </div>
+        
+        <div class="menu-links">
+            <!-- দ্রুত মেনু লিংক -->
+            <a href="/campus" class="menu-item">
+                <i class="fas fa-graduation-cap"></i><span>ক্যাম্পাস</span>
+            </a>
+            <a href="/portal" class="menu-item">
+                <i class="fas fa-user-graduate"></i><span>পোর্টাল</span>
+            </a>
+            <a href="/support" class="menu-item">
+                <i class="fas fa-headset"></i><span>সাপোর্ট</span>
+            </a>
+            <a href="/fatwa" class="menu-item">
+                <i class="fas fa-bars"></i><span>ফতোয়া বিভাগ</span>
+            </a>
+            
+            <!-- ভাষা পরিবর্তন বাটন -->
+            <div class="language-toggle-header" onclick="toggleLanguage()">
+                <img id="langFlag" src="https://flagcdn.com/w40/bd.png" alt="বাংলা" />
+                <span id="langBtn">বাংলা</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- মূল নেভিগেশন বার -->
+    <nav>
+        <!-- লোগো -->
+        <a class="imgPath" href="TalimulIslamAcademy.html">
+            <img src="/img/ChatGPT Image.png" width="170" alt="লোগো">
+        </a>
+        
+        <!-- মোবাইল হ্যামবার্গার মেনু আইকন -->
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        
+        <!-- মূল নেভিগেশন মেনু -->
+        <div class="ulControl">
+            <ul><li><a href="TalimulIslamAcademy.html">হোম</a></li></ul>
+            <ul><li><a href="Academic_courses.html">একাডেমিক</a></li></ul>
+            <ul><li><a href="">কোর্স <i class="fa-solid fa-chevron-down"></i></a>
+                <ul>
+                    <li><a href="">সকল কোর্স</a></li>
+                    <li><a href="">লাইভ কোর্স</a></li>
+                </ul>
+            </li></ul>
+            <ul><li><a href="#">বই</a></li></ul>
+            <ul><li><a href="#">শিক্ষক</a></li></ul>
+            <ul><li><a href="#">উপদেষ্টা</a></li></ul>
+            <ul><li><a href="#">আমাদের সম্পর্কে</a></li></ul>
+            <ul style="display: none;"><li><a class="from_top" href="my_course.html">আমার কোর্স</a></li></ul>
+            <ul style="display: none;"><li><a class="from_top" href="profile_ifNamber.html">প্রোফাইল</a></li></ul>
+            <ul><li><a class="just_Fix" href="LoginFrom.html">লগইন</a></li></ul>
+        </div>
+    </nav>
+
+
+
+
+    <style>
+        /* =============================================
+   সাধারণ স্টাইল
+============================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-family: "Anek Bangla", sans-serif;
+    margin: 0;
+    background: #f7f7f7;
+    padding-top: 140px; /* উপরের হেডার + নেভ এর উচ্চতা */
+}
+
+/* =============================================
+   উপরের হেডার সেকশন স্টাইল
+============================================= */
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background-color: #d5fbe1;
+    padding: 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+/* যোগাযোগ তথ্য এবং মেনু লিংক কন্টেইনার */
+.contact-info,
+.menu-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* যোগাযোগ এবং মেনু আইটেম স্টাইল */
+.contact-item, .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 15px;
+    color: #000;
+    text-decoration: none;
+}
+
+/* আইকন স্টাইল */
+.contact-item i,
+.menu-item i {
+    background-color: #0a9d56;
+    color: white;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+/* মেনু টেক্সট স্টাইল */
+.menu-item span {
+    white-space: nowrap;
+}
+
+/* ভাষা টগল বাটন স্টাইল */
+.language-toggle-header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+/* ভাষা আইকন/পতাকা ছবি */
+.language-toggle-header img {
+    width: 20px;
+    height: auto;
+}
+
+/* ভাষা টেক্সট */
+.language-toggle-header span {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* মাঝারি স্ক্রিন (টাব) রেসপনসিভ */
+@media (max-width: 870px) {
+    /* ইমেইল হাইড */
+    .contact-info a:nth-child(2) {
+        display: none !important;
+    }
+    
+    /* মেনু লিংকগুলো হাইড */
+    .menu-item {
+        display: none !important;
+    }
+    
+    /* নম্বর ও ভাষা পাশাপাশি থাকবে */
+    .top-header {
+        flex-wrap: nowrap;
+    }
+    
+    .contact-info, .menu-links {
+        flex-wrap: nowrap;
+        gap: 10px;
+    }
+}
+
+/* মোবাইল স্ক্রিন রেসপনসিভ */
+@media (max-width: 768px) {
+    .top-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    /* শুধু ফোন নম্বর আর ভাষা দেখাবে */
+    .contact-info a:nth-child(2), /* ইমেইল */
+    .menu-item {
+        display: none !important;
+    }
+    
+    .contact-info {
+        flex-direction: row;
+        gap: 10px;
+    }
+    
+    .menu-links {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+/* =============================================
+   নেভিগেশন বার স্টাইল
+============================================= */
+nav {
+    width: 100%;
+    height: 80px;
+    background-color: white;
+    position: fixed;
+    top: 45px; /* উপরের হেডার উচ্চতা */
+    left: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    z-index: 90;
+}
+
+/* লোগো স্টাইল */
+nav .imgPath {
+    margin-left: 70px;
+    margin-top: 13px;
+    z-index: 90;
+}
+
+/* মেনু কন্টেইনার */
+nav .ulControl {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    top: 35%;
+    left: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* মেনু আইটেম কন্টেইনার */
+nav .ulControl ul {
+    font-size: 14px;
+    display: inline-block;
+    margin-left: 30px;
+}
+
+nav .ulControl ul li {
+    list-style: none;
+}
+
+/* মেনু লিংক স্টাইল */
+.ulControl a {
+    text-decoration: none;
+    color: black;
+    font-weight: normal;
+    font-size: 14px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* লগইন বাটন কালার */
+nav .ulControl .Login_controller {
+    color: #44AB56;
+}
+
+/* হোভার ইফেক্ট */
+nav .ulControl a:hover {
+    transition: 0.4s;
+    color: #44AB56;
+}
+
+/* ড্রপডাউন মেনু বেস স্টাইল */
+nav .ulControl ul ul {
+    display: none;
+}
+
+/* ড্রপডাউন মেনু ডিসপ্লে */
+nav .ulControl ul:hover li ul {
+    display: block;
+    position: absolute;
+    top: 30px;
+    margin-left: -30px;
+    width: 160px;
+    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: dropdownFade 0.3s ease forwards;
+}
+
+/* ড্রপডাউন এনিমেশন */
+@keyframes dropdownFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ডান পাশের শেষ আইটেম মার্জিন */
+nav .ulControl .just_Fix {
+    margin-right: 70px;
+}
+
+/* মেনু হোভার টেক্সট আন্ডারলাইন */
+.ulControl a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    background-color: #44AB56;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.ulControl a:hover::after {
+    width: 100%;
+}
+
+/* ড্রপডাউন আইটেম স্টাইল */
+nav .ulControl ul ul a {
+    display: block;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ড্রপডাউন আইটেম হোভার ইফেক্ট */
+nav .ulControl ul ul a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background-color: rgba(68, 171, 86, 0.1);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+nav .ulControl ul ul a:hover::before {
+    width: 100%;
+}
+
+nav .ulControl ul ul a:hover {
+    color: #44AB56;
+    transform: translateX(5px);
+}
+
+/* হ্যামবার্গার মেনু আইকন - মোবাইল */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 25px;
+    z-index: 95;
+    width: 30px;
+    height: 30px;
+    transition: all 0.3s ease-in-out;
+    padding: 5px;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* =============================================
+   মোবাইল রেসপনসিভ স্টাইল
+============================================= */
+@media screen and (max-width: 1200px) {
+    /* হ্যামবার্গার মেনু আইকন দেখাবে */
+    .hamburger {
+        display: block;
+        line-height: 0;
+    }
+    
+    .hamburger .line1 {
+        padding: 0;
+        margin: 0;
+    }
+    
+    .hamburger .line2 {
+        padding: 0;
+        margin: 0;
+        margin-top: 5px;
+    }
+    
+    .hamburger .line3 {
+        padding: 0;
+        margin: 0;
+        margin-top: 5px;
+    }
+    
+    /* মোবাইল মেনু স্টাইল */
+    nav .ulControl {
+        position: fixed;
+        flex-direction: column;
+        justify-content: flex-start;
+        top: 80px;
+        height: calc(100vh - 80px);
+        width: 280px;
+        background-color: white;
+        padding-top: 30px;
+        transition: all 0.3s ease-in-out;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* বাম সাইডে শ্যাডো */
+        right: -280px; /* ডান দিকে বাইরে */
+        left: auto;
+        opacity: 0;
+        overflow-y: scroll;
+        padding-bottom: 30px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        pointer-events: none; /* বন্ধ থাকা অবস্থায় ক্লিক গ্রহণ করবে না */
+    }
+    
+    /* মেনু সক্রিয় অবস্থা */
+    nav .ulControl.active {
+        right: 0; /* ডান দিকে ০-তে */
+        opacity: 1;
+        pointer-events: all;
+    }
+    
+    /* WebKit ব্রাউজার স্ক্রলবার হাইড */
+    nav .ulControl::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* মোবাইলে হোভার ইফেক্ট পরিবর্তন */
+    nav .ulControl a:hover {
+        transition: none;
+        color: black;
+    }
+    
+    nav .ulControl ul ul a:hover {
+        color: black;
+    }
+    
+    /* মার্জিন পরিবর্তন */
+    nav .ulControl .just_Fix {
+        margin-right: 0px;
+    }
+    
+    /* মোবাইল মেনু আইটেম */
+    nav .ulControl ul {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        transform: translateX(20px);
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+        padding: 12px 0;
+    }
+    
+    /* মোবাইল মেনু হোভার */
+    nav .ulControl ul:hover {
+        background-color: transparent;
+        transition: background-color 0.3s ease;
+    }
+    
+    /* সক্রিয় মেনু আইটেম */
+    nav .ulControl.active ul {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    
+    /* মোবাইল মেনু লিস্ট স্টাইল */
+    nav .ulControl ul li {
+        width: 100%;
+        padding: 0 20px;
+    }
+    
+    nav .ulControl ul li a {
+        display: block;
+        line-height: 1;
+        padding: 8px 0;
+        font-size: 16px;
+    }
+    
+    /* মোবাইল ড্রপডাউন */
+    nav .ulControl ul:hover li ul {
+        position: static;
+        width: 100%;
+        margin: 5px 0;
+        box-shadow: none;
+        background-color: rgba(68, 171, 86, 0.05);
+        border-radius: 4px;
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+    
+    nav .ulControl ul:hover li ul li a {
+        padding: 10px 20px;
+    }
+    
+    nav .ulControl ul ul a:hover {
+        transform: translateX(0);
+        background-color: rgba(68, 171, 86, 0.1);
+    }
+    
+    /* লোগো মার্জিন পরিবর্তন */
+    nav .imgPath {
+        margin-left: 20px;
+    }
+    
+    /* হ্যামবার্গার টু X এনিমেশন */
+    .hamburger.active .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .hamburger.active .line2 {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    
+    .hamburger.active .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+    
+    /* মেনু আইটেম ট্রান্সিশন ডিলে */
+    nav .ulControl ul:nth-child(1) { transition-delay: 0.1s; }
+    nav .ulControl ul:nth-child(2) { transition-delay: 0.15s; }
+    nav .ulControl ul:nth-child(3) { transition-delay: 0.2s; }
+    nav .ulControl ul:nth-child(4) { transition-delay: 0.25s; }
+    nav .ulControl ul:nth-child(5) { transition-delay: 0.3s; }
+    nav .ulControl ul:nth-child(6) { transition-delay: 0.35s; }
+    nav .ulControl ul:nth-child(7) { transition-delay: 0.4s; }
+    
+    /* মোবাইলে আন্ডারলাইন ইফেক্ট হাইড */
+    .ulControl a::after {
+        display: none;
+    }
+    
+    /* ড্রপডাউন আইকন এলাইনমেন্ট */
+    .fa-chevron-down {
+        margin-left: 5px;
+        vertical-align: middle;
+    }
+}
+    </style>
+
+    <script>
+        /**
+ * হেডার সেকশন JavaScript
+ * ভাষা টগল ফাংশনালিটি
+ */
+function toggleLanguage() {
+    // ভাষা টগল বাটন ফাংশন - এখানে বাস্তবায়ন করতে হবে
+    const langBtn = document.getElementById('langBtn');
+    const langFlag = document.getElementById('langFlag');
+    
+    // বর্তমানে বাংলা থাকলে ইংরেজি করতে হবে, অন্যথায় বাংলা
+    if (langBtn.innerText === 'বাংলা') {
+        langBtn.innerText = 'English';
+        langFlag.src = 'https://flagcdn.com/w40/us.png';
+        langFlag.alt = 'English';
+        // এখানে ভাষা পরিবর্তনের অন্যান্য লজিক যোগ করতে হবে
+    } else {
+        langBtn.innerText = 'বাংলা';
+        langFlag.src = 'https://flagcdn.com/w40/bd.png';
+        langFlag.alt = 'বাংলা';
+        // এখানে ভাষা পরিবর্তনের অন্যান্য লজিক যোগ করতে হবে
+    }
+}
+
+/**
+ * মেনু টগল ফাংশন (উপরের হেডার)
+ */
+function toggleMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('active');
+}
+
+/**
+ * মোবাইল/রেসপনসিভ নেভিগেশন বার স্ক্রিপ্ট
+ * হ্যামবার্গার মেনু আইকন এবং মোবাইল মেনু টগল
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger');
+    const ulControl = document.querySelector('.ulControl');
+    const nav = document.querySelector('nav');
+    
+    // হ্যামবার্গার মেনু ক্লিক ইভেন্ট
+    hamburger.addEventListener('click', function(e) {
+        e.stopPropagation(); // স্টপ ইভেন্ট বাবলিং
+        hamburger.classList.toggle('active');
+        ulControl.classList.toggle('active');
+    });
+    
+    // মেনু লিংক ক্লিক করলে মেনু বন্ধ হবে
+    document.querySelectorAll('.ulControl a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            ulControl.classList.remove('active');
+        });
+    });
+    
+    // বাইরে ক্লিক করলে মেনু বন্ধ হবে
+    document.addEventListener('click', function(e) {
+        if (!nav.contains(e.target) || (!hamburger.contains(e.target) && !ulControl.contains(e.target))) {
+            hamburger.classList.remove('active');
+            ulControl.classList.remove('active');
+        }
+    });
+    
+    // মেনু ভিতরে ক্লিক করলে বাবলিং বন্ধ করবে
+    ulControl.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+});
+    </script>
+    
+
+
+
+
+
+
+
+    <!-- day 2 -->
+
+
+    <!-- ===== HTML কোড ===== -->
+<!-- 1. সার্চ বিভাগ - ব্যবহারকারীদের কোর্স খুঁজতে সাহায্য করে -->
+<div class="search-box">
+    <div class="input-wrapper">
+      <input type="text" id="searchInput" placeholder="আপনার পছন্দের কোর্স সার্চ করুন"
+             data-bn="আপনার পছন্দের কোর্স সার্চ করুন"
+             data-en="Search your desired course"
+             oninput="filterCards()">
+      <span id="loadingSpinner" class="spinner" style="display: none;"></span>
+      <div id="searchResults" class="search-results"></div>
+    </div>
+    <button id="searchBtn" onclick="filterCards()" data-bn="সার্চ" data-en="Search">সার্চ</button>
+  </div>
+  <div id="noResults" data-bn="কোনো কোর্স পাওয়া যায়নি!" data-en="No course found!">কোনো কোর্স পাওয়া যায়নি!</div>
+  
+  <!-- 2. শিরোনাম - পেজের প্রধান বিভাগ হিসেবে কাজ করে -->
+  <div class="headlineOfTalimulIslamAcademy">
+    <h2>আত তাদরীস একাডেমিক কোর্স</h2>
+  </div>
+  
+  <!-- 3. কোর্স কার্ড বিভাগ - বিভিন্ন কোর্সের প্রদর্শনী -->
+  <div class="card-container" id="cardContainer">
+    <!-- কোর্স কার্ড 1 -->
+    <a href="/course1" class="card" data-title-bn="দাখিল নবম শ্রেণী" data-title-en="Dakhil Class 9">
+      <img src="img/1.jpg" alt="Course 1">
+      <div class="info">
+        <div class="price"><del>৳ 1960</del><strong>৳ 490</strong></div>
+        <p class="course-title">দাখিল নবম শ্রেণী</p>
+      </div>
+    </a>
+    
+    <!-- কোর্স কার্ড 2 -->
+    <a href="/course1" class="card" data-title-bn="দাখিল নবম শ্রেণী" data-title-en="Dakhil Class 9">
+      <img src="img/10.png" alt="Course 1">
+      <div class="info">
+        <div class="price"><del>৳ 1960</del><strong>৳ 490</strong></div>
+        <p class="course-title">দাখিল নবম শ্রেণী</p>
+      </div>
+    </a>
+    
+    <!-- কোর্স কার্ড 3 -->
+    <a href="/course1" class="card" data-title-bn="দাখিল নবম শ্রেণী" data-title-en="Dakhil Class 9">
+      <img src="img/10.png" alt="Course 1">
+      <div class="info">
+        <div class="price"><del>৳ 1960</del><strong>৳ 490</strong></div>
+        <p class="course-title">দাখিল নবম শ্রেণী</p>
+      </div>
+    </a>
+    
+    <!-- কোর্স কার্ড 4 -->
+    <a href="/course1" class="card" data-title-bn="দাখিল নবম শ্রেণী" data-title-en="Dakhil Class 9">
+      <img src="img/12.png" alt="Course 1">
+      <div class="info">
+        <div class="price"><del>৳ 1960</del><strong>৳ 490</strong></div>
+        <p class="course-title">দাখিল নবম শ্রেণী</p>
+      </div>
+    </a>
+    
+    <!-- কোর্স কার্ড 5 -->
+    <a href="/course2" class="card" data-title-bn="আলিম ২৫ ব্যাচ আরবি বুস্টার কোর্স" data-title-en="Alim 25 Batch Arabic Booster">
+      <img src="img/14png.png" alt="Course 2">
+      <div class="info">
+        <div class="price"><del>৳ 3000</del><strong>৳ 1500</strong></div>
+        <p class="course-title">আলিম ২৫ ব্যাচ আরবি বুস্টার কোর্স</p>
+      </div>
+    </a>
+    
+    <!-- কোর্স কার্ড 6 -->
+    <a href="/course2" class="card" data-title-bn="আলিম ২৫ ব্যাচ আরবি বুস্টার কোর্স" data-title-en="Alim 25 Batch Arabic Booster">
+      <img src="img/15.png" alt="Course 2">
+      <div class="info">
+        <div class="price"><del>৳ 3000</del><strong>৳ 1500</strong></div>
+        <p class="course-title">আলিম ২৫ ব্যাচ আরবি বুস্টার কোর্স</p>
+      </div>
+    </a>
+    
+    <!-- কোর্স কার্ড 7 -->
+    <a href="/course2" class="card" data-title-bn="আলিম ২৫ ব্যাচ আরবি বুস্টার কোর্স" data-title-en="Alim 25 Batch Arabic Booster">
+      <img src="img/18.png" alt="Course 2">
+      <div class="info">
+        <div class="price"><del>৳ 3000</del><strong>৳ 1500</strong></div>
+        <p class="course-title">আলিম ২৫ ব্যাচ আরবি বুস্টার কোর্স</p>
+      </div>
+    </a>
+  </div>
+  
+  <!-- 4. ফুটার বিভাগ - সাইটের নিচের তথ্য বিভাগ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- বিবরণ বিভাগ -->
+      <div class="footer-section">
+        <img src="img/ChatGPT Image.png" alt="Logo" class="footer-logo" />
+        <p>
+          আত্‌ তাদরীস অনলাইন মাদরাসা, ২০২১ সালে প্রতিষ্ঠিত বাংলাদেশের মাদরাসা
+          কেন্দ্রিক সর্বাধুনিক শিক্ষা প্রতিষ্ঠান। সবার জন্য মানসম্মত পড়াশোনা নিশ্চিত
+          করতে অঙ্গীকারবদ্ধ। অত্যাধুনিক প্রযুক্তির মাধ্যমে সহজে ইসলাম শেখার বিশ্বস্ত
+          অনলাইন প্রতিষ্ঠান।
+        </p>
+      </div>
+  
+      <!-- লিংক বিভাগ -->
+      <div class="footer-section">
+        <h2>লিংকস</h2>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Course</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Terms And Condition</a></li>
+        </ul>
+      </div>
+  
+      <!-- সাপোর্ট বিভাগ -->
+      <div class="footer-section">
+        <h2>সাপোর্ট</h2>
+        <ul>
+          <li><a href="#">মেসেজ করুন</a></li>
+          <li><a href="#">ফোন করুন</a></li>
+        </ul>
+      </div>
+  
+      <!-- যোগাযোগ বিভাগ -->
+      <div class="footer-section">
+        <h2>ঠিকানা</h2>
+        <p>📧 contact@attadrees.com</p>
+        <p>📍 মাদরাসা রোড, দারুসসালাম, সারুলিয়া, ডেমরা, ঢাকা।</p>
+        <p>Trade License: TRAD/DSCC/029395/2022</p>
+      </div>
+    </div>
+  
+    <!-- কপিরাইট বিভাগ -->
+    <div class="footer-bottom">
+      © 2025 | All Rights Reserved By <span>At-Tadrees</span>
+    </div>
+  </footer>
+  
+  <!-- ===== CSS কোড ===== -->
+  <style>
+    /* 1. ভাষা বাটন স্টাইলিং - ভাষা পরিবর্তনের জন্য */
+    .language-toggle {
+      margin: 20px 20px 0;
+    }
+  
+    .language-toggle button {
+      padding: 8px 16px;
+      border: none;
+      cursor: pointer;
+      background-color: #008c4a;
+      color: white;
+      border-radius: 5px;
+    }
+  
+    /* 2. সার্চ বক্স স্টাইলিং - কোর্স অনুসন্ধানের জন্য */
+    .search-box {
+      display: flex;
+      justify-content: center;
+      margin: 20px;
+    }
+  
+    .input-wrapper {
+      position: relative;
+      width: 80%;
+      max-width: 600px;
+    }
+  
+    .input-wrapper input {
+      font-family: "Anek Bangla", serif;
+      width: 100%;
+      padding: 14px;
+      padding-right: 40px;
+      border: 2px solid #4CAF50;
+      border-right: none;
+      border-radius: 25px 0 0 25px;
+      font-size: 16px;
+      outline: none;
+    }
+  
+    .search-box button {
+      font-family: "Anek Bangla", serif;
+      padding: 14px 25px;
+      background-color: #4CAF50;
+      color: white;
+      border: 2px solid #4CAF50;
+      border-radius: 0 25px 25px 0;
+      cursor: pointer;
+    }
+  
+    /* 3. লোডিং স্পিনার স্টাইলিং - সার্চের সময় লোডিং এফেক্টের জন্য */
+    .spinner {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      border: 3px solid #4CAF50;
+      border-top: 3px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+  
+    @keyframes spin {
+      to { transform: translateY(-50%) rotate(360deg); }
+    }
+  
+    /* 4. সার্চ ফলাফল স্টাইলিং - সার্চ রেজাল্ট প্রদর্শনের জন্য */
+    .search-results {
+      position: absolute;
+      top: 100%;
+      left: 10%;
+      right: 10%;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-top: none;
+      z-index: 1000;
+      border-radius: 0 0 10px 10px;
+      max-height: 400px;
+      overflow-y: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: none;
+    }
+  
+    .search-result-item {
+      padding: 10px 15px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+  
+    .search-result-item:hover {
+      background-color: #f1f1f1;
+    }
+  
+    .search-result-title {
+      font-weight: bold;
+      color: #007bff;
+    }
+  
+    .search-result-desc {
+      font-size: 14px;
+      color: #333;
+      margin-top: 4px;
+    }
+  
+    /* 5. শিরোনাম স্টাইলিং - পেজের শিরোনামের জন্য */
+    .headlineOfTalimulIslamAcademy {
+      text-align: center;
+    }
+  
+    /* 6. কার্ড কন্টেইনার স্টাইলিং - কোর্স কার্ড লেআউটের জন্য */
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+  
+    /* 7. কার্ড স্টাইলিং - প্রতিটি কোর্স কার্ডের জন্য */
+    .card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      text-decoration: none;
+      color: black;
+      transition: transform 0.3s;
+    }
+  
+    .card:hover {
+      transform: scale(1.02);
+    }
+  
+    .card img {
+      width: 100%;
+      height: auto;
+    }
+  
+    .card .info {
+      padding: 10px;
+    }
+  
+    /* 8. মূল্য স্টাইলিং - কোর্সের দাম প্রদর্শনের জন্য */
+    .price {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+  
+    .price del {
+      color: #999;
+      margin-right: 6px;
+    }
+  
+    .price strong {
+      color: green;
+      font-weight: bold;
+    }
+  
+    .card .info p {
+      margin: 4px 0 0 0;
+      font-size: 15px;
+    }
+  
+    /* 9. কোনো ফলাফল না পাওয়া গেলে মেসেজ স্টাইলিং */
+    #noResults {
+      text-align: center;
+      font-size: 16px;
+      color: red;
+      display: none;
+      border-top: 1px solid #eee;
+    }
+  
+    /* 10. রেসপনসিভ স্টাইলিং - মোবাইল ডিভাইসের জন্য */
+    @media (max-width: 768px) {
+      .card-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+      }
+  
+      .card {
+        flex: 0 0 auto;
+        width: 80%;
+        min-width: 250px;
+      }
+    }
+  
+    /* 11. ফুটার স্টাইলিং - সাইটের নিচের অংশের জন্য */
+    .footer {
+      background: linear-gradient(to right, #065f46, #047857);
+      color: white;
+      padding-top: 40px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+  
+    .footer-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px 40px;
+    }
+  
+    .footer-section {
+      padding: 10px;
+    }
+  
+    .footer-section h2 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  
+    .footer-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+  
+    .footer-section ul li {
+      margin-bottom: 8px;
+    }
+  
+    .footer-section ul li a {
+      color: #ffffffcc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+  
+    .footer-section ul li a:hover {
+      color: #facc15;
+    }
+  
+    .footer-logo {
+      width: 150px;
+      margin-bottom: 10px;
+    }
+  
+    .footer-bottom {
+      background-color: #064e3b;
+      text-align: center;
+      padding: 12px 10px;
+      font-size: 14px;
+    }
+  
+    .footer-bottom span {
+      color: #facc15;
+      font-weight: 600;
+    }
+  
+    /* 12. ফুটার রেসপনসিভ স্টাইলিং */
+    @media (min-width: 768px) {
+      .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .footer-container {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
+  
+  <!-- ===== JavaScript কোড ===== -->
+  <script>
+    // 1. ভাষা পরিবর্তন পরিচালনা - বাংলা/ইংরেজি সুইচিং এর জন্য
+    let currentLang = 'bn';  // ডিফল্ট ভাষা বাংলা
+  
+    function toggleLanguage() {
+      // ভাষা সুইচ করা হচ্ছে
+      currentLang = currentLang === 'bn' ? 'en' : 'bn';
+  
+      // ইনপুট ফিল্ড এবং বাটনের টেক্সট পরিবর্তন করা হচ্ছে
+      document.getElementById('searchInput').placeholder = document.getElementById('searchInput').getAttribute(`data-${currentLang}`);
+      document.getElementById('searchBtn').textContent = document.getElementById('searchBtn').getAttribute(`data-${currentLang}`);
+      document.getElementById('noResults').textContent = document.getElementById('noResults').getAttribute(`data-${currentLang}`);
+  
+      // সব কার্ডের শিরোনাম পরিবর্তন করা হচ্ছে
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const title = card.querySelector('.course-title');
+        title.textContent = currentLang === 'bn' ? card.getAttribute('data-title-bn') : card.getAttribute('data-title-en');
+      });
+    }
+  
+    // 2. সার্চ ফাংশন - কোর্স ফিল্টারিং এর জন্য
+    function filterCards() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+      const searchResults = document.getElementById('searchResults');
+      const loadingSpinner = document.getElementById('loadingSpinner');
+      const noResults = document.getElementById('noResults');
+  
+      // লোডিং স্পিনার দেখানো হচ্ছে
+      loadingSpinner.style.display = 'inline-block';
+      searchResults.innerHTML = '';
+  
+      let matchCount = 0;
+  
+      // সার্চিং এর জন্য একটু বিলম্ব (সিমুলেট করা হচ্ছে)
+      setTimeout(() => {
+        cards.forEach(card => {
+          const bnTitle = card.getAttribute('data-title-bn').toLowerCase();
+          const enTitle = card.getAttribute('data-title-en').toLowerCase();
+          const title = currentLang === 'bn' ? card.getAttribute('data-title-bn') : card.getAttribute('data-title-en');
+          const link = card.getAttribute('href');
+          const desc = card.querySelector('p.course-title')?.innerText;
+  
+          // যদি টাইটেলে কোনো মিল পাওয়া যায়
+          if (bnTitle.includes(input) || enTitle.includes(input)) {
+            matchCount++;
+  
+            // সার্চ রেজাল্ট তৈরি করা হচ্ছে
+            const item = document.createElement('div');
+            item.className = 'search-result-item';
+            item.onclick = () => window.location.href = link;
+  
+            item.innerHTML = `
+              <div class="search-result-title">${title}</div>
+              <div class="search-result-desc">${desc}</div>
+            `;
+  
+            searchResults.appendChild(item);
+          }
+        });
+  
+        // যদি কোনো মিল না পাওয়া যায়
+        noResults.style.display = matchCount === 0 ? 'block' : 'none';
+        searchResults.style.display = matchCount === 0 ? 'none' : 'block';
+        loadingSpinner.style.display = 'none';
+      }, 300);
+    }
+    
+    // 3. ড্রপডাউন বন্ধ করার ফাংশন - বাইরে ক্লিক করলে সার্চ রেজাল্ট বন্ধ হবে
+    document.addEventListener('click', function(event) {
+      const searchBox = document.querySelector('.search-box');
+      const searchResults = document.getElementById('searchResults');
+  
+      if (!searchBox.contains(event.target)) {
+        searchResults.style.display = 'none';
+      }
+    });
+  </script>
+
+
+
+<script>
+    /**
+ * ------------------------------
+ * স্ক্রিপ্ট 1: লগইন/লগআউট হ্যান্ডলার
+ * ------------------------------
+ * এই স্ক্রিপ্টের কাজ:
+ * - লগইন স্ট্যাটাস চেক করা
+ * - লগইন/লগআউট বাটন পরিচালনা করা
+ * - সংশ্লিষ্ট মেনু আইটেম দেখানো/লুকানো করা
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    // লগইন বাটন এলিমেন্ট
+    const loginButton = document.querySelector('nav ul li a[href="LoginFrom.html"]');
+    // আমার কোর্স লিংক
+    const myCourseLink = document.querySelector('nav ul li a[href="my_course.html"]');
+    // প্রোফাইল লিংক
+    const profileLink = document.querySelector('nav ul li a[href="profile_ifNamber.html"]');
+    
+    // চেক করা যে ইউজার লগড ইন কিনা
+    function checkLoginStatus() {
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        
+        if (userData) {
+            // ইউজার লগড ইন অবস্থায় আছে
+            if (loginButton) {
+                loginButton.textContent = 'লগআউট';
+                loginButton.href = '#';
+                loginButton.classList.add('logout-btn');
+                
+                // লগআউট বাটনে ক্লিক ইভেন্ট হ্যান্ডলার যোগ করা
+                loginButton.addEventListener('click', handleLogout);
+            }
+            
+            // আমার কোর্স এবং প্রোফাইল লিংক দৃশ্যমান করা
+            if (myCourseLink) myCourseLink.style.display = 'block';
+            if (profileLink) profileLink.style.display = 'block';
+            
+        } else {
+            // ইউজার লগড আউট অবস্থায় আছে
+            if (loginButton) {
+                loginButton.textContent = 'লগইন';
+                loginButton.href = 'LoginFrom.html';
+                loginButton.classList.remove('logout-btn');
+                
+                // পুরানো ইভেন্ট লিসেনার রিমুভ করা
+                loginButton.removeEventListener('click', handleLogout);
+            }
+            
+            // আমার কোর্স এবং প্রোফাইল লিংক লুকানো
+            if (myCourseLink) myCourseLink.style.display = 'none';
+            if (profileLink) profileLink.style.display = 'none';
+        }
+    }
+    
+    // লগআউট ফাংশন
+    function handleLogout(event) {
+        event.preventDefault();
+        
+        // লোকাল স্টোরেজ থেকে ইউজার ডাটা মুছে ফেলা
+        localStorage.removeItem('userData');
+        
+        // লগইন পেইজে রিডাইরেক্ট
+        window.location.href = 'LoginFrom.html';
+    }
+    
+    // পেইজ লোড হওয়ার সময় লগইন স্ট্যাটাস চেক করা
+    checkLoginStatus();
+    
+    // লগইন ফর্ম সাবমিশন হ্যান্ডল করা (যদি এই পেইজে লগইন ফর্ম থাকে)
+    const loginForm = document.querySelector('#loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // ইউজার ডাটা সেভ করা
+            const userData = {
+                // আপনার প্রয়োজনীয় ইউজার ডাটা
+                isLoggedIn: true,
+                loginTime: new Date().toISOString()
+            };
+            
+            localStorage.setItem('userData', JSON.stringify(userData));
+            
+            // লগইন স্ট্যাটাস আপডেট করা
+            checkLoginStatus();
+            
+            // আমার কোর্স পেইজে রিডাইরেক্ট
+            window.location.href = 'my_course.html';
+        });
+    }
+});
+
+// CSS স্টাইল যোগ করা
+const style = document.createElement('style');
+style.textContent = `
+    .logout-btn {
+        color: black !important;
+    }
+    
+    .logout-btn:hover {
+        color: black !important;
+    }
+`;
+document.head.appendChild(style);
+
+/**
+ * ------------------------------
+ * স্ক্রিপ্ট 2: হোম পেইজে নেভিগেশন মেনু আপডেট স্ক্রিপ্ট
+ * ------------------------------
+ * এই স্ক্রিপ্টের কাজ:
+ * - নতুন মেনু আইটেম যোগ করা (প্রোফাইল, আমার কোর্স)
+ * - লগইন/লগআউট স্ট্যাটাস অনুযায়ী UI আপডেট করা
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    const ulControl = document.querySelector('.ulControl');
+    
+    // চেক করা যে ইউজার লগড ইন কিনা
+    function checkLoginStatus() {
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        
+        if (userData) {
+            // ইউজার লগড ইন অবস্থায় আছে
+            // লগইন বাটন কে লগআউট এ পরিবর্তন
+            const loginButton = document.querySelector('a[href="LoginFrom.html"]').parentElement;
+            
+            // লগইন বাটনের আগে নতুন মেনু আইটেম যোগ করা
+            // প্রোফাইল লিংক যোগ
+            if (!document.querySelector('a[href="profile_ifNamber.html"]')) {
+                const profileLi = document.createElement('ul');
+                profileLi.innerHTML = '<li><a href="profile_ifNamber.html">প্রোফাইল</a></li>';
+                loginButton.parentElement.insertBefore(profileLi, loginButton.parentElement);
+            }
+            
+            // আমার কোর্স লিংক যোগ
+            if (!document.querySelector('a[href="my_course.html"]')) {
+                const myCourseLi = document.createElement('ul');
+                myCourseLi.innerHTML = '<li><a class="Login_controller" href="my_course.html">আমার কোর্স</a></li>';
+                loginButton.parentElement.insertBefore(myCourseLi, loginButton.parentElement);
+            }
+            
+            // লগইন বাটন কে লগআউট এ পরিবর্তন
+            loginButton.querySelector('a').textContent = 'লগআউট';
+            loginButton.querySelector('a').href = '#';
+            loginButton.querySelector('a').addEventListener('click', handleLogout);
+        }
+    }
+    
+    // লগআউট ফাংশন
+    function handleLogout(event) {
+        event.preventDefault();
+        
+        // লোকাল স্টোরেজ থেকে ইউজার ডাটা মুছে ফেলা
+        localStorage.removeItem('userData');
+        
+        // প্রোফাইল এবং আমার কোর্স মেনু আইটেম রিমুভ করা
+        const profileLink = document.querySelector('a[href="profile_ifNamber.html"]');
+        const myCourseLink = document.querySelector('a[href="my_course.html"]');
+        
+        if (profileLink) profileLink.parentElement.parentElement.remove();
+        if (myCourseLink) myCourseLink.parentElement.parentElement.remove();
+        
+        // লগআউট বাটন কে লগইন এ পরিবর্তন
+        const logoutButton = event.target;
+        logoutButton.textContent = 'লগইন';
+        logoutButton.href = 'LoginFrom.html';
+        logoutButton.removeEventListener('click', handleLogout);
+        
+        // লগইন পেইজে রিডাইরেক্ট
+        window.location.href = 'LoginFrom.html';
+    }
+    
+    // পেইজ লোড হওয়ার সময় লগইন স্ট্যাটাস চেক করা
+    checkLoginStatus();
+});
+
+/**
+ * ------------------------------
+ * স্ক্রিপ্ট 3: ক্লাস-বেইজড নেভিগেশন ম্যানেজার
+ * ------------------------------
+ * এই স্ক্রিপ্টের কাজ:
+ * - ক্লাস-বেইজড এপ্রোচ ব্যবহার করে নেভিগেশন পরিচালনা করা
+ * - ইউজার লগইন স্ট্যাটাস অনুযায়ী নেভিগেশন আইটেম প্রদর্শন/সংশোধন করা
+ * - মাল্টি-ট্যাব সাপোর্ট যোগ করা
+ */
+// Constants
+const AUTH_STORAGE_KEY = 'userData';
+const NAV_ITEMS = {
+    PROFILE: {
+        href: 'my_course.html',
+        text: 'আমার কোর্স'
+    },
+    MY_COURSES: {
+        href: 'profile_ifNamber.html',
+        text: 'প্রোফাইল'
+    }
+};
+
+// Navigation Manager
+class NavigationManager {
+    constructor() {
+        this.navContainer = document.querySelector('.ulControl');
+        this.loginLink = document.querySelector('.just_Fix');
+        this.init();
+    }
+
+    init() {
+        // Check login status on every page load
+        this.checkAuthState();
+        
+        // Add event listeners for navigation changes
+        this.setupEventListeners();
+    }
+
+    checkAuthState() {
+        const userData = localStorage.getItem(AUTH_STORAGE_KEY);
+        
+        if (userData) {
+            this.showAuthenticatedNav();
+        } else {
+            this.showUnauthenticatedNav();
+        }
+    }
+
+    showAuthenticatedNav() {
+        if (!this.navContainer) return;
+
+        // Find the login link's parent element
+        const loginLi = this.loginLink?.closest('ul');
+        
+        // Create profile and courses menu items
+        Object.values(NAV_ITEMS).forEach(item => {
+            const menuItem = this.createMenuItem(item);
+            
+            // Insert before login link
+            if (loginLi) {
+                this.navContainer.insertBefore(menuItem, loginLi);
+            } else {
+                this.navContainer.appendChild(menuItem);
+            }
+        });
+
+        // Update login link to show logout
+        if (this.loginLink) {
+            this.loginLink.textContent = 'লগআউট';
+            this.loginLink.href = '#';
+            this.loginLink.addEventListener('click', this.handleLogout.bind(this));
+        }
+    }
+
+    showUnauthenticatedNav() {
+        if (!this.navContainer) return;
+
+        // Remove authenticated menu items
+        Object.values(NAV_ITEMS).forEach(item => {
+            const existingItem = this.navContainer.querySelector(`a[href="${item.href}"]`);
+            if (existingItem) {
+                const parentUl = existingItem.closest('ul');
+                if (parentUl) {
+                    parentUl.remove();
+                }
+            }
+        });
+
+        // Reset login link
+        if (this.loginLink) {
+            this.loginLink.textContent = 'লগইন';
+            this.loginLink.href = 'LoginFrom.html';
+        }
+    }
+
+    createMenuItem(item) {
+        const ul = document.createElement('ul');
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        
+        a.href = item.href;
+        a.textContent = item.text;
+        a.className = 'from_top';
+        
+        li.appendChild(a);
+        ul.appendChild(li);
+        
+        return ul;
+    }
+
+    handleLogout(e) {
+        e.preventDefault();
+        
+        // Clear auth data
+        localStorage.removeItem(AUTH_STORAGE_KEY);
+        
+        // Reset navigation
+        this.showUnauthenticatedNav();
+        
+        // Redirect to home
+        window.location.href = 'TalimulIslamAcademy.html';
+    }
+
+    setupEventListeners() {
+        // Listen for storage events (for multi-tab support)
+        window.addEventListener('storage', (e) => {
+            if (e.key === AUTH_STORAGE_KEY) {
+                this.checkAuthState();
+            }
+        });
+    }
+}
+
+// Initialize navigation manager on page load
+document.addEventListener('DOMContentLoaded', () => {
+    new NavigationManager();
+});
+</script>
+
+</body>
+</html>

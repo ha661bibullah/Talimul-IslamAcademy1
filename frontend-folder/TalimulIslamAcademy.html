@@ -1,0 +1,2508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>তালিমুল ইসলাম একাডেমি</title>
+        <!-- all linksall linksall links -->
+        <!-- all linksall linksall links -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&family=Aref+Ruqaa:wght@400;700&family=Arima:wght@100..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,600;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<!-- নেববার style-->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+    }
+    
+    body {
+        font-family: "Anek Bangla", serif;
+        background-color: white;
+        padding-top: 100px;
+    }
+    
+    nav {
+        width: 100%;
+        height: 80px;
+        background-color: white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        z-index: 90;
+    }
+    
+    nav .imgPath {
+        margin-left: 70px;
+        margin-top: 13px;
+        z-index: 90;
+    }
+    
+    nav .ulControl {
+        width: 100%;
+        height: 30px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        position: absolute;
+        top: 35%;
+        left: 0;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    nav .ulControl ul {
+        font-size: 14px;
+        display: inline-block;
+        margin-left: 30px;
+    }
+    
+    nav .ulControl ul li {
+        list-style: none;
+    }
+    
+    .ulControl a {
+        text-decoration: none;
+        color: black;
+        font-weight: normal;
+        font-size: 14px;
+        position: relative;
+    }
+    
+    nav .ulControl .Login_controller {
+        color: #44AB56;
+    }
+    
+    nav .ulControl a:hover {
+        transition: 0.4s;
+        color: #44AB56;
+    }
+    
+    nav .ulControl ul ul {
+        display: none;
+    }
+    
+    nav .ulControl ul:hover li ul {
+        display: block;
+        position: absolute;
+        top: 30px;
+        margin-left: -30px;
+        width: 100px;
+        text-align: center;
+        background-color: aliceblue;
+    }
+    
+    nav .ulControl ul ul a:hover {
+        color: rgb(247, 153, 0);
+    }
+    
+    nav .ulControl .just_Fix {
+        margin-right: 70px;
+    }
+    
+    .hamburger {
+        display: none;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: 25px;
+        z-index: 95;
+        width: 30px;
+        height: 30px;
+        transition: all 0.3s ease-in-out;
+        padding: 5px;
+    }
+    
+    .hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: #333;
+        margin: 5px;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    @media screen and (max-width: 1200px) {
+        .hamburger {
+            display: block;
+            line-height: 0;
+        }
+        .hamburger .line1{
+            padding: 0;
+            margin: 0;
+        }
+        .hamburger .line2{
+            padding: 0;
+            margin: 0;
+            margin-top: 5px;
+        }
+        .hamburger .line3{
+            padding: 0;
+            margin: 0;
+            margin-top: 5px;
+        }
+        nav .ulControl {
+            position: fixed;
+            flex-direction: column;
+            justify-content: flex-start;
+            top: 80px;
+            height: calc(100vh - 80px);
+            width: 280px;
+            background-color: white;
+            padding-top: 30px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* বাম সাইডে শ্যাডো */
+            right: -280px; /* ডান দিকে বাইরে */
+            left: auto; /* এটি যোগ করা হয়েছে */
+            opacity: 0;
+            overflow-y: scroll;
+            padding-bottom: 30px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            pointer-events: none; /* বন্ধ থাকা অবস্থায় ক্লিক গ্রহণ করবে না */
+        }
+        
+        nav .ulControl.active {
+            right: 0; /* ডান দিকে ০-তে */
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        /* WebKit ব্রাউজার (Chrome, Safari ইত্যাদি) এর জন্য */
+        nav .ulControl::-webkit-scrollbar {
+            display: none;
+        }
+        
+        nav .ulControl a:hover {
+            transition: none;
+            color: black;
+        }
+        
+        nav .ulControl ul ul a:hover {
+            color: black;
+        }
+        
+        nav .ulControl .just_Fix {
+            margin-right: 0px;
+        }
+        
+        nav .ulControl ul {
+            margin: 0;
+            width: 100%;
+            text-align: center;
+            transform: translateX(20px);
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+            padding: 12px 0;
+        }
+        
+        nav .ulControl ul:hover{
+            background-color: #ea9400;
+            transition: none;
+        }
+        
+        nav .ulControl.active ul {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        nav .ulControl ul li {
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        nav .ulControl ul li a {
+            display: block;
+            line-height: 1;
+            padding: 8px 0;
+            font-size: 16px;
+        }
+        
+        nav .ulControl ul:hover li ul {
+            position: static;
+            width: 100%;
+            margin: 5px 0;
+            background-color: white;
+            border-radius: 4px;
+            padding: 5px 0;
+            background-color: transparent;
+        }
+        
+        nav .ulControl ul:hover li ul li a {
+            padding: 6px 0;
+            font-size: 15px;
+        }
+        
+        nav .imgPath {
+            margin-left: 20px;
+        }
+        
+        /* Hamburger to X animation */
+        .hamburger.active .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active .line2 {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .hamburger.active .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        /* Add delay to menu items with smoother transition */
+        nav .ulControl ul:nth-child(1) { transition-delay: 0.1s; }
+        nav .ulControl ul:nth-child(2) { transition-delay: 0.15s; }
+        nav .ulControl ul:nth-child(3) { transition-delay: 0.2s; }
+        nav .ulControl ul:nth-child(4) { transition-delay: 0.25s; }
+        nav .ulControl ul:nth-child(5) { transition-delay: 0.3s; }
+        nav .ulControl ul:nth-child(6) { transition-delay: 0.35s; }
+        nav .ulControl ul:nth-child(7) { transition-delay: 0.4s; }
+        
+        /* Center align dropdown icon */
+        .fa-chevron-down {
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+    }
+
+
+
+
+
+
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+/* ... (keeping other base styles the same) ... */
+
+.ulControl a {
+    text-decoration: none;
+    color: black;
+    font-weight: normal;
+    font-size: 14px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* New hover effect for main menu items */
+.ulControl a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    background-color: #44AB56;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.ulControl a:hover::after {
+    width: 100%;
+}
+
+/* Enhanced dropdown styles */
+nav .ulControl ul:hover li ul {
+    display: block;
+    position: absolute;
+    top: 30px;
+    margin-left: -30px;
+    width: 160px;
+    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: dropdownFade 0.3s ease forwards;
+}
+
+@keyframes dropdownFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced dropdown item hover effects */
+nav .ulControl ul ul a {
+    display: block;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+nav .ulControl ul ul a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background-color: rgba(68, 171, 86, 0.1);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+nav .ulControl ul ul a:hover::before {
+    width: 100%;
+}
+
+nav .ulControl ul ul a:hover {
+    color: #44AB56;
+    transform: translateX(5px);
+}
+
+/* Mobile-specific modifications */
+@media screen and (max-width: 1200px) {
+    nav .ulControl ul:hover li ul {
+        position: static;
+        width: 100%;
+        margin: 5px 0;
+        box-shadow: none;
+        background-color: rgba(68, 171, 86, 0.05);
+        border-radius: 4px;
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    nav .ulControl ul ul a {
+        padding: 10px 20px;
+    }
+
+    nav .ulControl ul ul a:hover {
+        transform: translateX(0);
+        background-color: rgba(68, 171, 86, 0.1);
+    }
+
+    nav .ulControl ul:hover {
+        background-color: transparent;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Remove underline effect on mobile */
+    .ulControl a::after {
+        display: none;
+    }
+}
+</style>
+
+<!-- নেববার html-->
+<nav>
+    <a class="imgPath" href="TalimulIslamAcademy.html">
+        <img src="/img/ChatGPT Image.png" width="170" alt="">
+    </a>
+    <div class="hamburger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+    <div class="ulControl">
+        <ul><li><a href="TalimulIslamAcademy.html">হোম</a></li></ul>
+        <ul><li><a href="Academic_courses.html">একাডেমিক</a></li></ul>
+        <ul><li><a href="">কোর্স <i class="fa-solid fa-chevron-down"></i></a>
+            <ul>
+                <li><a href="">সকল কোর্স</a></li>
+                <li><a href="">লাইভ কোর্স</a></li>
+            </ul>
+        </li></ul>
+        <ul><li><a href="">বই</a></li></ul>
+        <ul><li><a href="">শিক্ষক</a></li></ul>
+        <ul><li><a href="">উপদেষ্টা</a></li></ul>
+        <ul><li><a href="">আমাদের সম্পর্কে</a></li></ul>
+        <ul style="display: none;"><li><a class="from_top" href="my_course.html">আমার কোর্স</a></li></ul>
+        <ul style="display: none;"><li><a class="from_top" href="profile_ifNamber.html">প্রোফাইল</a></li></ul>
+        <ul><li><a class="just_Fix" href="LoginFrom.html">লগইন</a></li></ul>
+    </div>
+</nav>
+
+<!-- রেস্পন্সিপ নেববার স্ক্রিপ্ট -->
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const ulControl = document.querySelector('.ulControl');
+    const nav = document.querySelector('nav');
+    
+    hamburger.addEventListener('click', function(e) {
+        e.stopPropagation(); // স্টপ ইভেন্ট বাবলিং
+        hamburger.classList.toggle('active');
+        ulControl.classList.toggle('active');
+    });
+    
+    // মেনু লিংক ক্লিক করলে মেনু বন্ধ হবে
+    document.querySelectorAll('.ulControl a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            ulControl.classList.remove('active');
+        });
+    });
+
+    // বাইরে ক্লিক করলে মেনু বন্ধ হবে
+    document.addEventListener('click', function(e) {
+        if (!nav.contains(e.target) || (!hamburger.contains(e.target) && !ulControl.contains(e.target))) {
+            hamburger.classList.remove('active');
+            ulControl.classList.remove('active');
+        }
+    });
+    
+    // মেনু ভিতরে ক্লিক করলে বাবলিং বন্ধ করবে
+    ulControl.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- প্রজেক্টের মূল CSS স্টাইল: সার্চ বক্স, কোর্স কার্ড, গ্রিড লেআউট এবং রেসপনসিভ ডিজাইনের জন্য বেসিক স্টাইলিং। -->
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+    }
+    body{
+        font-family: "Anek Bangla", serif;
+        background-color:white;
+        padding-top: 100px;
+    }
+
+    .search-box {
+        width: 100%;
+        padding: 1.5rem;
+        background-color: white;
+    }
+
+    .search-container {
+        max-width: 64rem;
+        margin: 0 auto;
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.25rem;
+        outline: none;
+    }
+
+    .search-input:focus {
+        border-color: #22c55e;
+    }
+
+    .search-button {
+        padding: 0.5rem 1.5rem;
+        background-color: #22c55e;
+        color: white;
+        border: none;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        font-family: "Anek Bangla", serif;
+
+    }
+
+    .search-button:hover {
+        background-color: #16a34a;
+    }
+
+    .course-grid {
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 1.5rem;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .course-card {
+        background-color: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .course-image {
+        width: 100%;
+        height: 12rem;
+        object-fit: cover;
+    }
+
+    .course-content {
+        padding: 1rem;
+    }
+
+    .price-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .original-price {
+        color: #6b7280;
+        text-decoration: line-through;
+    }
+
+    .discount-price {
+        color: #16a34a;
+        font-weight: bold;
+    }
+
+    .course-title {
+        font-size: 1.125rem;
+        font-weight: 500;
+        color: #111827;
+        text-decoration: none;
+    }
+
+    .course-title:hover {
+        color: #16a34a;
+    }
+    .headline .message{
+    width: 100%;
+    height: auto;
+    /* background-color: #215E3A; */
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0px 10% 0px 10%;
+    margin-top: 10px;
+}
+    @media (min-width: 768px) {
+        .grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+@media (max-width: 768px){
+    .headline .message{
+    width: 100%;
+    height: auto;
+    /* background-color: #215E3A; */
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0px 30px 0px 30px;
+    /* margin-top: -20px; */
+    font-size: 14px;
+}
+}
+
+    @media (min-width: 1024px) {
+        .grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    .show-more-button {
+        padding: 0.5rem 1.5rem;
+        background-color: #22c55e;
+        color: white;
+        border: none;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin: 1rem 0;
+        display: block;
+        text-align: center;
+        font-family: "Anek Bangla", serif;
+    }
+
+    .show-more-button:hover {
+        background-color: #16a34a;
+    }
+
+    .hidden-course {
+        display: none;
+    }
+</style>
+
+<!-- সার্চ বাটন সহ মূল সার্চ ইন্টারফেস।-->
+<div class="search-box">
+<div class="search-container">
+    <input type="search" class="search-input" placeholder="আপনার পছন্দের কোর্স সার্চ করুন">
+    <button class="search-button">সার্চ করুন</button>
+</div>
+</div>
+
+    <!-- হেডলাইনে থাকা অংশ -->
+    <!-- হেডলাইনে থাকা অংশ -->
+    <div class="headline">
+        <h1>প্রিমিয়াম কোর্স সমূহ</h1>
+        <div class="forCenter">
+        <div class="line1"></div>
+        <div class="line2"></div>
+    </div>
+    <p class="message">আত তাদরীস অনলাইন মাদরাসার এই প্রিমিয়াম কোর্সগুলো করে নিজেকে অন্যান্যদের থেকে একধাপ এগিয়ে রাখতে পারবে। কেননা, এই কোর্সগুলো করিয়েছেন বাংলাদেশের স্বনামধন্য মাদরাসার অভিজ্ঞ উস্তাদগণ।</p>
+       </div>
+<!-- "আরো দেখুন" বাটনের জন্য কন্টেইনার। -->
+<div class="course-grid">
+<div class="grid" id="courseContainer">
+    <!-- Courses will be dynamically inserted here -->
+</div>
+<button class="show-more-button" id="showMoreButton">আরো দেখুন</button>
+</div>
+<!-- মূল জাভাস্ক্রিপ্ট লজিক: কোর্স ডেটা, সার্চ ফাংশনালিটি, এবং ডায়নামিক কন্টেন্ট রেন্ডারিং। -->
+
+<script>
+const courses = [
+    {
+        id: 1,
+        image: "/img/1.jpg",
+        title: "ইলমুস সরফ (বেসিক টু এডভ্যান্স)",
+        originalPrice: 1960,
+        discountPrice: 490,
+        link: "/illmusSaraf.html"
+    },
+    {
+        id: 2,
+        image: "/img/b.jpg",
+        title: "ইলমুল নাহু (ব্যাসিক টু এডভ্যান্স)",
+        originalPrice: 1960,
+        discountPrice: 490
+    },
+    {
+        id: 3,
+        image: "/img/d.jpg",
+        title: "প্রাকটিক্যাল ইবারত শিক্ষা",
+        originalPrice: 2450,
+        discountPrice: 490
+    },
+    {
+        id: 4,
+        image: "/img/5.png",
+        title: "সহজ নিয়মে তা'লিল এবং গাইরে সহীহ সী...",
+        originalPrice: 1960,
+        discountPrice: 490
+    },
+    {
+        id: 5,
+        image: "/img/6.png",
+        title: "এক নজরে ১০০ আমেল",
+        originalPrice: 1000,
+        discountPrice: 290
+    },
+    {
+        id: 6,
+        image: "/img/7.png",
+        title: "শরহে মিআতে আমেল",
+        originalPrice: 1960,
+        discountPrice: 490
+    },
+    {
+        id: 7,
+        image: "/img/8.png",
+        title: "সহজ নিয়মে তারকিব এবং তরজমা শিখি..",
+        originalPrice: 2600,
+        discountPrice: 490
+    },
+    {
+        id: 8,
+        image: "/img/9.png",
+        title: "হেদায়াতুন নাহু (সম্পূর্ণ মূল কিতাব)",
+        originalPrice: 4200,
+        discountPrice: 990
+    },
+    {
+        id: 9,
+        image: "/img/10.png",
+        title: "কাফিয়া (পূর্ণাঙ্গ কিতাব)",
+        originalPrice: 2500,
+        discountPrice: 1200
+    },
+    {
+        id: 10,
+        image: "/img/11.png",
+        title: "শরহে বেকায়া ১ম খন্ড - কিতাবুত ত্বহারা...)",
+        originalPrice: 1960,
+        discountPrice: 490
+    },
+    {
+        id: 11,
+        image: "/img/12.png",
+        title: "শরহে বেকায়া ১ম খন্ড - কিতাবুস সালাত...",
+        originalPrice: 2960,
+        discountPrice: 490
+    },
+    {
+        id: 12,
+        image: "/img/13.png",
+        title: "উসূলে ফিক্হ (বেসিক কোর্স)",
+        originalPrice: 2600,
+        discountPrice: 690
+    },
+    {
+        id: 13,
+        image: "/img/14png.png",
+        title: "নূরুল আনওয়ার কিতাবুল্লাহ ১ম পর্ব",
+        originalPrice: 3000,
+        discountPrice: 1500
+    },
+    {
+        id: 14,
+        image: "/img/15.png",
+        title: "নূরুল আনওয়ার কিতাবুল্লাহ ২য় পর্ব",
+        originalPrice: 2500,
+        discountPrice: 1200
+    },
+    {
+        id: 15,
+        image: "/img/16.png",
+        title: "নূরুল আনওয়ার কিতাবুল্লাহ ২য় পর্ব",
+        originalPrice: 2500,
+        discountPrice: 1200
+    },
+    {
+        id: 16,
+        image: "/img/17.png",
+        title: "উর্দু Spoken",
+        originalPrice: 1800,
+        discountPrice: 490
+    },
+    {
+        id: 17,
+        image: "/img/18.png",
+        title: "ইলমুল বালাগাত",
+        originalPrice: 1920,
+        discountPrice: 490
+    },
+    {
+        id: 18,
+        image: "/img/19.png",
+        title: "ইলমুল মানতিক (বেসিক কোর্স)",
+        originalPrice: 1800,
+        discountPrice: 490
+    }
+];
+
+const searchInput = document.querySelector('.search-input');
+const courseContainer = document.getElementById('courseContainer');
+const showMoreButton = document.getElementById('showMoreButton');
+
+function createCourseCard(course) {
+    return `
+        <div class="course-card" style="background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden; transition: transform 0.2s; line-height: 20px;">
+            <a href="${course.link}" class="course-link" style="text-decoration: none;">
+                <img src="${course.image}" alt="${course.title}" class="course-image" style="width: 100%; height: auto; display: block;">
+            </a>
+            <div class="course-content" style="padding: 15px;">
+                <div class="price-container" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                    <del class="original-price" style="color: #6b7280; text-decoration: line-through;">৳ ${course.originalPrice}</del>
+                    <span class="discount-price" style="color: #16a34a; font-weight: bold;">৳ ${course.discountPrice}</span>
+                </div>
+                <a href="${course.link}" class="course-title" style="font-size: 1.125rem; font-weight: 500; color: #111827; text-decoration: none;">
+                    <h5 style="margin: 0; color: inherit;">${course.title}</h5>
+                </a>
+            </div>
+        </div>
+    `;
+}
+
+
+
+function renderCourses(coursesToRender) {
+courseContainer.innerHTML = coursesToRender
+.map(course => createCourseCard(course))
+.join('');
+}
+
+function filterCourses(searchTerm) {
+return courses.filter(course =>
+course.title.toLowerCase().includes(searchTerm.toLowerCase())
+);
+}
+
+// Initial render
+renderCourses(courses.slice(0, 12));
+
+// Search functionality
+searchInput.addEventListener('input', (e) => {
+const searchTerm = e.target.value;
+const filteredCourses = filterCourses(searchTerm);
+renderCourses(filteredCourses);
+
+// Show the hidden courses if there are more than 12 results
+if (searchTerm && filteredCourses.length > 12) {
+showMoreButton.style.display = 'block';
+} else {
+showMoreButton.style.display = 'none';
+}
+});
+
+// Show more button click handler
+showMoreButton.addEventListener('click', () => {
+renderCourses(courses);
+showMoreButton.style.display = 'none';
+});
+
+</script>
+
+<!--  বান্ডিল কোর্স হেডলাইন: "বান্ডিল কোর্স সমূহ" সেকশনের শিরোনাম এবং ডিজাইন এলিমেন্ট।
+-->
+<div class="headline">
+<h1>বান্ডিল কোর্স সমূহ</h1>
+<div class="forCenter">
+<div class="line1"></div>
+<div class="line2"></div>
+</div>
+</div>
+<!-- বান্ডিল কোর্স কন্টেন্ট: বান্ডিল কোর্সগুলোর HTML স্ট্রাকচার এবং কন্টেন্ট। -->
+<div class="After_Bundled_Courses">
+<form class="Duplicadte_Form1" action="">
+<a class="img_controller" href="#"><img src="/img/36png.webp" alt=""></a>
+<p><del>৳ 3920</del> <pre class="price_mansion">  ৳ 800</pre></p> <br>
+<a class="elmus_sorof" href=""><p>নাহু সরফ বান্ডেল কোর্স</p></a>
+</form>
+<!-- Other bundle courses... -->
+<form class="Duplicadte_Form1" action="">
+<a class="img_controller" href=""><img src="/img/37png.jpg" alt=""></a>
+<p><del>৳ 3880</del><pre class="price_mansion">  ৳ 800</pre></p><br>
+<a class="elmus_sorof" href=""><p>নাহু-সরফ-প্রাকটিক্যাল ইবারত শিক্ষা...</p></a>
+</form>
+
+<form class="Duplicadte_Form1" action="">
+<a class="img_controller" href=""><img src="/img/38png.jpg" alt=""></a>
+<p><del>৳ 3880</del><pre class="price_mansion">  ৳ 800</pre></p><br>
+<a class="elmus_sorof" href=""><p>তাহকিক বান্ডেল কোর্স</p></a>
+</form>
+
+<form class="Duplicadte_Form1" action="">
+<a class="img_controller" href=""><img src="/img/39.jpg" alt=""></a>
+<p><del>৳ 5880</del><pre class="price_mansion">  ৳ 1200</pre></p> <br>
+<a class="elmus_sorof" href=""><p>কাসাসুন নাবিয়্যীন ১ম, ২য় ও ৩য় খন্ড...</p></a>
+</form>
+</div>
+<!-- ফ্রি কোর্স হেডলাইন: "ফ্রি কোর্স সমূহ" সেকশনের শিরোনাম এবং ডিজাইন এলিমেন্ট।
+-->
+<div class="headline">
+<h1>ফ্রি কোর্স সমূহ</h1>
+<div class="forCenter">
+<div class="line1"></div>
+<div class="line2"></div>
+</div>
+</div>
+<!-- ফ্রি কোর্স কন্টেন্ট: ফ্রি কোর্সগুলোর HTML স্ট্রাকচার এবং কন্টেন্ট। -->
+<div class="After_Free_cuourse">
+<form class="Duplicadte_Form1" action="">
+<a class="img_controller" href=""><img src="/img/40png.jpg" alt=""></a>
+<p><del>৳ 3920</del> <pre class="price_mansion">  ৳ 800</pre></p> <br>
+<a class="elmus_sorof" href=""><p>নাহু সরফ বান্ডেল কোর্স</p></a>
+</form>
+<!-- Other free courses... -->
+<form class="Duplicadte_Form1" action="">
+<a class="img_controller" href=""><img src="/img/41png.jpg" alt=""></a>
+<p><del>৳ 3880</del><pre class="price_mansion">  ৳ 800</pre></p><br>
+<a class="elmus_sorof" href=""><p>নাহু-সরফ-প্রাকটিক্যাল ইবারত শিক্ষা...</p></a>
+</form>
+
+<form class="Duplicadte_Form1" action="">
+<a class="img_controller" href=""><img src="/img/42png.jpg" alt=""></a>
+<p><del>৳ 3880</del><pre class="price_mansion">  ৳ 800</pre></p><br>
+<a class="elmus_sorof" href=""><p>তাহকিক বান্ডেল কোর্স</p></a>
+</form>
+</div>
+
+<!-- অতিরিক্ত স্টাইল: হেডলাইন, লাইন ডিজাইন, এবং বান্ডিল/ফ্রি কোর্স সেকশনের জন্য বিশেষ স্টাইলিং। -->
+<style>
+/* Existing styles remain the same */
+
+/* New styles for headlines and sections */
+.headline {
+text-align: center;
+margin: 2rem 0;
+}
+
+.forCenter {
+display: flex;
+justify-content: center;
+gap: 0.5rem;
+margin-top: 1rem;
+}
+
+.line1, .line2 {
+height: 2px;
+background-color: #22c55e;
+}
+
+.line1 {
+width: 100px;
+}
+
+.line2 {
+width: 50px;
+}
+
+.After_Bundled_Courses,
+.After_Free_cuourse {
+max-width: 72rem;
+margin: 0 auto;
+padding: 1.5rem;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 1.5rem;
+}
+
+.Duplicadte_Form1 {
+background-color: white;
+border-radius: 0.5rem;
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+/* padding: 1rem; */
+line-height: 0px;
+padding-bottom: 20px;
+
+}
+.Duplicadte_Form1 p{
+    margin-top: 14px;
+}
+.Duplicadte_Form1 p del{
+    padding-left: 0.7rem;
+    text-decoration: line-through;
+}
+.Duplicadte_Form1 .price_mansion{
+    font-size: 15px;
+    margin-left: 1rem;
+    position: absolute;
+    /* margin-top: -15px; */
+    margin-left: 50px;
+
+}
+
+.Duplicadte_Form1 .elmus_sorof{
+    text-align: start; 
+    font-weight: bold;
+}
+.img_controller img {
+width: 100%;
+height: 12rem;
+object-fit: cover;
+border-radius: 0.25rem;
+}
+
+.price_mansion {
+display: inline;
+color: #16a34a;
+font-weight: bold;
+}
+
+.elmus_sorof {
+text-decoration: none;
+color: #111827;
+}
+
+.elmus_sorof:hover {
+color: #16a34a;
+}
+</style>
+<!--রিয়েল-টাইম সার্চ এবং ফিল্টারিং লজিক। -->
+<script>
+// Search functionality
+searchInput.addEventListener('input', (e) => {
+const searchTerm = e.target.value;
+const filteredCourses = filterCourses(searchTerm);
+renderCourses(filteredCourses);
+
+if (searchTerm && filteredCourses.length > 12) {
+showMoreButton.style.display = 'block';
+} else {
+showMoreButton.style.display = 'none';
+}
+});
+
+</script>
+<!-- সার্চ বক্স স্টাইল -->
+<style>
+.search-box {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.search-container {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.search-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #22c55e;
+}
+
+.search-button {
+    background-color: #22c55e;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.search-button:hover {
+    background-color: #16a34a;
+}
+
+.hidden {
+    display: none !important;
+}
+</style>
+
+<!-- সার্চ ফাংশনালিটি এনহ্যান্সমেন্ট: রিয়েল-টাইম সার্চ, এন্টার কী সাপোর্ট, এবং বাটন ক্লিক হ্যান্ডলিং। -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector('.search-input');
+    const searchButton = document.querySelector('.search-button');
+    const courseForms = document.querySelectorAll('.Duplicadte_Form1');
+
+    function searchCourses() {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        
+        courseForms.forEach(form => {
+            const courseTitle = form.querySelector('.elmus_sorof p').textContent.toLowerCase();
+            const coursePrice = form.querySelector('.price_mansion').textContent;
+            
+            if (courseTitle.includes(searchTerm) || coursePrice.includes(searchTerm)) {
+                form.classList.remove('hidden');
+            } else {
+                form.classList.add('hidden');
+            }
+        });
+    }
+
+    // সার্চ বাটন ক্লিক করলে
+    searchButton.addEventListener('click', searchCourses);
+
+    // এন্টার কী প্রেস করলে
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            searchCourses();
+        }
+    });
+
+    // রিয়েল-টাইম সার্চ
+    searchInput.addEventListener('input', function() {
+        if (this.value.length >= 2) {
+            searchCourses();
+        } else if (this.value.length === 0) {
+            courseForms.forEach(form => form.classList.remove('hidden'));
+        }
+    });
+});
+</script>
+<!-- সার্চ বক্স এবং বাটনের জন্য অতিরিক্ত স্টাইলিং। -->
+<style>
+.search-box {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.search-container {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.search-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #22c55e;
+}
+
+.search-button {
+    background-color: #22c55e;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.search-button:hover {
+    background-color: #16a34a;
+}
+
+.hidden {
+    display: none !important;
+}
+</style>
+<!-- খালি সার্চ হ্যান্ডলিং, এবং ইমপ্রুভড সার্চ ফাংশনালিটি। -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector('.search-input');
+    const searchButton = document.querySelector('.search-button');
+    const courseForms = document.querySelectorAll('.Duplicadte_Form1');
+    const headlines = document.querySelectorAll('.headline');
+    
+    function toggleHeadlines(show) {
+        headlines.forEach(headline => {
+            if (show) {
+                headline.classList.remove('hidden');
+            } else {
+                headline.classList.add('hidden');
+            }
+        });
+    }
+
+    function searchCourses() {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        
+        if (searchTerm.length === 0) {
+            // সার্চ বক্স খালি থাকলে সব দেখানো হবে
+            courseForms.forEach(form => form.classList.remove('hidden'));
+            toggleHeadlines(true);
+            return;
+        }
+
+        // সার্চ করা হলে হেডলাইন হাইড করা
+        toggleHeadlines(false);
+        
+        let hasResults = false;
+        courseForms.forEach(form => {
+            const courseTitle = form.querySelector('.elmus_sorof p').textContent.toLowerCase();
+            const coursePrice = form.querySelector('.price_mansion').textContent;
+            
+            if (courseTitle.includes(searchTerm) || coursePrice.includes(searchTerm)) {
+                form.classList.remove('hidden');
+                hasResults = true;
+            } else {
+                form.classList.add('hidden');
+            }
+        });
+    }
+
+    // সার্চ বাটন ক্লিক করলে
+    searchButton.addEventListener('click', searchCourses);
+
+    // এন্টার কী প্রেস করলে
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            searchCourses();
+        }
+    });
+
+    // রিয়েল-টাইম সার্চ
+    searchInput.addEventListener('input', function() {
+        if (this.value.length >= 2) {
+            searchCourses();
+        } else if (this.value.length === 0) {
+            courseForms.forEach(form => form.classList.remove('hidden'));
+            toggleHeadlines(true);
+        }
+    });
+});
+</script>
+
+ <!-- ৪য় হেডলাইন এখান থেকে ৪য় হেডলাইন এখান থেকে -->
+ <!-- ৪য় হেডলাইন এখান থেকে ৪য় হেডলাইন এখান থেকে -->
+<div class="headline">
+    <h1>কোর্স ক্যাটাগরি</h1>
+    <div class="forCenter">
+    <div class="line1"></div>
+    <div class="line2"></div>
+</div>
+ </div>
+<!-- k -->
+<style>
+    .course-card2 {
+        width: 30%;
+        height: 180px;
+        background-color: #347B57;
+        display: inline-block;
+        border-radius: 5px;
+        margin: 10px;
+        position: relative;
+        transition: all 0.5s ease-in-out;
+        vertical-align: top;
+    }
+    
+    .course-card2:hover {
+        background-image: url(/img/bac-mousqe.png);
+        background-size: cover;
+        opacity: 0.8;
+    }
+    
+    .course-card2 img {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        height: auto;
+    }
+    
+    .course-card2 h3 {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        padding: 0 10px;
+    }
+    
+    /* Responsive Design */
+    @media screen and (max-width: 1200px) {
+        .course-card2 {
+            width: 28%;
+        }
+        .course-card2:nth-child(4n+1) {
+            margin-left: 10px;
+        }
+        .course-card2:nth-child(3n+1) {
+            margin-left: 2.5%;
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        .course-card2 {
+            width: 45%;
+        }
+        .course-card2:nth-child(3n+1) {
+            margin-left: 10px;
+        }
+        .course-card2:nth-child(2n+7) {
+            margin-left: 2.5%;
+        }
+    }
+    
+    
+    @media screen and (max-width: 480px) {
+        .course-card2 {
+            width: 90%;
+            margin: 10px auto !important;
+        }
+        
+
+    }
+</style>
+
+<style>
+    /* Prayer Time Container */
+.prayer_time {
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+    background-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    position: relative;
+    margin: 20px auto;
+    padding-bottom: 20px;
+}
+
+.prayer_time::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+    z-index: -1;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Header Section */
+.head_of_Time {
+    width: 100%;
+    height: auto;
+    min-height: 60px;
+    background-color: #347B57;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 10px 0;
+}
+
+.head_of_Time img {
+    width: 50px;
+    height: auto;
+    margin-left: 10px;
+}
+
+.head_of_Time h3 {
+    color: white;
+    margin-left: 10px;
+    font-size: 1.2rem;
+}
+
+/* Prayer Times Grid */
+.body_of_time {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+}
+
+.body_of_time .Fozor {
+    width: calc(33.33% - 20px);
+    min-width: 100px;
+    height: auto;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.body_of_time .Fozor:hover {
+    transform: translateY(-5px);
+}
+
+.body_of_time .Fozor img {
+    width: 40px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.body_of_time .Fozor h3 {
+    margin: 10px 0 5px 0;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.body_of_time .Fozor p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.body_of_time .Fozor i {
+    margin-right: 5px;
+}
+
+/* Responsive Media Queries */
+@media screen and (max-width: 768px) {
+    .prayer_time {
+        width: 95%;
+    }
+    
+    .body_of_time .Fozor {
+        width: calc(50% - 20px);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .head_of_Time h3 {
+        font-size: 1rem;
+    }
+    
+    .body_of_time .Fozor {
+        width: calc(100% - 20px);
+    }
+    
+    .body_of_time .Fozor h3 {
+        font-size: 0.9rem;
+    }
+    
+    .body_of_time .Fozor p {
+        font-size: 0.8rem;
+    }
+}
+</style>
+
+
+
+<style>
+    /* Container for both components */
+.main-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    /* background-color: #667A91; */
+}
+
+/* Course Category Styles */
+.cuourse_cetagory {
+    flex: 1;
+    min-width: 300px;
+    height: auto;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Prayer Time Container Modifications */
+.prayer_time {
+    width: 400px;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Responsive Breakpoints */
+@media screen and (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+    
+    .prayer_time {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .cuourse_cetagory {
+        width: 100%;
+    }
+    
+    /* Adjust course cards for better mobile view */
+    .arabic_bekaron,
+    .learn_lenguash,
+    .free_cuourses,
+    .arabic_bekaron1,
+    .free_cuourses1,
+    .free_cuourses2 {
+        width: calc(50% - 20px);
+        margin: 10px;
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .arabic_bekaron,
+    .learn_lenguash,
+    .free_cuourses,
+    .arabic_bekaron1,
+    .free_cuourses1,
+    .free_cuourses2 {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+</style>
+<div class="main-container">
+    <div class="cuourse_cetagory">
+        <!-- Your existing course category content -->
+        <div class="course-container">
+            <div class="course-card2">
+                <img src="/img/quran (1).png" alt="আরবি ব্যাকরণ">
+                <h3>আরবি ব্যাকরণ</h3>
+            </div>
+            
+            <div class="course-card2">
+                <img src="/img/mousqe1.png" alt="ভাষা শিক্ষা">
+                <h3>ভাষা শিক্ষা</h3>
+            </div>
+            
+            <div class="course-card2">
+                <img src="/img/mousqe2.png" alt="ফ্রি কোর্সসমূহ">
+                <h3>ফ্রি কোর্সসমূহ</h3>
+            </div>
+            
+            <div class="course-card2">
+                <img src="/img/mousqe3.png" alt="একাডেমিক">
+                <h3>একাডেমিক</h3>
+            </div>
+            
+            <div class="course-card2">
+                <img src="/img/mousqe4.png" alt="স্কিল">
+                <h3>স্কিল</h3>
+            </div>
+            
+            <div class="course-card2">
+                <img src="/img/book1.PNG" alt="বান্ডিল কোর্স">
+                <h3>বান্ডিল কোর্স</h3>
+            </div>
+        </div>
+    </div>
+    
+    <div class="prayer_time">
+        <!-- Your existing prayer time content -->
+        <div class="head_of_Time">
+            <img src="/img/mousqe4.png" alt="মসজিদ আইকন">
+            <h3>নামাজের সময় সূচি</h3>
+        </div>
+        <div class="body_of_time">
+            <div class="Fozor">
+                <img src="/img/fojor.png" alt="ফজর">
+                <h3>ফজর</h3>
+                <p><i class="fa-solid fa-clock"></i> ৩:৪৫ am</p>
+            </div>
+            <div class="Fozor">
+                <img src="/img/zohor.png" alt="যোহর">
+                <h3>যোহর</h3>
+                <p><i class="fa-solid fa-clock"></i> ১১:৫৬ am</p>
+            </div>
+            <div class="Fozor">
+                <img src="/img/ashor.png" alt="আসর">
+                <h3>আসর</h3>
+                <p><i class="fa-solid fa-clock"></i> ৪:৩৬ pm</p>
+            </div>
+            <div class="Fozor">
+                <img src="/img/magrib.png" alt="মাগরিব">
+                <h3>মাগরিব</h3>
+                <p><i class="fa-solid fa-clock"></i> ৬:৪২ pm</p>
+            </div>
+            <div class="Fozor">
+                <img src="/img/isha.png" alt="এশা">
+                <h3>এশা</h3>
+                <p><i class="fa-solid fa-clock"></i> ৮:০৯ pm</p>
+            </div>
+            <div class="Fozor">
+                <img src="/img/sunrise.png" alt="সূর্যোদয়">
+                <h3>সূর্যোদয়</h3>
+                <p><i class="fa-solid fa-clock"></i> ৫:০৯ am</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+<style>
+    .apni_ja_paben {
+        width: 100%;
+        min-height: 300px;
+        background-color: #348B57;
+        margin-top: 90px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    .forh2 h2 {
+            font-size: 1.5rem;
+            line-height: 1.5;
+            text-align: center;
+            /* z-index: -4; */
+        }
+        .academic {
+            width: 180px;
+            padding: 8px;
+        }
+
+        .academic img {
+            width: 40px;
+            height: 40px;
+        }
+        .academic h3 {
+            font-size: 1rem;
+        }
+        .content_wrapper {
+        margin-top: -250px;
+        display: flex;
+        flex-direction: column;
+        /* gap: 20px; */
+    }
+    .disine {
+        width: 100%;
+        max-width: 1000px;
+        height: 300px;
+        background: linear-gradient(135deg, #429363, #2c6e49);
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin: 20px auto;
+        transform: rotate(-45deg);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .content_wrapper {
+        margin-top: -250px;
+        display: flex;
+        /* flex-direction: column; */
+        gap: 20px;
+        z-index: 1;
+    }
+
+    .forh2 {
+        padding-left: 55px;
+    }
+@media screen and (max-width: 769px) {
+    
+    .forh2 {
+        padding-left: 0px;
+    }
+}
+    .forh2 h2 {
+        color: white;
+        line-height: 40px;
+        font-size: 2rem;
+        font-weight: 500;
+        margin: 0;
+    }
+
+    .align_Img {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .academic {
+        width: 200px;
+        background-color: white;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .academic:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .academic img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .academic h3 {
+        text-align: center;
+        color: black;
+        font-size: 1.2rem;
+        margin: 10px 0 0 0;
+    }
+
+    @media screen and (max-width: 768px) {
+        .forh2 h2 {
+            font-size: 1.5rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .academic {
+            width: 180px;
+            padding: 8px;
+        }
+
+        .academic img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .academic h3 {
+            font-size: 1rem;
+        }
+        .content_wrapper {
+        margin-top: -250px;
+        display: flex;
+        flex-direction: column;
+        /* gap: 20px; */
+    }
+    }
+
+    @media screen and (max-width: 480px) {
+
+        .forh2 h2 {
+            font-size: 1.2rem;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .academic {
+            width: 150px;
+            padding: 6px;
+        }
+
+        .academic img {
+            width: 35px;
+            height: 35px;
+        }
+
+        .academic h3 {
+            font-size: 0.9rem;
+        }
+        .content_wrapper {
+        margin-top: -250px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    }
+
+    @media (max-width: 768px) {
+        .apni_ja_paben {
+            flex-direction: column;
+            padding: 10px;
+        }
+        .disine {
+            width: 90%;
+            height: 250px;
+            font-size: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .disine {
+            width: 95%;
+            height: 200px;
+            font-size: 18px;
+            border-radius: 15px;
+        }
+    }
+
+
+</style>
+<div class="apni_ja_paben">
+            <div class="disine"></div>
+            <div class="content_wrapper">
+                <div class="forh2">
+                    <h2>আপনি আত তাদরীস থেকে<br>যা শিখতে পারবেন</h2>
+                </div>
+                <div class="align_Img">
+                    <a class="academic" href="">
+                        <img src="/img/quran.png" width="50px" alt="">
+                        <h3>একাডেমিক কোর্স</h3>
+                    </a>
+                    <a class="academic" href="">
+                        <img src="/img/book.png" width="50px" alt="">
+                        <h3>ইসলামিক কোর্স</h3>
+                    </a>
+                    <a class="academic" href="">
+                        <img src="img/231.png" width="56px" alt="">
+                        <h3>অ্যারাবিক কোর্স</h3>
+                    </a>
+                </div>
+            </div>
+</div>
+
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .ilmun_nahu_hade {
+        width: 100%;
+        min-height: 300px;
+        background-color: white;
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .ilmun_nahu1 {
+        width: 245px;
+        height: 80px;
+        background-color: white;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+        transition: all 0.5s ease;
+    }
+
+    .ilmun_nahu1:hover {
+        background-color: #667A91;
+        transform: translateY(-5px);
+    }
+
+    .ilmun_nahu1:hover h3 {
+        color: white;
+    }
+
+    .ilmun_nahu1 img {
+        width: 50px;
+        height: auto;
+        margin-bottom: 5px;
+    }
+
+    .ilmun_nahu1 h3 {
+        text-align: center;
+        font-weight: 500;
+        font-size: 16px;
+        transition: color 0.5s ease;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+        .ilmun_nahu1 {
+            width: calc(50% - 20px);
+            min-width: 200px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .ilmun_nahu1 {
+            width: 100%;
+            max-width: 300px;
+        }
+    }
+</style>
+<div class="ilmun_nahu_hade">
+    <a href="">
+        <div class="ilmun_nahu1">
+            <img src="img/ilmun-nahu.png" alt="ইলমুন নাহু">
+            <h3>ইলমুন নাহু</h3>
+        </div>
+    </a>
+    <a href="">
+        <div class="ilmun_nahu1">
+            <img src="img/ilmus-shorof.png" alt="ইলমুস সরফ">
+            <h3>ইলমুস সরফ</h3>
+        </div>
+    </a>
+    <a href="">
+        <div class="ilmun_nahu1">
+            <img src="img/ilmun-nahu.png" alt="ইবারত">
+            <h3>ইবারত</h3>
+        </div>
+    </a>
+    <a href="">
+        <div class="ilmun_nahu1">
+            <img src="img/ilmus-shorof.png" alt="ইলমুল ফারায়েজ">
+            <h3>ইলমুল ফারায়েজ</h3>
+        </div>
+    </a>
+    <a href="">
+        <div class="ilmun_nahu1">
+            <img src="img/ilmun-nahu.png" alt="উর্দু">
+            <h3>উর্দু</h3>
+        </div>
+    </a>
+    <a href="">
+        <div class="ilmun_nahu1">
+            <img src="img/ilmus-shorof.png" alt="উসূলুল ফিক্হ">
+            <h3>উসূলুল ফিক্হ</h3>
+        </div>
+    </a>
+    <a href="">
+        <div class="ilmun_nahu1">
+            <img src="img/ilmun-nahu.png" alt="English">
+            <h3>English</h3>
+        </div>
+    </a>
+    <a href="">
+        <div class="ilmun_nahu1">
+            <img src="img/ilmus-shorof.png" alt="ইলমুল মানতিক">
+            <h3>ইলমুল মানতিক</h3>
+        </div>
+    </a>
+</div>
+
+
+
+<!-- এখান থেকে জাবাস্কিপ্ট -->
+<!-- এখান থেকে জাবাস্কিপ্ট -->
+<script>
+        function showMoreCourses() {
+            const hiddenCourses = document.getElementById('hiddenCourses');
+            const showMoreBtn = document.querySelector('.show-more-btn');
+            
+            if (hiddenCourses.style.display === 'none' || hiddenCourses.style.display === '') {
+                hiddenCourses.style.display = 'inline-block';
+                showMoreBtn.textContent = 'কম দেখুন';
+            } else {
+                hiddenCourses.style.display = 'none';
+                showMoreBtn.textContent = 'আমাদের সকল কোর্স দেখুন';
+            }
+        }
+</script>
+
+
+<!-- লগআউট দেখানোর কোড -->
+<script>
+    // আমার কোর্স পেইজের জন্য লগইন/লগআউট হ্যান্ডলার
+document.addEventListener('DOMContentLoaded', function() {
+    // লগইন বাটন এলিমেন্ট
+    const loginButton = document.querySelector('nav ul li a[href="LoginFrom.html"]');
+    // আমার কোর্স লিংক
+    const myCourseLink = document.querySelector('nav ul li a[href="my_course.html"]');
+    // প্রোফাইল লিংক
+    const profileLink = document.querySelector('nav ul li a[href="profile_ifNamber.html"]');
+    
+    // চেক করা যে ইউজার লগড ইন কিনা
+    function checkLoginStatus() {
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        
+        if (userData) {
+            // ইউজার লগড ইন অবস্থায় আছে
+            if (loginButton) {
+                loginButton.textContent = 'লগআউট';
+                loginButton.href = '#';
+                loginButton.classList.add('logout-btn');
+                
+                // লগআউট বাটনে ক্লিক ইভেন্ট হ্যান্ডলার যোগ করা
+                loginButton.addEventListener('click', handleLogout);
+            }
+            
+            // আমার কোর্স এবং প্রোফাইল লিংক দৃশ্যমান করা
+            if (myCourseLink) myCourseLink.style.display = 'block';
+            if (profileLink) profileLink.style.display = 'block';
+            
+        } else {
+            // ইউজার লগড আউট অবস্থায় আছে
+            if (loginButton) {
+                loginButton.textContent = 'লগইন';
+                loginButton.href = 'LoginFrom.html';
+                loginButton.classList.remove('logout-btn');
+                
+                // পুরানো ইভেন্ট লিসেনার রিমুভ করা
+                loginButton.removeEventListener('click', handleLogout);
+            }
+            
+            // আমার কোর্স এবং প্রোফাইল লিংক লুকানো
+            if (myCourseLink) myCourseLink.style.display = 'none';
+            if (profileLink) profileLink.style.display = 'none';
+        }
+    }
+    
+    // লগআউট ফাংশন
+    function handleLogout(event) {
+        event.preventDefault();
+        
+        // লোকাল স্টোরেজ থেকে ইউজার ডাটা মুছে ফেলা
+        localStorage.removeItem('userData');
+        
+        // লগইন পেইজে রিডাইরেক্ট
+        window.location.href = 'LoginFrom.html';
+    }
+    
+    // পেইজ লোড হওয়ার সময় লগইন স্ট্যাটাস চেক করা
+    checkLoginStatus();
+    
+    // লগইন ফর্ম সাবমিশন হ্যান্ডল করা (যদি এই পেইজে লগইন ফর্ম থাকে)
+    const loginForm = document.querySelector('#loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // ইউজার ডাটা সেভ করা
+            const userData = {
+                // আপনার প্রয়োজনীয় ইউজার ডাটা
+                isLoggedIn: true,
+                loginTime: new Date().toISOString()
+            };
+            
+            localStorage.setItem('userData', JSON.stringify(userData));
+            
+            // লগইন স্ট্যাটাস আপডেট করা
+            checkLoginStatus();
+            
+            // আমার কোর্স পেইজে রিডাইরেক্ট
+            window.location.href = 'my_course.html';
+        });
+    }
+});
+
+// CSS স্টাইল যোগ করা
+const style = document.createElement('style');
+style.textContent = `
+    .logout-btn {
+        color: black !important;
+    }
+    
+    .logout-btn:hover {
+        color: black !important;
+    }
+`;
+document.head.appendChild(style);
+</script>
+
+<!-- প্রোফাইল এবং আমার কোর্স hide and show -->
+<script>
+    // হোম পেইজে নেভিগেশন মেনু আপডেট স্ক্রিপ্ট
+document.addEventListener('DOMContentLoaded', function() {
+    const ulControl = document.querySelector('.ulControl');
+    
+    // চেক করা যে ইউজার লগড ইন কিনা
+    function checkLoginStatus() {
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        
+        if (userData) {
+            // ইউজার লগড ইন অবস্থায় আছে
+            // লগইন বাটন কে লগআউট এ পরিবর্তন
+            const loginButton = document.querySelector('a[href="LoginFrom.html"]').parentElement;
+            
+            // লগইন বাটনের আগে নতুন মেনু আইটেম যোগ করা
+            // প্রোফাইল লিংক যোগ
+            if (!document.querySelector('a[href="profile_ifNamber.html"]')) {
+                const profileLi = document.createElement('ul');
+                profileLi.innerHTML = '<li><a href="profile_ifNamber.html">প্রোফাইল</a></li>';
+                loginButton.parentElement.insertBefore(profileLi, loginButton.parentElement);
+            }
+            
+            // আমার কোর্স লিংক যোগ
+            if (!document.querySelector('a[href="my_course.html"]')) {
+                const myCourseLi = document.createElement('ul');
+                myCourseLi.innerHTML = '<li><a class="Login_controller" href="my_course.html">আমার কোর্স</a></li>';
+                loginButton.parentElement.insertBefore(myCourseLi, loginButton.parentElement);
+            }
+            
+            // লগইন বাটন কে লগআউট এ পরিবর্তন
+            loginButton.querySelector('a').textContent = 'লগআউট';
+            loginButton.querySelector('a').href = '#';
+            loginButton.querySelector('a').addEventListener('click', handleLogout);
+        }
+    }
+    
+    // লগআউট ফাংশন
+    function handleLogout(event) {
+        event.preventDefault();
+        
+        // লোকাল স্টোরেজ থেকে ইউজার ডাটা মুছে ফেলা
+        localStorage.removeItem('userData');
+        
+        // প্রোফাইল এবং আমার কোর্স মেনু আইটেম রিমুভ করা
+        const profileLink = document.querySelector('a[href="profile_ifNamber.html"]');
+        const myCourseLink = document.querySelector('a[href="my_course.html"]');
+        
+        if (profileLink) profileLink.parentElement.parentElement.remove();
+        if (myCourseLink) myCourseLink.parentElement.parentElement.remove();
+        
+        // লগআউট বাটন কে লগইন এ পরিবর্তন
+        const logoutButton = event.target;
+        logoutButton.textContent = 'লগইন';
+        logoutButton.href = 'LoginFrom.html';
+        logoutButton.removeEventListener('click', handleLogout);
+        
+        // লগইন পেইজে রিডাইরেক্ট
+        window.location.href = 'LoginFrom.html';
+    }
+    
+    // পেইজ লোড হওয়ার সময় লগইন স্ট্যাটাস চেক করা
+    checkLoginStatus();
+});
+</script>
+
+
+<!-- আমার কোর্স ও প্রোফাইল এখান থেকে দেখার জন্য -->
+<script> 
+    // Constants
+const AUTH_STORAGE_KEY = 'userData';
+const NAV_ITEMS = {
+    PROFILE: {
+        href: 'my_course.html',
+        text: 'আমার কোর্স'
+    },
+    MY_COURSES: {
+        href: 'profile_ifNamber.html',
+        text: 'প্রোফাইল'
+    }
+};
+
+// Navigation Manager
+class NavigationManager {
+    constructor() {
+        this.navContainer = document.querySelector('.ulControl');
+        this.loginLink = document.querySelector('.just_Fix');
+        this.init();
+    }
+
+    init() {
+        // Check login status on every page load
+        this.checkAuthState();
+        
+        // Add event listeners for navigation changes
+        this.setupEventListeners();
+    }
+
+    checkAuthState() {
+        const userData = localStorage.getItem(AUTH_STORAGE_KEY);
+        
+        if (userData) {
+            this.showAuthenticatedNav();
+        } else {
+            this.showUnauthenticatedNav();
+        }
+    }
+
+    showAuthenticatedNav() {
+        if (!this.navContainer) return;
+
+        // Find the login link's parent element
+        const loginLi = this.loginLink?.closest('ul');
+        
+        // Create profile and courses menu items
+        Object.values(NAV_ITEMS).forEach(item => {
+            const menuItem = this.createMenuItem(item);
+            
+            // Insert before login link
+            if (loginLi) {
+                this.navContainer.insertBefore(menuItem, loginLi);
+            } else {
+                this.navContainer.appendChild(menuItem);
+            }
+        });
+
+        // Update login link to show logout
+        if (this.loginLink) {
+            this.loginLink.textContent = 'লগআউট';
+            this.loginLink.href = '#';
+            this.loginLink.addEventListener('click', this.handleLogout.bind(this));
+        }
+    }
+
+    showUnauthenticatedNav() {
+        if (!this.navContainer) return;
+
+        // Remove authenticated menu items
+        Object.values(NAV_ITEMS).forEach(item => {
+            const existingItem = this.navContainer.querySelector(`a[href="${item.href}"]`);
+            if (existingItem) {
+                const parentUl = existingItem.closest('ul');
+                if (parentUl) {
+                    parentUl.remove();
+                }
+            }
+        });
+
+        // Reset login link
+        if (this.loginLink) {
+            this.loginLink.textContent = 'লগইন';
+            this.loginLink.href = 'LoginFrom.html';
+        }
+    }
+
+    createMenuItem(item) {
+        const ul = document.createElement('ul');
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        
+        a.href = item.href;
+        a.textContent = item.text;
+        a.className = 'from_top';
+        
+        li.appendChild(a);
+        ul.appendChild(li);
+        
+        return ul;
+    }
+
+    handleLogout(e) {
+        e.preventDefault();
+        
+        // Clear auth data
+        localStorage.removeItem(AUTH_STORAGE_KEY);
+        
+        // Reset navigation
+        this.showUnauthenticatedNav();
+        
+        // Redirect to home
+        window.location.href = 'TalimulIslamAcademy.html';
+    }
+
+    setupEventListeners() {
+        // Listen for storage events (for multi-tab support)
+        window.addEventListener('storage', (e) => {
+            if (e.key === AUTH_STORAGE_KEY) {
+                this.checkAuthState();
+            }
+        });
+    }
+}
+
+// Initialize navigation manager on page load
+document.addEventListener('DOMContentLoaded', () => {
+    new NavigationManager();
+});
+</script>
+
+
+
+<!-- Footer Footer Footer Footer Footer Footer Footer    -->
+<!-- Footer Footer Footer Footer Footer Footer Footer -->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+    }
+    
+    body {
+        font-family: "Anek Bangla", serif;
+        background-color: white;
+        padding-top: 100px;
+    }
+        .footer_area {
+            width: 100%;
+            background-color: #348B57;
+            padding: 30px 20px;
+            color: white;
+        }
+
+        .footer_content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .biodata {
+            flex: 1 1 300px;
+        }
+
+        .biodata img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .biodata p {
+            font-size: 15px;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        .link, .support {
+            flex: 1 1 200px;
+        }
+
+        .link h2, .support h2, .address h2 {
+            font-weight: 400;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .link li, .support li {
+            list-style: none;
+            line-height: 25px;
+        }
+
+        .link a, .support a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .link a:hover, .support a:hover {
+            color: #ea9400;
+        }
+
+        .address {
+            flex: 1 1 300px;
+        }
+
+        .gmail_div, .location_div {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .email_cover, .location_cover {
+            width: 50px;
+            height: 60px;
+            background-color: #348B57;
+            box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+
+        .gmail_div i, .location_div i {
+            font-size: 25px;
+        }
+
+        .contact_info {
+            flex: 1;
+        }
+
+        .contact_info h4 {
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+
+        .all_accounts {
+            width: 100%;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .all_accounts img {
+            max-width: 90%;
+            height: auto;
+            transition: max-width 0.3s ease;
+        }
+
+        .license {
+            background-color: #215E3A;
+            padding: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .license p {
+            font-family: 'Gill Sans', sans-serif;
+            font-size: 15px;
+        }
+
+        .holud_color {
+            color: rgb(211, 137, 0);
+            display: inline;
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+            .all_accounts img {
+                max-width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .footer_content {
+                gap: 20px;
+            }
+            
+            .biodata, .link, .support, .address {
+                flex: 1 1 100%;
+            }
+
+            .link, .support {
+                flex: 1 1 45%;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .footer_area {
+                padding: 20px 15px;
+            }
+
+            .link, .support {
+                flex: 1 1 100%;
+            }
+
+            .all_accounts img {
+                max-width: 100%;
+            }
+        }
+    </style>
+    <footer>
+        <div class="footer_area">
+            <div class="footer_content">
+                <div class="biodata">
+                    <img src="img/At Tadrees.png" alt="At Tadrees">
+                    <p>আত তাদরীস অনলাইন মাদরাসা, ২০২১ সালে প্রতিষ্ঠিত বাংলাদেশের মাদরাসা কেন্দ্রিক সর্বাধুনিক শিক্ষা প্রতিষ্ঠান। সবার জন্য মানসম্মত পড়াশোনা নিশ্চিত করতে অভিজ্ঞ উস্তাদ এবং অত্যাধুনিক প্রযুক্তির মাধ্যমে আমরা গড়ে তুলেছি সহজে ইলম শেখার বিশ্বস্ত অনলাইন প্রতিষ্ঠান।</p>
+                </div>
+                
+                <div class="link">
+                    <h2>লিঙ্কস</h2>
+                    <ul>
+                        <li><a href="">Home</a></li>
+                        <li><a href="">Course</a></li>
+                        <li><a href="">Privacy Policy</a></li>
+                        <li><a href="">Refund Policy</a></li>
+                        <li><a href="">Terms and Condition</a></li>
+                    </ul>
+                </div>
+
+                <div class="support">
+                    <h2>সাপোর্ট</h2>
+                    <ul>
+                        <li><a href="">মেসেজ করুন</a></li>
+                        <li><a href="">ফোন করুন</a></li>
+                    </ul>
+                </div>
+
+                <div class="address">
+                    <h2>ঠিকানা</h2>
+                    <div class="gmail_div">
+                        <div class="email_cover">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="contact_info">
+                            <h4>ই-মেইল</h4>
+                            <p>support@attadrees.com</p>
+                        </div>
+                    </div>
+
+                    <div class="location_div">
+                        <div class="location_cover">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <div class="contact_info">
+                            <p>মাদরাসা রোড, দারুননাজাত সিদ্দীকিয়া কামিল মাদরাসা, সারুলিয়া, ডেমরা, ঢাকা।</p>
+                            <p style="margin-top: 10px;">Trade License: TRAD/DSCC/029395/2022</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="all_accounts">
+                <img src="/img/accounts.png" alt="Accounts">
+            </div>
+
+            <div class="license">
+                <p>© Copyright 2025. All Rights Reserved by <span class="holud_color">At-Tadrees</span></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

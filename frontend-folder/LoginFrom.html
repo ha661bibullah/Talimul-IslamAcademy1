@@ -1,0 +1,2143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login_From</title>
+        <!-- all linksall linksall links -->
+        <!-- all linksall linksall links -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&family=Aref+Ruqaa:wght@400;700&family=Arima:wght@100..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,600;0,700;1,300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+<!-- নেববার style-->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+    }
+    
+    body {
+        font-family: "Anek Bangla", serif;
+        background-color: white;
+        padding-top: 100px;
+    }
+    
+    nav {
+        width: 100%;
+        height: 80px;
+        background-color: white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        z-index: 90;
+    }
+    
+    nav .imgPath {
+        margin-left: 70px;
+        margin-top: 13px;
+        z-index: 90;
+    }
+    
+    nav .ulControl {
+        width: 100%;
+        height: 30px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        position: absolute;
+        top: 35%;
+        left: 0;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    nav .ulControl ul {
+        font-size: 14px;
+        display: inline-block;
+        margin-left: 30px;
+    }
+    
+    nav .ulControl ul li {
+        list-style: none;
+    }
+    
+    .ulControl a {
+        text-decoration: none;
+        color: black;
+        font-weight: normal;
+        font-size: 14px;
+        position: relative;
+    }
+    
+    nav .ulControl .Login_controller {
+        color: #44AB56;
+    }
+    
+    nav .ulControl a:hover {
+        transition: 0.4s;
+        color: #44AB56;
+    }
+    
+    nav .ulControl ul ul {
+        display: none;
+    }
+    
+    nav .ulControl ul:hover li ul {
+        display: block;
+        position: absolute;
+        top: 30px;
+        margin-left: -30px;
+        width: 100px;
+        text-align: center;
+        background-color: aliceblue;
+    }
+    
+    nav .ulControl ul ul a:hover {
+        color: rgb(247, 153, 0);
+    }
+    
+    nav .ulControl .just_Fix {
+        margin-right: 70px;
+    }
+    
+    .hamburger {
+        display: none;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: 25px;
+        z-index: 95;
+        width: 30px;
+        height: 30px;
+        transition: all 0.3s ease-in-out;
+        padding: 5px;
+    }
+    
+    .hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: #333;
+        margin: 5px;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    @media screen and (max-width: 1200px) {
+        .hamburger {
+            display: block;
+            line-height: 0;
+        }
+        .hamburger .line1{
+            padding: 0;
+            margin: 0;
+        }
+        .hamburger .line2{
+            padding: 0;
+            margin: 0;
+            margin-top: 5px;
+        }
+        .hamburger .line3{
+            padding: 0;
+            margin: 0;
+            margin-top: 5px;
+        }
+        nav .ulControl {
+            position: fixed;
+            flex-direction: column;
+            justify-content: flex-start;
+            top: 80px;
+            height: calc(100vh - 80px);
+            width: 280px;
+            background-color: white;
+            padding-top: 30px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* বাম সাইডে শ্যাডো */
+            right: -280px; /* ডান দিকে বাইরে */
+            left: auto; /* এটি যোগ করা হয়েছে */
+            opacity: 0;
+            overflow-y: scroll;
+            padding-bottom: 30px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            pointer-events: none; /* বন্ধ থাকা অবস্থায় ক্লিক গ্রহণ করবে না */
+        }
+        
+        nav .ulControl.active {
+            right: 0; /* ডান দিকে ০-তে */
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        /* WebKit ব্রাউজার (Chrome, Safari ইত্যাদি) এর জন্য */
+        nav .ulControl::-webkit-scrollbar {
+            display: none;
+        }
+        
+        nav .ulControl a:hover {
+            transition: none;
+            color: black;
+        }
+        
+        nav .ulControl ul ul a:hover {
+            color: black;
+        }
+        
+        nav .ulControl .just_Fix {
+            margin-right: 0px;
+        }
+        
+        nav .ulControl ul {
+            margin: 0;
+            width: 100%;
+            text-align: center;
+            transform: translateX(20px);
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+            padding: 12px 0;
+        }
+        
+        nav .ulControl ul:hover{
+            background-color: #ea9400;
+            transition: none;
+        }
+        
+        nav .ulControl.active ul {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        nav .ulControl ul li {
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        nav .ulControl ul li a {
+            display: block;
+            line-height: 1;
+            padding: 8px 0;
+            font-size: 16px;
+        }
+        
+        nav .ulControl ul:hover li ul {
+            position: static;
+            width: 100%;
+            margin: 5px 0;
+            background-color: white;
+            border-radius: 4px;
+            padding: 5px 0;
+            background-color: transparent;
+        }
+        
+        nav .ulControl ul:hover li ul li a {
+            padding: 6px 0;
+            font-size: 15px;
+        }
+        
+        nav .imgPath {
+            margin-left: 20px;
+        }
+        
+        /* Hamburger to X animation */
+        .hamburger.active .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active .line2 {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .hamburger.active .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        /* Add delay to menu items with smoother transition */
+        nav .ulControl ul:nth-child(1) { transition-delay: 0.1s; }
+        nav .ulControl ul:nth-child(2) { transition-delay: 0.15s; }
+        nav .ulControl ul:nth-child(3) { transition-delay: 0.2s; }
+        nav .ulControl ul:nth-child(4) { transition-delay: 0.25s; }
+        nav .ulControl ul:nth-child(5) { transition-delay: 0.3s; }
+        nav .ulControl ul:nth-child(6) { transition-delay: 0.35s; }
+        nav .ulControl ul:nth-child(7) { transition-delay: 0.4s; }
+        
+        /* Center align dropdown icon */
+        .fa-chevron-down {
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+    }
+
+
+
+
+
+
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+/* ... (keeping other base styles the same) ... */
+
+.ulControl a {
+    text-decoration: none;
+    color: black;
+    font-weight: normal;
+    font-size: 14px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* New hover effect for main menu items */
+.ulControl a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    background-color: #44AB56;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.ulControl a:hover::after {
+    width: 100%;
+}
+
+/* Enhanced dropdown styles */
+nav .ulControl ul:hover li ul {
+    display: block;
+    position: absolute;
+    top: 30px;
+    margin-left: -30px;
+    width: 160px;
+    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: dropdownFade 0.3s ease forwards;
+}
+
+@keyframes dropdownFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced dropdown item hover effects */
+nav .ulControl ul ul a {
+    display: block;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+nav .ulControl ul ul a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background-color: rgba(68, 171, 86, 0.1);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+nav .ulControl ul ul a:hover::before {
+    width: 100%;
+}
+
+nav .ulControl ul ul a:hover {
+    color: #44AB56;
+    transform: translateX(5px);
+}
+
+/* Mobile-specific modifications */
+@media screen and (max-width: 1200px) {
+    nav .ulControl ul:hover li ul {
+        position: static;
+        width: 100%;
+        margin: 5px 0;
+        box-shadow: none;
+        background-color: rgba(68, 171, 86, 0.05);
+        border-radius: 4px;
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    nav .ulControl ul ul a {
+        padding: 10px 20px;
+    }
+
+    nav .ulControl ul ul a:hover {
+        transform: translateX(0);
+        background-color: rgba(68, 171, 86, 0.1);
+    }
+
+    nav .ulControl ul:hover {
+        background-color: transparent;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Remove underline effect on mobile */
+    .ulControl a::after {
+        display: none;
+    }
+}
+</style>
+
+<!-- নেববার html-->
+<nav>
+    <a class="imgPath" href="TalimulIslamAcademy.html">
+        <img src="/img/ChatGPT Image.png" width="170" alt="">
+    </a>
+    <div class="hamburger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+    <div class="ulControl">
+        <ul><li><a href="TalimulIslamAcademy.html">হোম</a></li></ul>
+        <ul><li><a href="Academic_courses.html">একাডেমিক</a></li></ul>
+        <ul><li><a href="">কোর্স <i class="fa-solid fa-chevron-down"></i></a>
+            <ul>
+                <li><a href="">সকল কোর্স</a></li>
+                <li><a href="">লাইভ কোর্স</a></li>
+            </ul>
+        </li></ul>
+        <ul><li><a href="">বই</a></li></ul>
+        <ul><li><a href="">শিক্ষক</a></li></ul>
+        <ul><li><a href="">উপদেষ্টা</a></li></ul>
+        <ul><li><a href="">আমাদের সম্পর্কে</a></li></ul>
+        <ul ><li><a class="from_top" href="my_course.html">আমার কোর্স</a></li></ul>
+        <ul ><li><a class="from_top" href="profile_ifNamber.html">প্রোফাইল</a></li></ul>
+        <ul><li><a class="just_Fix" href="LoginFrom.html">লগইন</a></li></ul>
+    </div>
+</nav>
+
+<!-- রেস্পন্সিপ নেববার স্ক্রিপ্ট -->
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const ulControl = document.querySelector('.ulControl');
+    const nav = document.querySelector('nav');
+    
+    hamburger.addEventListener('click', function(e) {
+        e.stopPropagation(); // স্টপ ইভেন্ট বাবলিং
+        hamburger.classList.toggle('active');
+        ulControl.classList.toggle('active');
+    });
+    
+    // মেনু লিংক ক্লিক করলে মেনু বন্ধ হবে
+    document.querySelectorAll('.ulControl a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            ulControl.classList.remove('active');
+        });
+    });
+
+    // বাইরে ক্লিক করলে মেনু বন্ধ হবে
+    document.addEventListener('click', function(e) {
+        if (!nav.contains(e.target) || (!hamburger.contains(e.target) && !ulControl.contains(e.target))) {
+            hamburger.classList.remove('active');
+            ulControl.classList.remove('active');
+        }
+    });
+    
+    // মেনু ভিতরে ক্লিক করলে বাবলিং বন্ধ করবে
+    ulControl.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+</script>
+
+
+
+
+<style>
+    /* Modern Bengali Responsive Form - Base Styles */
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+margin: 0;
+padding: 0;
+font-family: 'Hind Siliguri', 'Anek Bangla', sans-serif;
+background: linear-gradient(135deg, #f5f7fa 0%, #e4ebf5 100%);
+color: #4a4a4a;
+line-height: 1.6;
+}
+
+/* Login Container Styles */
+.login {
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+padding: 20px;
+}
+
+.security {
+background: #ffffff;
+border-radius: 20px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+width: 95%;
+max-width: 640px;
+overflow: hidden;
+position: relative;
+transition: all 0.3s ease;
+}
+
+/* Logo and Divider Styles */
+.login img {
+width: 80px;
+display: block;
+margin: 30px auto;
+transition: all 0.3s ease;
+}
+
+.straight_line {
+display: none;
+background: linear-gradient(to bottom, rgba(46, 139, 87, 0.1), rgba(46, 139, 87, 0.5), rgba(46, 139, 87, 0.1));
+transition: all 0.3s ease;
+}
+
+/* Typography Styles */
+h3 {
+color: #2E8B57;
+font-weight: 600;
+margin-bottom: 15px;
+text-align: center;
+font-size: 18px;
+transition: all 0.3s ease;
+}
+
+p {
+color: #666;
+margin-bottom: 20px;
+text-align: center;
+font-size: 14px;
+transition: all 0.3s ease;
+}
+
+/* Form Element Styles */
+.form-container {
+padding: 20px;
+transition: all 0.3s ease;
+}
+
+input {
+width: 100%;
+padding: 12px 15px;
+margin-bottom: 15px;
+border: 1px solid #e1e1e1;
+border-radius: 8px;
+background-color: #f9f9f9;
+color: #333;
+font-family: 'Hind Siliguri', sans-serif;
+font-size: 14px;
+transition: all 0.3s ease;
+box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+input:focus {
+outline: none;
+border-color: #2E8B57;
+background-color: #fff;
+box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.1);
+}
+
+input::placeholder {
+color: #aaa;
+}
+
+button {
+background: #2E8B57;
+color: white;
+border: none;
+padding: 12px 20px;
+border-radius: 8px;
+cursor: pointer;
+font-weight: 500;
+width: 100%;
+font-size: 16px;
+font-family: 'Hind Siliguri', sans-serif;
+transition: all 0.3s ease;
+box-shadow: 0 4px 6px rgba(46, 139, 87, 0.15);
+margin-top: 10px;
+position: relative;
+overflow: hidden;
+}
+
+button:hover {
+background: #3a9d67;
+transform: translateY(-2px);
+box-shadow: 0 6px 12px rgba(46, 139, 87, 0.2);
+}
+
+button:active {
+transform: translateY(0);
+box-shadow: 0 2px 4px rgba(46, 139, 87, 0.1);
+}
+
+button:disabled {
+background: #b5b5b5;
+cursor: not-allowed;
+box-shadow: none;
+transform: none;
+}
+
+/* Message Styles */
+.error-message, .success-message {
+font-size: 13px;
+margin-bottom: 15px;
+padding: 8px 12px;
+border-radius: 4px;
+font-weight: 500;
+transition: all 0.3s ease;
+}
+
+.error-message {
+color: #e74c3c;
+background-color: rgba(231, 76, 60, 0.1);
+border-left: 3px solid #e74c3c;
+}
+
+.success-message {
+color: #27ae60;
+background-color: rgba(39, 174, 96, 0.1);
+border-left: 3px solid #27ae60;
+}
+
+/* Login Form Specific Styles */
+.login-form-container {
+min-width: 100%;
+/* background-color: red; */
+display: none;
+}
+
+.login-form-container h3 {
+color: #2E8B57;
+font-weight: 600;
+}
+
+.login-form-input {
+margin-bottom: 15px;
+}
+
+.login-form-button {
+margin-top: 15px;
+}
+
+/* Registration Form Specific Styles */
+.registration-form-container {
+min-width: 100%;
+/* background-color: red; */
+display: none;
+}
+
+.registration-title {
+color: #2E8B57;
+font-size: 20px;
+font-weight: 600;
+margin-bottom: 20px;
+text-align: center;
+}
+
+.registration-form-input {
+margin-bottom: 15px;
+}
+
+.registration-form-button {
+margin-top: 15px;
+}
+
+/* Verification Form Specific Styles */
+.verification-form-container {
+min-width: 100%;
+/* background-color: red; */
+display: none;
+}
+
+.verification-title {
+color: #2E8B57;
+font-weight: 600;
+margin-bottom: 15px;
+text-align: center;
+}
+
+.verification-form-input {
+text-align: center;
+letter-spacing: 2px;
+font-weight: 600;
+}
+
+.timer {
+color: #666;
+font-size: 14px;
+text-align: center;
+margin: 10px 0;
+font-weight: 500;
+}
+
+.otp-message {
+color: #2E8B57;
+font-size: 14px;
+text-align: center;
+margin: 10px 0;
+}
+
+.resend-button {
+background: none;
+border: none;
+color: #2E8B57;
+text-decoration: underline;
+cursor: pointer;
+font-weight: 500;
+margin-top: 15px;
+box-shadow: none;
+text-align: center;
+display: block;
+width: auto;
+margin: 5px auto;
+font-size: 14px;
+padding: 5px;
+}
+
+.resend-button:hover {
+color: #3a9d67;
+text-decoration: none;
+background: none;
+box-shadow: none;
+transform: none;
+}
+
+.resend-button:disabled {
+color: #b5b5b5;
+text-decoration: none;
+cursor: not-allowed;
+}
+
+/* Responsive Breakpoints - স্মল মোবাইল ডিভাইস থাকবে */
+@media screen and (max-width: 320px) {
+.security {
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.login img {
+    width: 60px;
+    margin: 15px auto;
+}
+
+.login-form-container h3, 
+.verification-title, 
+.registration-title {
+    font-size: 16px;
+}
+
+.login-form-container p,
+.verification-form-container p,
+.registration-form-container p {
+    font-size: 13px;
+}
+
+.login-form-input,
+.verification-form-input,
+.registration-form-input {
+    padding: 10px;
+    font-size: 13px;
+}
+
+.login-form-button,
+.verification-form-button,
+.registration-form-button {
+    padding: 10px 15px;
+    font-size: 14px;
+}
+
+.form-container {
+    padding: 15px;
+}
+}
+
+/* Medium Mobile Devices */
+@media screen and (min-width: 321px) and (max-width: 575px) {
+.security {
+    padding: 15px;
+    max-width: 95%;
+}
+
+.login img {
+    width: 70px;
+}
+
+.login-form-container h3, 
+.verification-title, 
+.registration-title {
+    font-size: 17px;
+}
+
+.form-container {
+    padding: 20px;
+}
+}
+
+/* ট্যাবলেট ডিভাইসের জন্য উন্নত রেসপন্সিভ ডিজাইন */
+@media screen and (min-width: 576px) and (max-width: 991px) {
+.security {
+    display: flex;
+    max-width: 90%;
+    min-height: 500px;
+    position: relative;
+}
+
+/* লোগো ইমেজ স্টাইলিং */
+.login img {
+    position: absolute;
+    top: 50px;
+    left: 40px;
+    width: 100px;
+    margin: 0;
+    z-index: 2;
+    transform: scale(1.1);
+    transition: transform 0.4s ease;
+}
+
+.login img:hover {
+    transform: scale(1.15);
+}
+
+/* স্ট্রেইট লাইন */
+.straight_line {
+    display: block;
+    position: absolute;
+    left: 200px;
+    height: 70%;
+    width: 3px;
+    top: 15%;
+    z-index: 1;
+    box-shadow: 0 0 10px rgba(46, 139, 87, 0.2);
+}
+
+/* ফর্ম কন্টেইনার */
+.form-container {
+    width: 65%;
+    margin-left: auto;
+    padding: 40px 30px;
+}
+
+/* টেক্সট আলাইনমেন্ট */
+.login-form-container h3, 
+.verification-title, 
+.registration-title {
+    text-align: left;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.login-form-container p,
+.verification-form-container p,
+.registration-form-container p {
+    text-align: left;
+}
+
+/* ভেরিফিকেশন স্টাইলিং */
+.timer, .otp-message {
+    text-align: left;
+}
+
+.resend-button {
+    margin-left: 0;
+    text-align: left;
+}
+
+/* ফর্ম এলিমেন্ট ইম্প্রুভমেন্ট */
+.login-form-input,
+.verification-form-input,
+.registration-form-input {
+    padding: 14px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.login-form-input:focus,
+.verification-form-input:focus,
+.registration-form-input:focus {
+    transform: translateY(-2px);
+}
+
+.login-form-button,
+.verification-form-button,
+.registration-form-button {
+    padding: 14px 20px;
+    font-size: 16px;
+}
+}
+
+/* ডেস্কটপ এবং বড় স্ক্রিনের জন্য সম্পূর্ণ রিডিজাইন */
+@media screen and (min-width: 992px) {
+.security {
+    display: flex;
+    max-width: 900px;
+    min-height: 550px;
+    border-radius: 30px;
+    position: relative;
+    overflow: visible;
+}
+
+/* লোগো ইমেজ উন্নত স্টাইলিং */
+.login img {
+    position: absolute;
+    top: 80px;
+    left: 80px;
+    width: 140px;
+    margin: 0;
+    z-index: 2;
+    transition: all 0.4s ease;
+    filter: drop-shadow(0px 5px 10px rgba(46, 139, 87, 0.2));
+}
+
+.login img:hover {
+    transform: scale(1.05) translateY(-5px);
+    filter: drop-shadow(0px 10px 15px rgba(46, 139, 87, 0.3));
+}
+
+/* ডিভাইডার লাইন স্টাইলিং */
+.straight_line {
+    display: block;
+    position: absolute;
+    left: 260px;
+    height: 70%;
+    width: 3px;
+    top: 15%;
+    z-index: 1;
+    background: linear-gradient(to bottom, 
+        rgba(46, 139, 87, 0.1),
+        rgba(46, 139, 87, 0.6),
+        rgba(46, 139, 87, 0.1));
+    box-shadow: 0 0 15px rgba(46, 139, 87, 0.2);
+}
+
+/* ফর্ম লেআউট */
+.form-container {
+    width: 65%;
+    margin-left: auto;
+    padding: 60px 60px 60px 80px;
+}
+
+/* হেডিং স্টাইলিং */
+.login-form-container h3, 
+.verification-title, 
+.registration-title {
+    text-align: left;
+    font-size: 24px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.login-form-container h3:after, 
+.verification-title:after, 
+.registration-title:after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background-color: #2E8B57;
+    bottom: -8px;
+    left: 0;
+    border-radius: 2px;
+}
+
+.login-form-container p,
+.verification-form-container p,
+.registration-form-container p {
+    text-align: left;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+/* ইনপুট ফিল্ড ডিজাইন */
+.login-form-input,
+.verification-form-input,
+.registration-form-input {
+    padding: 18px;
+    font-size: 18px;
+    margin-bottom: 25px;
+    height: 60px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* ইনপুট ফোকাস এফেক্ট */
+.login-form-input:focus,
+.verification-form-input:focus,
+.registration-form-input:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(46, 139, 87, 0.15);
+    border-width: 2px;
+}
+
+/* বাটন স্টাইলিং */
+.login-form-button,
+.verification-form-button,
+.registration-form-button {
+    padding: 18px 28px;
+    font-size: 18px;
+    height: 60px;
+    border-radius: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 6px 15px rgba(46, 139, 87, 0.2);
+}
+
+.login-form-button:hover,
+.verification-form-button:hover,
+.registration-form-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(46, 139, 87, 0.3);
+}
+
+/* ভেরিফিকেশন স্টাইলিং */
+.timer, .otp-message {
+    text-align: left;
+    font-size: 16px;
+    margin-left: 0;
+}
+
+.resend-button {
+    margin-left: 0;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+}
+
+.resend-button:hover {
+    transform: translateX(5px);
+    color: #2E8B57;
+}
+
+/* মেসেজ স্টাইলিং */
+.error-message, .success-message {
+    font-size: 15px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+/* ডেস্কটপে ইমেজ এরিয়া স্টাইল */
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: 220px;
+    left: 70px;
+    width: 120px;
+    height: 120px;
+    background-color: rgba(46, 139, 87, 0.05);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.form-container::after {
+    content: '';
+    position: absolute;
+    top: 290px;
+    left: 140px;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(46, 139, 87, 0.08);
+    border-radius: 50%;
+    z-index: 0;
+}
+}
+
+/* এনিমেশন ইফেক্টস */
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.login-form-container, 
+.registration-form-container, 
+.verification-form-container {
+animation: fadeIn 0.4s ease-out;
+}
+
+input, button {
+animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* ট্রানজিশন ইফেক্টস */
+.security:hover {
+box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Modern button effect */
+button::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+transition: all 0.8s;
+}
+
+button:hover::before {
+left: 100%;
+}
+</style>
+
+<div class="login">
+<div class="security">
+    <!-- Initial Step -->
+    <div id="initialStep" class="login-form-container">
+        <form id="loginForm" class="form-container" onsubmit="return validateForm(event)">
+            <img src="img/security.png" width="100px" alt="security-img">
+            <div class="straight_line"></div>
+            <h3>লাইভ ক্লাসে অংশ নিয়ে বজায় রাখুন রুটিনমাফিক পড়াশোনা</h3>
+            <p>মোবাইল নাম্বার অথবা ইমেইল দিয়ে এগিয়ে যান</p>
+            <input class="login-form-input" type="text" id="userInput" placeholder="01xxxxxxxxx">
+            <div id="errorMessage" class="error-message">
+                অনুগ্রহ করে সঠিক মোবাইল নাম্বার অথবা ইমেইল প্রদান করুন
+            </div>
+            <button class="login-form-button" type="submit">সাবমিট করুন</button>
+        </form>
+    </div>
+    
+    <!-- Verification Step -->
+    <div id="verificationStep" class="verification-form-container">
+        <form id="verificationForm" class="form-container" onsubmit="return validateVerification(event)">
+            <img src="img/security.png" width="100px" alt="security-img">
+            <div class="straight_line"></div>
+            <h3 class="verification-title">মোবাইল নাম্বার যাচাই করুন</h3>
+            <p class="forCod">আপনার মোবাইল নাম্বারে পাঠানো ৪ সংখ্যার কোডটি লিখুন</p>
+            <input class="verification-form-input" type="text" id="verificationInput" maxlength="4" placeholder="৪ সংখ্যার কোড">
+            <div id="verificationError" class="error-message">
+                ভুল কোড। আবার চেষ্টা করুন।
+            </div>
+            <div class="otp-message">আপনার মোবাইলে OTP কোড পাঠানো হয়েছে</div>
+            <div class="timer">সময় বাকি: <span id="timer">01:00</span></div>
+            <button class="verification-form-button" type="submit">যাচাই করুন</button>
+            <button type="button" id="resendButton" class="resend-button" disabled>
+                আবার কোড পাঠান
+            </button>
+        </form>
+    </div>
+    
+    <!-- Registration Step -->
+    <div id="registrationStep" class="registration-form-container">
+        <form id="registrationForm" class="form-container" onsubmit="return handleRegistration(event)">
+            <img src="img/security.png" width="100px" alt="security-img">
+            <div class="straight_line"></div>
+            <h3 class="registration-title">নতুন অ্যাকাউন্ট খুলুন</h3>
+            <div class="registration-form">
+                <input class="registration-form-input" type="text" id="fullName" placeholder="পূর্ণ নাম" required>
+                <input class="registration-form-input" type="password" id="regPassword" placeholder="পাসওয়ার্ড" required>
+                <input class="registration-form-input" type="password" id="confirmPassword" placeholder="কনফার্ম পাসওয়ার্ড" required>
+                <div id="regErrorMessage" class="error-message"></div>
+                <div id="regSuccessMessage" class="success-message">
+                    রেজিস্ট্রেশন সফল হয়েছে!
+                </div>
+            </div>
+            <button class="registration-form-button" type="submit">রেজিষ্টার করুন</button>
+        </form>
+    </div>
+</div>
+</div>
+
+
+<script>
+// Show the initial form when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+document.getElementById('initialStep').style.display = 'block';
+document.getElementById('verificationStep').style.display = 'none';
+document.getElementById('registrationStep').style.display = 'none';
+
+// Hide error messages initially
+document.getElementById('errorMessage').style.display = 'none';
+document.getElementById('verificationError').style.display = 'none';
+
+if (document.getElementById('regSuccessMessage')) {
+    document.getElementById('regSuccessMessage').style.display = 'none';
+}
+
+if (document.getElementById('regErrorMessage')) {
+    document.getElementById('regErrorMessage').style.display = 'none';
+}
+});
+
+// Form validation functions
+function validateForm(event) {
+event.preventDefault();
+const userInput = document.getElementById('userInput').value.trim();
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const phoneRegex = /^01[0-9]{9}$/;
+
+if (emailRegex.test(userInput) || phoneRegex.test(userInput)) {
+    // Success - show verification step
+    document.getElementById('initialStep').style.display = 'none';
+    document.getElementById('verificationStep').style.display = 'block';
+    startTimer();
+    return true;
+} else {
+    // Show error message
+    document.getElementById('errorMessage').style.display = 'block';
+    return false;
+}
+}
+
+function validateVerification(event) {
+event.preventDefault();
+const verificationCode = document.getElementById('verificationInput').value.trim();
+
+// Simulate verification check (in real app, this would verify against backend)
+if (verificationCode === '1234') {  // Example code
+    // Success - show registration form for new users
+    document.getElementById('verificationStep').style.display = 'none';
+    document.getElementById('registrationStep').style.display = 'block';
+    return true;
+} else {
+    // Show error message
+    document.getElementById('verificationError').style.display = 'block';
+    return false;
+}
+}
+
+function handleRegistration(event) {
+event.preventDefault();
+const password = document.getElementById('regPassword').value;
+const confirmPassword = document.getElementById('confirmPassword').value;
+
+if (password !== confirmPassword) {
+    document.getElementById('regErrorMessage').textContent = 'পাসওয়ার্ড মিলছে না।';
+    document.getElementById('regErrorMessage').style.display = 'block';
+    document.getElementById('regSuccessMessage').style.display = 'none';
+    return false;
+}
+
+// Simulate successful registration
+document.getElementById('regErrorMessage').style.display = 'none';
+document.getElementById('regSuccessMessage').style.display = 'block';
+
+// In a real app, you would submit to backend here
+return true;
+}
+
+// Timer functionality
+function startTimer() {
+let timeLeft = 60;
+const timerElement = document.getElementById('timer');
+const resendButton = document.getElementById('resendButton');
+
+const countdown = setInterval(function() {
+    timeLeft--;
+    
+    // Format time as MM:SS
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    
+    if (timeLeft <= 0) {
+        clearInterval(countdown);
+        resendButton.disabled = false;
+        timerElement.textContent = "00:00";
+    }
+}, 1000);
+
+// Reset resend button
+resendButton.disabled = true;
+
+// Handle resend button click
+resendButton.onclick = function() {
+    // In a real app, this would trigger sending a new OTP
+    timeLeft = 60;
+    resendButton.disabled = true;
+    startTimer();
+};
+}
+</script>
+    
+<!-- agin send code -->
+<script>
+    // Global OTP Management
+let generatedOTP = '';
+let otpSentTime = null;
+const OTP_EXPIRY_TIME = 6 * 10; // 40 seconds
+
+// Verification Handling
+function validateVerification(event) {
+    event.preventDefault();
+    const verificationInput = document.getElementById('verificationInput').value.trim();
+    const verificationError = document.getElementById('verificationError');
+    
+    // খালি ইনপুট চেক
+    if (!verificationInput) {
+        verificationError.textContent = 'অনুগ্রহ করে OTP কোড দিন';
+        verificationError.style.display = 'block';
+        return;
+    }
+    
+    // OTP এক্সপায়ার চেক
+    if (!generatedOTP) {
+        verificationError.textContent = 'OTP এর সময়সীমা শেষ। নতুন OTP জেনারেট করুন';
+        verificationError.style.display = 'block';
+        return;
+    }
+    
+    // সঠিক OTP চেক
+    if (verificationInput === generatedOTP) {
+        document.getElementById('verificationStep').style.display = 'none';
+        document.getElementById('registrationStep').style.display = 'block';
+        verificationError.style.display = 'none';
+    } else {
+        verificationError.textContent = 'ভুল OTP কোড। সঠিক কোড দিন';
+        verificationError.style.display = 'block';
+        // ইনপুট ফিল্ড খালি করে দেওয়া
+        document.getElementById('verificationInput').value = '';
+    }
+}
+
+
+// UserManager - Core user management functionality
+const UserManager = {
+    users: [],
+    currentUser: null,
+
+    init() {
+        this.users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    },
+
+    register(userData) {
+        const existingUser = this.users.find(user => 
+            user.contact === userData.contact
+        );
+
+        this.users.push(userData);
+        localStorage.setItem('registeredUsers', JSON.stringify(this.users));
+        return { success: true, message: 'রেজিস্ট্রেশন সফল' };
+    },
+
+    login(contact, password) {
+        const user = this.users.find(u => 
+            u.contact === contact && u.password === password
+        );
+
+        if (user) {
+            this.currentUser = user;
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            return { success: true, message: 'লগইন সফল' };
+        }
+
+        return { success: false, message: 'অবৈধ লগইন' };
+    },
+
+    logout() {
+        this.currentUser = null;
+        localStorage.removeItem('currentUser');
+    },
+
+    isLoggedIn() {
+        return !!this.currentUser;
+    }
+};
+
+// OTPManager - Handles OTP generation and verification
+const OTPManager = {
+    generateOTP() {
+        const otp = Math.floor(1000 + Math.random() * 9000).toString();
+        generatedOTP = otp;
+        otpSentTime = Date.now();
+        return otp;
+    },
+
+    async sendOTPApi(contact) {
+        try {
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            const otp = this.generateOTP();
+            console.log(`OTP ${otp} sent to ${contact}`);
+            return { success: true, otp: otp };
+        } catch (error) {
+            return { success: false, message: 'OTP পাঠাতে ব্যর্থ' };
+        }
+    },
+
+    startOTPTimer() {
+        const timerElement = document.getElementById('timer');
+        let remainingTime = OTP_EXPIRY_TIME;
+        
+        const timerInterval = setInterval(() => {
+            const minutes = Math.floor(remainingTime / 60);
+            const seconds = remainingTime % 60;
+            
+            timerElement.textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (remainingTime <= 0) {
+                clearInterval(timerInterval);
+                generatedOTP = '';
+                timerElement.textContent = '00:00';
+            }
+            
+            remainingTime--;
+        }, 1000);
+    }
+};
+
+// UIManager - Handles all UI updates
+const UIManager = {
+    toggleMenuItems(isLoggedIn) {
+        // Update login/logout button
+        const loginLink = document.querySelector('.Login_controller');
+        if (loginLink) {
+            loginLink.textContent = isLoggedIn ? 'লগআউট' : 'লগইন';
+            loginLink.classList.toggle('logout-link', isLoggedIn);
+        }
+
+        // Toggle profile menu items
+        const profileItems = [
+            'ul a[href="my_course.html"]', 
+            'ul a[href="profile_ifNamber.html"]'
+        ];
+
+        profileItems.forEach(selector => {
+            const item = document.querySelector(selector);
+            if (item) {
+                item.style.display = isLoggedIn ? 'block' : 'none';
+            }
+        });
+    },
+
+    updateProfileDetails(userData) {
+        const profileElements = {
+            name: '.details-content .name h5',
+            contact: '.details-content .mobile h5',
+            date: '.details-content .date h5'
+        };
+
+        Object.entries(profileElements).forEach(([key, selector]) => {
+            const element = document.querySelector(selector);
+            if (element && userData[key]) {
+                element.textContent = userData[key];
+            }
+        });
+    }
+};
+
+// Form Validation
+function validateForm(event) {
+    event.preventDefault();
+    const userInput = document.getElementById('userInput').value.trim();
+    const errorMessage = document.getElementById('errorMessage');
+    
+   // বাংলাদেশি মোবাইল নাম্বারের জন্য রেজেক্স
+const mobileRegex = /^(\+88)?01[3-9]\d{8}$/;
+
+// ইমেইল ভ্যালিডেশনের জন্য রেজেক্স (শুধুমাত্র .com এবং gmail.com সাপোর্ট করে)
+const emailRegex = /^[^\s@]+@(gmail\.com|[^\s@]+\.com)$/;
+    
+    if (mobileRegex.test(userInput) || emailRegex.test(userInput)) {
+        errorMessage.style.display = 'none';
+        document.getElementById('initialStep').style.display = 'none';
+        document.getElementById('verificationStep').style.display = 'block';
+        handleOTPSend(userInput);
+    } else {
+        errorMessage.style.display = 'block';
+    }
+}
+
+// OTP Handling
+async function handleOTPSend(contact) {
+    const result = await OTPManager.sendOTPApi(contact);
+    
+    if (result.success) {
+        OTPManager.startOTPTimer();
+    } else {
+        alert('OTP পাঠানো ব্যর্থ হয়েছে');
+    }
+}
+
+// Verification Handling
+function validateVerification(event) {
+    event.preventDefault();
+    const verificationInput = document.getElementById('verificationInput').value;
+    const verificationError = document.getElementById('verificationError');
+    
+    if (verificationInput === generatedOTP) {
+        document.getElementById('verificationStep').style.display = 'none';
+        document.getElementById('registrationStep').style.display = 'block';
+        verificationError.style.display = 'none';
+    } else {
+        verificationError.style.display = 'block';
+    }
+}
+
+// Registration Handling
+function handleRegistration(event) {
+    event.preventDefault();
+    const formData = {
+        fullName: document.getElementById('fullName').value.trim(),
+        password: document.getElementById('regPassword').value,
+        confirmPassword: document.getElementById('confirmPassword').value,
+        userInput: document.getElementById('userInput').value
+    };
+    
+    const errorMessage = document.getElementById('regErrorMessage');
+    
+    if (formData.password !== formData.confirmPassword) {
+        errorMessage.textContent = 'পাসওয়ার্ড মিলছে না';
+        errorMessage.style.display = 'block';
+        return false;
+    }
+
+    if (formData.password.length < 6) {
+        errorMessage.textContent = 'পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে';
+        errorMessage.style.display = 'block';
+        return false;
+    }
+
+    const userData = {
+        fullName: formData.fullName,
+        contact: formData.userInput,
+        password: formData.password,
+        registrationDate: new Date().toLocaleDateString('bn-BD')
+    };
+
+    const result = UserManager.register(userData);
+    
+    if (result.success) {
+        UserManager.login(userData.contact, userData.password);
+        UIManager.toggleMenuItems(true);
+        UIManager.updateProfileDetails(userData);
+        window.location.href = 'profile_ifNamber.html';
+    } else {
+        alert(result.message);
+    }
+    
+    return false;
+}
+
+// Event Listeners
+document.addEventListener('DOMContentLoaded', () => {
+    UserManager.init();
+    UIManager.toggleMenuItems(UserManager.isLoggedIn());
+
+    // Login Form
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', validateForm);
+    }
+
+    // Verification Form
+    const verificationForm = document.getElementById('verificationForm');
+    if (verificationForm) {
+        verificationForm.addEventListener('submit', validateVerification);
+    }
+
+    // Registration Form
+    const registrationForm = document.getElementById('registrationForm');
+    if (registrationForm) {
+        registrationForm.addEventListener('submit', handleRegistration);
+    }
+
+    // Logout Handler
+    const loginController = document.querySelector('.Login_controller');
+    if (loginController) {
+        loginController.addEventListener('click', (e) => {
+            if (UserManager.isLoggedIn()) {
+                e.preventDefault();
+                UserManager.logout();
+                UIManager.toggleMenuItems(false);
+                window.location.href = 'TalimulIslamAcademy.html';
+            }
+        });
+    }
+});
+
+
+
+function validateVerification(event) {
+    event.preventDefault();
+    const verificationInput = document.getElementById('verificationInput').value.trim();
+    const verificationError = document.getElementById('verificationError');
+    const timerElement = document.getElementById('timer');
+    
+    // Check if timer has expired and input is empty
+    if (timerElement.textContent === '00:00' && !verificationInput) {
+        verificationError.textContent = 'সঠিক অটিপি দিন';
+        verificationError.style.display = 'block';
+        return;
+    }
+    
+    // Rest of your existing validation code
+    if (!verificationInput) {
+        verificationError.textContent = 'অনুগ্রহ করে OTP কোড দিন';
+        verificationError.style.display = 'block';
+        return;
+    }
+    
+    if (verificationInput === generatedOTP) {
+        document.getElementById('verificationStep').style.display = 'none';
+        document.getElementById('registrationStep').style.display = 'block';
+        verificationError.style.display = 'none';
+    } else {
+        verificationError.textContent = 'ভুল OTP কোড। সঠিক কোড দিন';
+        verificationError.style.display = 'block';
+        document.getElementById('verificationInput').value = '';
+    }
+}
+
+function startOTPTimer() {
+    const timerElement = document.getElementById('timer');
+    const resendButton = document.getElementById('resendButton');
+    let remainingTime = OTP_EXPIRY_TIME;
+    
+    resendButton.disabled = true;
+    
+    const timerInterval = setInterval(() => {
+        const minutes = Math.floor(remainingTime / 60);
+        const seconds = remainingTime % 60;
+        
+        timerElement.textContent = 
+            `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        
+        if (remainingTime <= 0) {
+            clearInterval(timerInterval);
+            generatedOTP = '';
+            timerElement.textContent = '00:00';
+            resendButton.disabled = false; // Enable resend button when timer expires
+        }
+        
+        remainingTime--;
+    }, 1000);
+}
+
+
+</script>
+
+    
+    <script>
+    // Previous JavaScript code remains the same
+    // [Your existing JavaScript code for OTP, validation, registration etc.]
+    
+    // Constants
+    const OTP_CONFIG = {
+        TIMER_DURATION: 60,
+        OTP_LENGTH: 4,
+        BUTTON_STATES: {
+            ACTIVE: {
+                backgroundColor: '#2E8B57',
+                disabled: false
+            },
+            INACTIVE: {
+                backgroundColor: '#666',
+                disabled: true
+            }
+        }
+    };
+    
+    // Initialize everything when document is ready
+    document.addEventListener('DOMContentLoaded', () => {
+        const userManager = new UserManager();
+        const navigationManager = new NavigationManager();
+        const otpController = new OTPVerificationController();
+        
+        userManager.init();
+        navigationManager.init();
+        otpController.initialize();
+    });
+    </script>
+    
+
+    
+    <!-- claude দ্বার পরিবর্তিত -->
+    <!-- প্রোফাইল ম্যানেজমেন্টের জন্য -->
+    <script>
+        // Menu visibility and profile management functions
+    function toggleProfileMenuVisibility(isVisible) {
+        const profileMenuItem = document.querySelector('ul a[href="profile_ifNamber.html"]');
+        const myCoursesMenuItem = document.querySelector('ul a[href="my_course.html"]');
+    }
+    
+    function updateProfileWithUserData(userData) {
+        const profileElements = {
+            name: document.querySelector('.details-content .name h5'),
+            contact: document.querySelector('.details-content .mobile h5'),
+            date: document.querySelector('.details-content .date h5')
+        };
+    
+        if (profileElements.name) {
+            profileElements.name.textContent = userData.fullName;
+        }
+        if (profileElements.contact) {
+            profileElements.contact.textContent = userData.contact;
+        }
+        if (profileElements.date) {
+            profileElements.date.textContent = userData.loginDate;
+        }
+    }
+    
+    // Registration handling
+    function handleRegistration(event) {
+        event.preventDefault();
+        const formData = {
+            fullName: document.getElementById('fullName').value.trim(),
+            password: document.getElementById('regPassword').value,
+            confirmPassword: document.getElementById('confirmPassword').value,
+            userInput: document.getElementById('userInput').value
+        };
+        
+        const errorMessage = document.getElementById('regErrorMessage');
+        
+        // Validation
+        if (formData.password !== formData.confirmPassword) {
+            errorMessage.textContent = 'পাসওয়ার্ড মিলছে না';
+            errorMessage.style.display = 'block';
+            return false;
+        }
+    
+        if (formData.password.length < 6) {
+            errorMessage.textContent = 'পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে';
+            errorMessage.style.display = 'block';
+            return false;
+        }
+    
+        // Create user data object
+        const userData = {
+            fullName: formData.fullName,
+            contact: formData.userInput,
+            loginTimestamp: Date.now(),
+            loginDate: new Date().toLocaleDateString('en-US', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+            })
+        };
+    
+        // Store and update
+        localStorage.setItem('userData', JSON.stringify(userData));
+        updateProfileWithUserData(userData);
+        toggleProfileMenuVisibility(true);
+        
+        window.location.href = 'profile_ifNamber.html';
+        return false;
+    }
+    
+    // Login status checking
+    function checkLoginStatus() {
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        
+        if (userData) {
+            toggleProfileMenuVisibility(true);
+            updateProfileWithUserData(userData);
+        } else {
+            toggleProfileMenuVisibility(false);
+        }
+    }
+    
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', checkLoginStatus);
+    </script>
+    
+    <script>
+        // Constants
+    const AUTH_STORAGE_KEY = 'userData';
+    const NAV_ITEMS = {
+        PROFILE: {
+            href: 'profile_ifNamber.html',
+            text: 'প্রোফাইল'
+        },
+        MY_COURSES: {
+            href: 'my_course.html',
+            text: 'আমার কোর্স'
+        }
+    };
+    
+    // Navigation Manager
+    class NavigationManager {
+        constructor() {
+            this.navContainer = document.querySelector('.ulControl');
+            this.loginLink = document.querySelector('.just_Fix');
+            this.init();
+        }
+    
+        init() {
+            // Check login status on every page load
+            this.checkAuthState();
+            
+            // Add event listeners for navigation changes
+            this.setupEventListeners();
+        }
+    
+        checkAuthState() {
+            const userData = localStorage.getItem(AUTH_STORAGE_KEY);
+            
+            if (userData) {
+                this.showAuthenticatedNav();
+            } else {
+                this.showUnauthenticatedNav();
+            }
+        }
+    
+        showAuthenticatedNav() {
+            if (!this.navContainer) return;
+    
+            // Find the login link's parent element
+            const loginLi = this.loginLink?.closest('ul');
+            
+            // Create profile and courses menu items
+            Object.values(NAV_ITEMS).forEach(item => {
+                const menuItem = this.createMenuItem(item);
+                
+                // Insert before login link
+                if (loginLi) {
+                    this.navContainer.insertBefore(menuItem, loginLi);
+                } else {
+                    this.navContainer.appendChild(menuItem);
+                }
+            });
+    
+            // Update login link to show logout
+            if (this.loginLink) {
+                this.loginLink.textContent = 'লগআউট';
+                this.loginLink.href = '#';
+                this.loginLink.addEventListener('click', this.handleLogout.bind(this));
+            }
+        }
+    
+        showUnauthenticatedNav() {
+            if (!this.navContainer) return;
+    
+            // Remove authenticated menu items
+            Object.values(NAV_ITEMS).forEach(item => {
+                const existingItem = this.navContainer.querySelector(`a[href="${item.href}"]`);
+                if (existingItem) {
+                    const parentUl = existingItem.closest('ul');
+                    if (parentUl) {
+                        parentUl.remove();
+                    }
+                }
+            });
+    
+            // Reset login link
+            if (this.loginLink) {
+                this.loginLink.textContent = 'লগইন';
+                this.loginLink.href = 'LoginFrom.html';
+            }
+        }
+    
+        createMenuItem(item) {
+            const ul = document.createElement('ul');
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            
+            a.href = item.href;
+            a.textContent = item.text;
+            a.className = 'from_top';
+            
+            li.appendChild(a);
+            ul.appendChild(li);
+            
+            return ul;
+        }
+    
+        handleLogout(e) {
+            e.preventDefault();
+            
+            // Clear auth data
+            localStorage.removeItem(AUTH_STORAGE_KEY);
+            
+            // Reset navigation
+            this.showUnauthenticatedNav();
+            
+            // Redirect to home
+            window.location.href = 'TalimulIslamAcademy.html';
+        }
+    
+        setupEventListeners() {
+            // Listen for storage events (for multi-tab support)
+            window.addEventListener('storage', (e) => {
+                if (e.key === AUTH_STORAGE_KEY) {
+                    this.checkAuthState();
+                }
+            });
+        }
+    }
+    
+    // Initialize navigation manager on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        new NavigationManager();
+    });
+    </script>
+    
+
+
+<script src="loginscript.js"></script>
+
+
+
+
+
+
+<!-- Footer Footer Footer Footer Footer Footer Footer    -->
+<!-- Footer Footer Footer Footer Footer Footer Footer -->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+    }
+    
+    body {
+        font-family: "Anek Bangla", serif;
+        background-color: white;
+        padding-top: 100px;
+    }
+        .footer_area {
+            width: 100%;
+            background-color: #348B57;
+            padding: 30px 20px;
+            color: white;
+        }
+
+        .footer_content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .biodata {
+            flex: 1 1 300px;
+        }
+
+        .biodata img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .biodata p {
+            font-size: 15px;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        .link, .support {
+            flex: 1 1 200px;
+        }
+
+        .link h2, .support h2, .address h2 {
+            font-weight: 400;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .link li, .support li {
+            list-style: none;
+            line-height: 25px;
+        }
+
+        .link a, .support a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .link a:hover, .support a:hover {
+            color: #ea9400;
+        }
+
+        .address {
+            flex: 1 1 300px;
+        }
+
+        .gmail_div, .location_div {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .email_cover, .location_cover {
+            width: 50px;
+            height: 60px;
+            background-color: #348B57;
+            box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+
+        .gmail_div i, .location_div i {
+            font-size: 25px;
+        }
+
+        .contact_info {
+            flex: 1;
+        }
+
+        .contact_info h4 {
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+
+        .all_accounts {
+            width: 100%;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .all_accounts img {
+            max-width: 90%;
+            height: auto;
+            transition: max-width 0.3s ease;
+        }
+
+        .license {
+            background-color: #215E3A;
+            padding: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .license p {
+            font-family: 'Gill Sans', sans-serif;
+            font-size: 15px;
+        }
+
+        .holud_color {
+            color: rgb(211, 137, 0);
+            display: inline;
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+            .all_accounts img {
+                max-width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .footer_content {
+                gap: 20px;
+            }
+            
+            .biodata, .link, .support, .address {
+                flex: 1 1 100%;
+            }
+
+            .link, .support {
+                flex: 1 1 45%;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .footer_area {
+                padding: 20px 15px;
+            }
+
+            .link, .support {
+                flex: 1 1 100%;
+            }
+
+            .all_accounts img {
+                max-width: 100%;
+            }
+        }
+    </style>
+    <footer>
+        <div class="footer_area">
+            <div class="footer_content">
+                <div class="biodata">
+                    <img src="img/At Tadrees.png" alt="At Tadrees">
+                    <p>আত তাদরীস অনলাইন মাদরাসা, ২০২১ সালে প্রতিষ্ঠিত বাংলাদেশের মাদরাসা কেন্দ্রিক সর্বাধুনিক শিক্ষা প্রতিষ্ঠান। সবার জন্য মানসম্মত পড়াশোনা নিশ্চিত করতে অভিজ্ঞ উস্তাদ এবং অত্যাধুনিক প্রযুক্তির মাধ্যমে আমরা গড়ে তুলেছি সহজে ইলম শেখার বিশ্বস্ত অনলাইন প্রতিষ্ঠান।</p>
+                </div>
+                
+                <div class="link">
+                    <h2>লিঙ্কস</h2>
+                    <ul>
+                        <li><a href="">Home</a></li>
+                        <li><a href="">Course</a></li>
+                        <li><a href="">Privacy Policy</a></li>
+                        <li><a href="">Refund Policy</a></li>
+                        <li><a href="">Terms and Condition</a></li>
+                    </ul>
+                </div>
+
+                <div class="support">
+                    <h2>সাপোর্ট</h2>
+                    <ul>
+                        <li><a href="">মেসেজ করুন</a></li>
+                        <li><a href="">ফোন করুন</a></li>
+                    </ul>
+                </div>
+
+                <div class="address">
+                    <h2>ঠিকানা</h2>
+                    <div class="gmail_div">
+                        <div class="email_cover">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="contact_info">
+                            <h4>ই-মেইল</h4>
+                            <p>support@attadrees.com</p>
+                        </div>
+                    </div>
+
+                    <div class="location_div">
+                        <div class="location_cover">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <div class="contact_info">
+                            <p>মাদরাসা রোড, দারুননাজাত সিদ্দীকিয়া কামিল মাদরাসা, সারুলিয়া, ডেমরা, ঢাকা।</p>
+                            <p style="margin-top: 10px;">Trade License: TRAD/DSCC/029395/2022</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="all_accounts">
+                <img src="/img/accounts.png" alt="Accounts">
+            </div>
+
+            <div class="license">
+                <p>© Copyright 2025. All Rights Reserved by <span class="holud_color">At-Tadrees</span></p>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+</body>
+</html>

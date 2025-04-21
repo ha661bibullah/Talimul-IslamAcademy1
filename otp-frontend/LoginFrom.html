@@ -1899,11 +1899,175 @@ function startOTPTimer() {
     
 
 
-<script src="loginscript.js"></script>
+<script src="script.js"></script>
+<script src="api.js"></script>
 
+<!-- for backend -->
+<script>
+    // login-form.js - আপনার মূল লগইন পেজের জন্য স্ক্রিপ্ট
 
+document.addEventListener('DOMContentLoaded', function() {
+    // সব ফর্ম লুকানো
+    document.getElementById('initialStep').style.display = 'block';
+    document.getElementById('verificationStep').style.display = 'none';
+    document.getElementById('registrationStep').style.display = 'none';
 
+    // এরর মেসেজ লুকানো
+    document.getElementById('errorMessage').style.display = 'none';
+    document.getElementById('verificationError').style.display = 'none';
+    document.getElementById('regErrorMessage').style.display = 'none';
+    document.getElementById('regSuccessMessage').style.display = 'none';
+    
+    // লগইন ফর্মে সাবমিট হ্যান্ডেল
+    document.getElementById('loginForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const userInput = document.getElementById('userInput').value.trim();
+        
+        // বাংলাদেশি মোবাইল নাম্বার চেক
+        const mobileRegex = /^(\+88)?01[3-9]\d{8}$/;
+        
+        // ইমেইল চেক
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (mobileRegex.test(userInput) || emailRegex.test(userInput)) {
+            document.getElementById('errorMessage').style.display = 'none';
+            
+            // সার্ভারে OTP অনুরোধ পাঠানো
+            const response = await sendOTP(userInput);
+            
+            if (response.success) {
+                document.getElementById('initialStep').style.display = 'none';
+                document.getElementById('verificationStep').style.display = 'block';
+                startOTPTimer();
+            } else {
+                document.getElementById('errorMessage').textContent = response.message;
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        } else {
+            document.getElementById('errorMessage').style.display = 'block';
+        }
+    });
+    
+    // ভেরিফিকেশন ফর্ম হ্যান্ডেল
+    document.getElementById('verificationForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const verificationInput = document.getElementById('verificationInput').value.trim();
+        const userInput = document.getElementById('userInput').value.trim();
+        
+        if (!verificationInput) {
+            document.getElementById('verificationError').textContent = 'অনুগ্রহ করে OTP কোড দিন';
+            document.getElementById('verificationError').style.display = 'block';
+            return;
+        }
+        
+        // OTP যাচাই
+        const response = await verifyOTP(userInput, verificationInput);
+        
+        if (response.success) {
+            document.getElementById('verificationError').style.display = 'none';
+            
+            if (response.isNewUser) {
+                // নতুন ইউজারের জন্য রেজিস্ট্রেশন ফর্ম দেখানো
+                document.getElementById('verificationStep').style.display = 'none';
+                document.getElementById('registrationStep').style.display = 'block';
+            } else {
+                // পুরানো ইউজারের জন্য লগইন করে রিডাইরেক্ট
+                localStorage.setItem('authToken', response.token);
+                localStorage.setItem('userData', JSON.stringify(response.user));
+                window.location.href = 'profile_ifNamber.html';
+            }
+        } else {
+            document.getElementById('verificationError').textContent = 'ভুল OTP কোড। আবার চেষ্টা করুন।';
+            document.getElementById('verificationError').style.display = 'block';
+        }
+    });
+    
+    // রেজিস্ট্রেশন ফর্ম হ্যান্ডেল
+    document.getElementById('registrationForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const fullName = document.getElementById('fullName').value.trim();
+        const password = document.getElementById('regPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const contact = document.getElementById('userInput').value.trim();
+        
+        // ভ্যালিডেশন
+        if (password !== confirmPassword) {
+            document.getElementById('regErrorMessage').textContent = 'পাসওয়ার্ড মিলছে না';
+            document.getElementById('regErrorMessage').style.display = 'block';
+            return;
+        }
+        
+        if (password.length < 6) {
+            document.getElementById('regErrorMessage').textContent = 'পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে';
+            document.getElementById('regErrorMessage').style.display = 'block';
+            return;
+        }
+        
+        // রেজিস্ট্রেশন API কল
+        const response = await registerUser({
+            fullName,
+            contact,
+            password
+        });
+        
+        if (response.success) {
+            document.getElementById('regErrorMessage').style.display = 'none';
+            document.getElementById('regSuccessMessage').style.display = 'block';
+            
+            // টোকেন সংরক্ষণ ও রিডাইরেক্ট
+            localStorage.setItem('authToken', response.token);
+            localStorage.setItem('userData', JSON.stringify(response.user));
+            
+            // সফল হলে ১ সেকেন্ড পর প্রোফাইল পেজে নিয়ে যাওয়া
+            setTimeout(() => {
+                window.location.href = 'profile_ifNamber.html';
+            }, 1000);
+        } else {
+            document.getElementById('regErrorMessage').textContent = response.message;
+            document.getElementById('regErrorMessage').style.display = 'block';
+            document.getElementById('regSuccessMessage').style.display = 'none';
+        }
+    });
+    
+    // আবার কোড পাঠানোর বাটন হ্যান্ডেল
+    document.getElementById('resendButton').addEventListener('click', async function() {
+        const userInput = document.getElementById('userInput').value.trim();
+        const response = await sendOTP(userInput);
+        
+        if (response.success) {
+            startOTPTimer();
+            this.disabled = true;
+        } else {
+            alert(response.message);
+        }
+    });
+});
 
+// OTP টাইমার ফাংশন
+function startOTPTimer() {
+    const timerElement = document.getElementById('timer');
+    const resendButton = document.getElementById('resendButton');
+    let timeLeft = 60; // ৬০ সেকেন্ড টাইমার
+    
+    resendButton.disabled = true;
+    
+    const timerInterval = setInterval(() => {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        
+        timerElement.textContent = 
+            `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            timerElement.textContent = '00:00';
+            resendButton.disabled = false;
+        }
+        
+        timeLeft--;
+    }, 1000);
+}
+</script>
 
 
 <!-- Footer Footer Footer Footer Footer Footer Footer    -->

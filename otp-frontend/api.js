@@ -1,6 +1,6 @@
 // api.js - ক্লায়েন্ট সাইডে API কল করার ফাংশন সমূহ
 
-const BASE_URL = 'https://your-render-backend-url.onrender.com/api'; // Render থেকে পাওয়া URL দিন
+const BASE_URL = 'https://talimul-islamacademy1.onrender.com'; // Render থেকে পাওয়া URL দিন
 
 // OTP পাঠানোর ফাংশন
 async function sendOTP(contact) {

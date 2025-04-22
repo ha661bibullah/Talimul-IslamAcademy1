@@ -2,7 +2,7 @@
 
 const BASE_URL = 'https://talimul-islamacademy1.onrender.com/send-otp'; // Render থেকে পাওয়া URL দিন
 
-// OTP পাঠানোর ফাংশন
+// ✅ শুধুমাত্র Gmail OTP পাঠানোর ফাংশন
 async function sendOTP(contact) {
     try {
         const response = await fetch(`${BASE_URL}/send-otp`, {
@@ -18,7 +18,9 @@ async function sendOTP(contact) {
     }
 }
 
-// OTP যাচাই করার ফাংশন
+/*
+
+// ❌ OTP যাচাই করার ফাংশন (ডিএকটিভেট করা হয়েছে)
 async function verifyOTP(contact, otp) {
     try {
         const response = await fetch(`${BASE_URL}/verify-otp`, {
@@ -34,7 +36,7 @@ async function verifyOTP(contact, otp) {
     }
 }
 
-// রেজিস্ট্রেশন ফাংশন
+// ❌ রেজিস্ট্রেশন ফাংশন (ডিএকটিভেট করা হয়েছে)
 async function registerUser(userData) {
     try {
         const response = await fetch(`${BASE_URL}/register`, {
@@ -50,7 +52,7 @@ async function registerUser(userData) {
     }
 }
 
-// লগইন ফাংশন
+// ❌ লগইন ফাংশন (ডিএকটিভেট করা হয়েছে)
 async function loginUser(contact, password) {
     try {
         const response = await fetch(`${BASE_URL}/login`, {
@@ -66,7 +68,7 @@ async function loginUser(contact, password) {
     }
 }
 
-// প্রোফাইল পাওয়ার ফাংশন
+// ❌ প্রোফাইল পাওয়ার ফাংশন (ডিএকটিভেট করা হয়েছে)
 async function getProfile() {
     try {
         const token = localStorage.getItem('authToken');
@@ -88,3 +90,5 @@ async function getProfile() {
         return { success: false, message: 'প্রোফাইল লোড করতে ব্যর্থ হয়েছে' };
     }
 }
+
+*/

@@ -4,7 +4,7 @@ async function validateForm(event) {
     const userInput = document.getElementById('userInput').value.trim();
     const baseURL = import.meta.env.VITE_API_BASE_URL;
 
-    // যদি ইমেইল হয়
+    // শুধুমাত্র ইমেইল যাচাইয়ের জন্য কোড রেখে দিলাম
     if (/\S+@\S+\.\S+/.test(userInput)) {
         const response = await fetch(`${baseURL}/api/send-otp`, {
             method: 'POST',
@@ -19,7 +19,8 @@ async function validateForm(event) {
         } else {
             alert('❌ সমস্যা: ' + result.message);
         }
-    } else if (/^\d{10}$/.test(userInput)) {  // ফোন নম্বর যাচাই
+    } 
+    /* else if (/^\d{10}$/.test(userInput)) {  // ফোন নম্বর যাচাই কোডটি বাদ দেয়া হয়েছে
         const response = await fetch(`${baseURL}/api/send-otp`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -33,19 +34,17 @@ async function validateForm(event) {
         } else {
             alert('❌ সমস্যা: ' + result.message);
         }
-    } else {
+    } */
+
+    else {
         document.getElementById('errorMessage').style.display = 'block';
     }
 
     return false;
 }
 
-
-
-
-
-
-fetch('/send-otp', {
+// এই অংশটি ইমেইল বা ফোন নম্বর পাঠানোকে নির্ধারণ করতে ব্যবহৃত হবে
+/* fetch('/send-otp', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -58,5 +57,4 @@ fetch('/send-otp', {
   })
   .catch(err => {
     console.error('Error:', err);
-  });
-  
+  }); */

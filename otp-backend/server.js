@@ -308,3 +308,11 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`সার্ভার চালু হয়েছে পোর্ট ${PORT}-এ`);
 });
+
+
+// যুক্ত করা হয়েছে for 404
+// এই রাউটটি frontend থেকে /send-otp রিকোয়েস্ট পেলে /api/send-otp রাউটে ফরওয়ার্ড করবে
+app.post('/send-otp', (req, res) => {
+    req.url = '/api/send-otp'; // মূল API রাউটে রিডাইরেক্ট
+    app._router.handle(req, res); // এক্সপ্রেসের রাউট হ্যান্ডলারকে ব্যবহার করে পাঠিয়ে দিচ্ছে
+});

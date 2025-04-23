@@ -1123,11 +1123,12 @@ left: 100%;
             <div class="straight_line"></div>
             <h3>লাইভ ক্লাসে অংশ নিয়ে বজায় রাখুন রুটিনমাফিক পড়াশোনা</h3>
             <p>মোবাইল নাম্বার অথবা ইমেইল দিয়ে এগিয়ে যান</p>
-            <input class="login-form-input" type="text" id="userInput" placeholder="01xxxxxxxxx">
+            <input class="login-form-input" type="text" id="email" placeholder="01xxxxxxxxx"> <!--id="userInput"-->
             <div id="errorMessage" class="error-message">
                 অনুগ্রহ করে সঠিক মোবাইল নাম্বার অথবা ইমেইল প্রদান করুন
             </div>
-            <button class="login-form-button" type="submit">সাবমিট করুন</button>
+            <button class="login-form-button" type="submit" onclick="sendOTP()">সাবমিট করুন</button> <!--onclick="sendOTP()"-->
+            <p id="responseMessage"></p> <!--<p id="responseMessage"></p>-->
         </form>
     </div>
     

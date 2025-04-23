@@ -7,7 +7,7 @@ function sendOTP() {
       return;
     }
   
-    fetch('https://your-backend-url.onrender.com/api/send-otp', {
+    fetch('https://talimul-islamacademy1.onrender.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ contact: email })
@@ -22,3 +22,4 @@ function sendOTP() {
       });
   }
   
+  console.log('Render PORT:', process.env.PORT);

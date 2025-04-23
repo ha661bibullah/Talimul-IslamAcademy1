@@ -33,4 +33,9 @@ app.post('/api/send-otp', async (req, res) => {
       res.status(500).json({ success: false, message: 'ইমেইল পাঠাতে সমস্যা হয়েছে।' });
     }
   });
-  
+  const PORT = process.env.PORT || 5000;
+
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+    

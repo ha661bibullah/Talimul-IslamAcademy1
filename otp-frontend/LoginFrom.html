@@ -471,6 +471,15 @@ nav .ulControl ul ul a:hover {
 
 
 
+
+
+
+
+
+
+
+
+
 <style>
     /* Modern Bengali Responsive Form - Base Styles */
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
@@ -1172,296 +1181,49 @@ left: 100%;
 </div>
 </div>
 
-
 <script>
-// Show the initial form when the page loads
+    // Constants
+const OTP_EXPIRY_TIME = 6 * 10; // 60 seconds
+
+// Global OTP Management
+let generatedOTP = '';
+let otpSentTime = null;
+
+// Document load initialization
 document.addEventListener('DOMContentLoaded', function() {
-document.getElementById('initialStep').style.display = 'block';
-document.getElementById('verificationStep').style.display = 'none';
-document.getElementById('registrationStep').style.display = 'none';
+    // Show the initial form when the page loads
+    document.getElementById('initialStep').style.display = 'block';
+    document.getElementById('verificationStep').style.display = 'none';
+    document.getElementById('registrationStep').style.display = 'none';
 
-// Hide error messages initially
-document.getElementById('errorMessage').style.display = 'none';
-document.getElementById('verificationError').style.display = 'none';
+    // Hide error messages initially
+    document.getElementById('errorMessage').style.display = 'none';
+    document.getElementById('verificationError').style.display = 'none';
 
-if (document.getElementById('regSuccessMessage')) {
-    document.getElementById('regSuccessMessage').style.display = 'none';
-}
+    if (document.getElementById('regSuccessMessage')) {
+        document.getElementById('regSuccessMessage').style.display = 'none';
+    }
 
-if (document.getElementById('regErrorMessage')) {
-    document.getElementById('regErrorMessage').style.display = 'none';
-}
+    if (document.getElementById('regErrorMessage')) {
+        document.getElementById('regErrorMessage').style.display = 'none';
+    }
+    
+    // Initialize systems
+    UserManager.init();
+    UIManager.toggleMenuItems(UserManager.isLoggedIn());
 });
 
 // Form validation functions
-function validateForm(event) {
-event.preventDefault();
-const userInput = document.getElementById('userInput').value.trim();
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const phoneRegex = /^01[0-9]{9}$/;
-
-if (emailRegex.test(userInput) || phoneRegex.test(userInput)) {
-    // Success - show verification step
-    document.getElementById('initialStep').style.display = 'none';
-    document.getElementById('verificationStep').style.display = 'block';
-    startTimer();
-    return true;
-} else {
-    // Show error message
-    document.getElementById('errorMessage').style.display = 'block';
-    return false;
-}
-}
-
-function validateVerification(event) {
-event.preventDefault();
-const verificationCode = document.getElementById('verificationInput').value.trim();
-
-// Simulate verification check (in real app, this would verify against backend)
-if (verificationCode === '1234') {  // Example code
-    // Success - show registration form for new users
-    document.getElementById('verificationStep').style.display = 'none';
-    document.getElementById('registrationStep').style.display = 'block';
-    return true;
-} else {
-    // Show error message
-    document.getElementById('verificationError').style.display = 'block';
-    return false;
-}
-}
-
-function handleRegistration(event) {
-event.preventDefault();
-const password = document.getElementById('regPassword').value;
-const confirmPassword = document.getElementById('confirmPassword').value;
-
-if (password !== confirmPassword) {
-    document.getElementById('regErrorMessage').textContent = 'পাসওয়ার্ড মিলছে না।';
-    document.getElementById('regErrorMessage').style.display = 'block';
-    document.getElementById('regSuccessMessage').style.display = 'none';
-    return false;
-}
-
-// Simulate successful registration
-document.getElementById('regErrorMessage').style.display = 'none';
-document.getElementById('regSuccessMessage').style.display = 'block';
-
-// In a real app, you would submit to backend here
-return true;
-}
-
-// Timer functionality
-function startTimer() {
-let timeLeft = 60;
-const timerElement = document.getElementById('timer');
-const resendButton = document.getElementById('resendButton');
-
-const countdown = setInterval(function() {
-    timeLeft--;
-    
-    // Format time as MM:SS
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    
-    if (timeLeft <= 0) {
-        clearInterval(countdown);
-        resendButton.disabled = false;
-        timerElement.textContent = "00:00";
-    }
-}, 1000);
-
-// Reset resend button
-resendButton.disabled = true;
-
-// Handle resend button click
-resendButton.onclick = function() {
-    // In a real app, this would trigger sending a new OTP
-    timeLeft = 60;
-    resendButton.disabled = true;
-    startTimer();
-};
-}
-</script>
-    
-<!-- agin send code -->
-<script>
-    // Global OTP Management
-let generatedOTP = '';
-let otpSentTime = null;
-const OTP_EXPIRY_TIME = 6 * 10; // 40 seconds
-
-// Verification Handling
-function validateVerification(event) {
-    event.preventDefault();
-    const verificationInput = document.getElementById('verificationInput').value.trim();
-    const verificationError = document.getElementById('verificationError');
-    
-    // খালি ইনপুট চেক
-    if (!verificationInput) {
-        verificationError.textContent = 'অনুগ্রহ করে OTP কোড দিন';
-        verificationError.style.display = 'block';
-        return;
-    }
-    
-    // OTP এক্সপায়ার চেক
-    if (!generatedOTP) {
-        verificationError.textContent = 'OTP এর সময়সীমা শেষ। নতুন OTP জেনারেট করুন';
-        verificationError.style.display = 'block';
-        return;
-    }
-    
-    // সঠিক OTP চেক
-    if (verificationInput === generatedOTP) {
-        document.getElementById('verificationStep').style.display = 'none';
-        document.getElementById('registrationStep').style.display = 'block';
-        verificationError.style.display = 'none';
-    } else {
-        verificationError.textContent = 'ভুল OTP কোড। সঠিক কোড দিন';
-        verificationError.style.display = 'block';
-        // ইনপুট ফিল্ড খালি করে দেওয়া
-        document.getElementById('verificationInput').value = '';
-    }
-}
-
-
-// UserManager - Core user management functionality
-const UserManager = {
-    users: [],
-    currentUser: null,
-
-    init() {
-        this.users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    },
-
-    register(userData) {
-        const existingUser = this.users.find(user => 
-            user.contact === userData.contact
-        );
-
-        this.users.push(userData);
-        localStorage.setItem('registeredUsers', JSON.stringify(this.users));
-        return { success: true, message: 'রেজিস্ট্রেশন সফল' };
-    },
-
-    login(contact, password) {
-        const user = this.users.find(u => 
-            u.contact === contact && u.password === password
-        );
-
-        if (user) {
-            this.currentUser = user;
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            return { success: true, message: 'লগইন সফল' };
-        }
-
-        return { success: false, message: 'অবৈধ লগইন' };
-    },
-
-    logout() {
-        this.currentUser = null;
-        localStorage.removeItem('currentUser');
-    },
-
-    isLoggedIn() {
-        return !!this.currentUser;
-    }
-};
-
-// OTPManager - Handles OTP generation and verification
-const OTPManager = {
-    generateOTP() {
-        const otp = Math.floor(1000 + Math.random() * 9000).toString();
-        generatedOTP = otp;
-        otpSentTime = Date.now();
-        return otp;
-    },
-
-    async sendOTPApi(contact) {
-        try {
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            const otp = this.generateOTP();
-            console.log(`OTP ${otp} sent to ${contact}`);
-            return { success: true, otp: otp };
-        } catch (error) {
-            return { success: false, message: 'OTP পাঠাতে ব্যর্থ' };
-        }
-    },
-
-    startOTPTimer() {
-        const timerElement = document.getElementById('timer');
-        let remainingTime = OTP_EXPIRY_TIME;
-        
-        const timerInterval = setInterval(() => {
-            const minutes = Math.floor(remainingTime / 60);
-            const seconds = remainingTime % 60;
-            
-            timerElement.textContent = 
-                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            
-            if (remainingTime <= 0) {
-                clearInterval(timerInterval);
-                generatedOTP = '';
-                timerElement.textContent = '00:00';
-            }
-            
-            remainingTime--;
-        }, 1000);
-    }
-};
-
-// UIManager - Handles all UI updates
-const UIManager = {
-    toggleMenuItems(isLoggedIn) {
-        // Update login/logout button
-        const loginLink = document.querySelector('.Login_controller');
-        if (loginLink) {
-            loginLink.textContent = isLoggedIn ? 'লগআউট' : 'লগইন';
-            loginLink.classList.toggle('logout-link', isLoggedIn);
-        }
-
-        // Toggle profile menu items
-        const profileItems = [
-            'ul a[href="my_course.html"]', 
-            'ul a[href="profile_ifNamber.html"]'
-        ];
-
-        profileItems.forEach(selector => {
-            const item = document.querySelector(selector);
-            if (item) {
-                item.style.display = isLoggedIn ? 'block' : 'none';
-            }
-        });
-    },
-
-    updateProfileDetails(userData) {
-        const profileElements = {
-            name: '.details-content .name h5',
-            contact: '.details-content .mobile h5',
-            date: '.details-content .date h5'
-        };
-
-        Object.entries(profileElements).forEach(([key, selector]) => {
-            const element = document.querySelector(selector);
-            if (element && userData[key]) {
-                element.textContent = userData[key];
-            }
-        });
-    }
-};
-
-// Form Validation
 function validateForm(event) {
     event.preventDefault();
     const userInput = document.getElementById('userInput').value.trim();
     const errorMessage = document.getElementById('errorMessage');
     
-   // বাংলাদেশি মোবাইল নাম্বারের জন্য রেজেক্স
-const mobileRegex = /^(\+88)?01[3-9]\d{8}$/;
+    // বাংলাদেশি মোবাইল নাম্বারের জন্য রেজেক্স
+    const mobileRegex = /^(\+88)?01[3-9]\d{8}$/;
 
-// ইমেইল ভ্যালিডেশনের জন্য রেজেক্স (শুধুমাত্র .com এবং gmail.com সাপোর্ট করে)
-const emailRegex = /^[^\s@]+@(gmail\.com|[^\s@]+\.com)$/;
+    // ইমেইল ভ্যালিডেশনের জন্য রেজেক্স
+    const emailRegex = /^[^\s@]+@(gmail\.com|[^\s@]+\.com)$/;
     
     if (mobileRegex.test(userInput) || emailRegex.test(userInput)) {
         errorMessage.style.display = 'none';
@@ -1487,15 +1249,39 @@ async function handleOTPSend(contact) {
 // Verification Handling
 function validateVerification(event) {
     event.preventDefault();
-    const verificationInput = document.getElementById('verificationInput').value;
+    const verificationInput = document.getElementById('verificationInput').value.trim();
     const verificationError = document.getElementById('verificationError');
+    const timerElement = document.getElementById('timer');
+    
+    // Check if timer has expired and input is empty
+    if (timerElement.textContent === '00:00' && !verificationInput) {
+        verificationError.textContent = 'সঠিক অটিপি দিন';
+        verificationError.style.display = 'block';
+        return;
+    }
+    
+    // Rest of validation code
+    if (!verificationInput) {
+        verificationError.textContent = 'অনুগ্রহ করে OTP কোড দিন';
+        verificationError.style.display = 'block';
+        return;
+    }
+    
+    // OTP এক্সপায়ার চেক
+    if (!generatedOTP) {
+        verificationError.textContent = 'OTP এর সময়সীমা শেষ। নতুন OTP জেনারেট করুন';
+        verificationError.style.display = 'block';
+        return;
+    }
     
     if (verificationInput === generatedOTP) {
         document.getElementById('verificationStep').style.display = 'none';
         document.getElementById('registrationStep').style.display = 'block';
         verificationError.style.display = 'none';
     } else {
+        verificationError.textContent = 'ভুল OTP কোড। সঠিক কোড দিন';
         verificationError.style.display = 'block';
+        document.getElementById('verificationInput').value = '';
     }
 }
 
@@ -1544,76 +1330,7 @@ function handleRegistration(event) {
     return false;
 }
 
-// Event Listeners
-document.addEventListener('DOMContentLoaded', () => {
-    UserManager.init();
-    UIManager.toggleMenuItems(UserManager.isLoggedIn());
-
-    // Login Form
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        loginForm.addEventListener('submit', validateForm);
-    }
-
-    // Verification Form
-    const verificationForm = document.getElementById('verificationForm');
-    if (verificationForm) {
-        verificationForm.addEventListener('submit', validateVerification);
-    }
-
-    // Registration Form
-    const registrationForm = document.getElementById('registrationForm');
-    if (registrationForm) {
-        registrationForm.addEventListener('submit', handleRegistration);
-    }
-
-    // Logout Handler
-    const loginController = document.querySelector('.Login_controller');
-    if (loginController) {
-        loginController.addEventListener('click', (e) => {
-            if (UserManager.isLoggedIn()) {
-                e.preventDefault();
-                UserManager.logout();
-                UIManager.toggleMenuItems(false);
-                window.location.href = 'TalimulIslamAcademy.html';
-            }
-        });
-    }
-});
-
-
-
-function validateVerification(event) {
-    event.preventDefault();
-    const verificationInput = document.getElementById('verificationInput').value.trim();
-    const verificationError = document.getElementById('verificationError');
-    const timerElement = document.getElementById('timer');
-    
-    // Check if timer has expired and input is empty
-    if (timerElement.textContent === '00:00' && !verificationInput) {
-        verificationError.textContent = 'সঠিক অটিপি দিন';
-        verificationError.style.display = 'block';
-        return;
-    }
-    
-    // Rest of your existing validation code
-    if (!verificationInput) {
-        verificationError.textContent = 'অনুগ্রহ করে OTP কোড দিন';
-        verificationError.style.display = 'block';
-        return;
-    }
-    
-    if (verificationInput === generatedOTP) {
-        document.getElementById('verificationStep').style.display = 'none';
-        document.getElementById('registrationStep').style.display = 'block';
-        verificationError.style.display = 'none';
-    } else {
-        verificationError.textContent = 'ভুল OTP কোড। সঠিক কোড দিন';
-        verificationError.style.display = 'block';
-        document.getElementById('verificationInput').value = '';
-    }
-}
-
+// Timer functionality
 function startOTPTimer() {
     const timerElement = document.getElementById('timer');
     const resendButton = document.getElementById('resendButton');
@@ -1639,47 +1356,391 @@ function startOTPTimer() {
     }, 1000);
 }
 
+// UserManager - Core user management functionality
+const UserManager = {
+    users: [],
+    currentUser: null,
 
-</script>
+    init() {
+        this.users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    },
 
-    
-    <script>
-    // Previous JavaScript code remains the same
-    // [Your existing JavaScript code for OTP, validation, registration etc.]
-    
-    // Constants
-    const OTP_CONFIG = {
-        TIMER_DURATION: 60,
-        OTP_LENGTH: 4,
-        BUTTON_STATES: {
-            ACTIVE: {
-                backgroundColor: '#2E8B57',
-                disabled: false
-            },
-            INACTIVE: {
-                backgroundColor: '#666',
-                disabled: true
-            }
+    register(userData) {
+        const existingUser = this.users.find(user => 
+            user.contact === userData.contact
+        );
+
+        this.users.push(userData);
+        localStorage.setItem('registeredUsers', JSON.stringify(this.users));
+        return { success: true, message: 'রেজিস্ট্রেশন সফল' };
+    },
+
+    login(contact, password) {
+        const user = this.users.find(u => 
+            u.contact === contact && u.password === password
+        );
+
+        if (user) {
+            this.currentUser = user;
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            return { success: true, message: 'লগইন সফল' };
         }
-    };
-    
-    // Initialize everything when document is ready
-    document.addEventListener('DOMContentLoaded', () => {
-        const userManager = new UserManager();
-        const navigationManager = new NavigationManager();
-        const otpController = new OTPVerificationController();
-        
-        userManager.init();
-        navigationManager.init();
-        otpController.initialize();
-    });
-    </script>
-    
 
+        return { success: false, message: 'অবৈধ লগইন' };
+    },
+
+    logout() {
+        this.currentUser = null;
+        localStorage.removeItem('currentUser');
+    },
+
+    isLoggedIn() {
+        return !!this.currentUser;
+    }
+};
+
+// OTPManager - Handles OTP generation and verification
+// const OTPManager = {
+//     generateOTP() {
+//         const otp = Math.floor(1000 + Math.random() * 9000).toString();
+//         generatedOTP = otp;
+//         otpSentTime = Date.now();
+//         return otp;
+//     },
+
+//     async sendOTPApi(contact) {
+//         try {
+//             await new Promise(resolve => setTimeout(resolve, 1000));
+//             const otp = this.generateOTP();
+//             console.log(`OTP ${otp} sent to ${contact}`);
+//             return { success: true, otp: otp };
+//         } catch (error) {
+//             return { success: false, message: 'OTP পাঠাতে ব্যর্থ' };
+//         }
+//     },
+
+//     startOTPTimer() {
+//         startOTPTimer(); // Call the global function
+//     }
+// };
+
+
+
+
+
+
+
+
+// Add this to your existing JavaScript file
+// Replace API_URL with your actual Render API URL once deployed
+const API_URL = 'https://your-backend-service.onrender.com';
+
+// OTPManager - Modified to use the backend API
+const OTPManager = {
+    generateOTP() {
+        const otp = Math.floor(1000 + Math.random() * 9000).toString();
+        generatedOTP = otp;
+        otpSentTime = Date.now();
+        return otp;
+    },
+
+    async sendOTPApi(contact) {
+        try {
+            const otp = this.generateOTP();
+            
+            // Check if the contact is an email
+            const isEmail = /^[^\s@]+@(gmail\.com|[^\s@]+\.com)$/.test(contact);
+            
+            // If it's an email, send OTP through the API
+            if (isEmail) {
+                const response = await fetch(`${API_URL}/api/send-otp`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: contact,
+                        otp: otp
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (!result.success) {
+                    console.error('Failed to send OTP to email:', result.message);
+                    return { success: false, message: 'OTP পাঠাতে ব্যর্থ' };
+                }
+                
+                console.log(`OTP ${otp} sent to email ${contact}`);
+            } else {
+                // For mobile numbers, keep the existing console.log behavior
+                // In a real implementation, you would integrate with an SMS service
+                console.log(`OTP ${otp} sent to mobile ${contact}`);
+                
+                // Here you would add your SMS sending logic
+                // For now, we're just simulating it
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+            
+            return { success: true, otp: otp };
+        } catch (error) {
+            console.error('Error in sendOTPApi:', error);
+            return { success: false, message: 'OTP পাঠাতে ব্যর্থ' };
+        }
+    },
+
+    startOTPTimer() {
+        startOTPTimer(); // Call the global function
+    }
+};
+
+
+
+
+
+// UIManager - Handles all UI updates
+const UIManager = {
+    toggleMenuItems(isLoggedIn) {
+        // Update login/logout button
+        const loginLink = document.querySelector('.Login_controller');
+        if (loginLink) {
+            loginLink.textContent = isLoggedIn ? 'লগআউট' : 'লগইন';
+            loginLink.classList.toggle('logout-link', isLoggedIn);
+        }
+
+        // Toggle profile menu items
+        const profileItems = [
+            'ul a[href="my_course.html"]', 
+            'ul a[href="profile_ifNamber.html"]'
+        ];
+
+        profileItems.forEach(selector => {
+            const item = document.querySelector(selector);
+            if (item) {
+                item.style.display = isLoggedIn ? 'block' : 'none';
+            }
+        });
+    },
+
+    updateProfileDetails(userData) {
+        const profileElements = {
+            name: '.details-content .name h5',
+            contact: '.details-content .mobile h5',
+            date: '.details-content .date h5'
+        };
+
+        Object.entries(profileElements).forEach(([key, selector]) => {
+            const element = document.querySelector(selector);
+            if (element && userData[key]) {
+                element.textContent = userData[key];
+            }
+        });
+    }
+};
+
+// Menu visibility and profile management functions
+function toggleProfileMenuVisibility(isVisible) {
+    const profileMenuItem = document.querySelector('ul a[href="profile_ifNamber.html"]');
+    const myCoursesMenuItem = document.querySelector('ul a[href="my_course.html"]');
     
-    <!-- claude দ্বার পরিবর্তিত -->
-    <!-- প্রোফাইল ম্যানেজমেন্টের জন্য -->
-    <script>
+    if (profileMenuItem) {
+        profileMenuItem.style.display = isVisible ? 'block' : 'none';
+    }
+    if (myCoursesMenuItem) {
+        myCoursesMenuItem.style.display = isVisible ? 'block' : 'none';
+    }
+}
+
+// Navigation Manager Class
+class NavigationManager {
+    constructor() {
+        this.navContainer = document.querySelector('.ulControl');
+        this.loginLink = document.querySelector('.just_Fix');
+        this.init();
+    }
+
+    init() {
+        // Check login status on every page load
+        this.checkAuthState();
+        
+        // Add event listeners for navigation changes
+        this.setupEventListeners();
+    }
+
+    checkAuthState() {
+        const userData = localStorage.getItem('userData');
+        
+        if (userData) {
+            this.showAuthenticatedNav();
+        } else {
+            this.showUnauthenticatedNav();
+        }
+    }
+
+    showAuthenticatedNav() {
+        if (!this.navContainer) return;
+
+        // Find the login link's parent element
+        const loginLi = this.loginLink?.closest('ul');
+        
+        // Create profile and courses menu items
+        const NAV_ITEMS = {
+            PROFILE: {
+                href: 'profile_ifNamber.html',
+                text: 'প্রোফাইল'
+            },
+            MY_COURSES: {
+                href: 'my_course.html',
+                text: 'আমার কোর্স'
+            }
+        };
+        
+        Object.values(NAV_ITEMS).forEach(item => {
+            const menuItem = this.createMenuItem(item);
+            
+            // Insert before login link
+            if (loginLi) {
+                this.navContainer.insertBefore(menuItem, loginLi);
+            } else {
+                this.navContainer.appendChild(menuItem);
+            }
+        });
+
+        // Update login link to show logout
+        if (this.loginLink) {
+            this.loginLink.textContent = 'লগআউট';
+            this.loginLink.href = '#';
+            this.loginLink.addEventListener('click', this.handleLogout.bind(this));
+        }
+    }
+
+    showUnauthenticatedNav() {
+        if (!this.navContainer) return;
+
+        // Remove authenticated menu items
+        const NAV_ITEMS = {
+            PROFILE: {
+                href: 'profile_ifNamber.html',
+                text: 'প্রোফাইল'
+            },
+            MY_COURSES: {
+                href: 'my_course.html',
+                text: 'আমার কোর্স'
+            }
+        };
+        
+        Object.values(NAV_ITEMS).forEach(item => {
+            const existingItem = this.navContainer.querySelector(`a[href="${item.href}"]`);
+            if (existingItem) {
+                const parentUl = existingItem.closest('ul');
+                if (parentUl) {
+                    parentUl.remove();
+                }
+            }
+        });
+
+        // Reset login link
+        if (this.loginLink) {
+            this.loginLink.textContent = 'লগইন';
+            this.loginLink.href = 'LoginFrom.html';
+        }
+    }
+
+    createMenuItem(item) {
+        const ul = document.createElement('ul');
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        
+        a.href = item.href;
+        a.textContent = item.text;
+        a.className = 'from_top';
+        
+        li.appendChild(a);
+        ul.appendChild(li);
+        
+        return ul;
+    }
+
+    handleLogout(e) {
+        e.preventDefault();
+        
+        // Clear auth data
+        localStorage.removeItem('userData');
+        localStorage.removeItem('authToken');
+        
+        // Reset navigation
+        this.showUnauthenticatedNav();
+        
+        // Redirect to home
+        window.location.href = 'TalimulIslamAcademy.html';
+    }
+
+    setupEventListeners() {
+        // Listen for storage events (for multi-tab support)
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'userData') {
+                this.checkAuthState();
+            }
+        });
+    }
+}
+
+// Event Listeners for forms
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize navigation
+    new NavigationManager();
+    
+    // Login Form
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', validateForm);
+    }
+
+    // Verification Form
+    const verificationForm = document.getElementById('verificationForm');
+    if (verificationForm) {
+        verificationForm.addEventListener('submit', validateVerification);
+    }
+
+    // Registration Form
+    const registrationForm = document.getElementById('registrationForm');
+    if (registrationForm) {
+        registrationForm.addEventListener('submit', handleRegistration);
+    }
+
+    // Resend OTP button
+    const resendButton = document.getElementById('resendButton');
+    if (resendButton) {
+        resendButton.addEventListener('click', async function() {
+            const userInput = document.getElementById('userInput').value.trim();
+            const response = await OTPManager.sendOTPApi(userInput);
+            
+            if (response.success) {
+                startOTPTimer();
+                this.disabled = true;
+            } else {
+                alert(response.message);
+            }
+        });
+    }
+
+    // Logout Handler
+    const loginController = document.querySelector('.Login_controller');
+    if (loginController) {
+        loginController.addEventListener('click', (e) => {
+            if (UserManager.isLoggedIn()) {
+                e.preventDefault();
+                UserManager.logout();
+                UIManager.toggleMenuItems(false);
+                window.location.href = 'TalimulIslamAcademy.html';
+            }
+        });
+    }
+});
+</script>   
+<!-- প্রোফাইল ম্যানেজমেন্টের জন্য -->
+<script>
         // Menu visibility and profile management functions
     function toggleProfileMenuVisibility(isVisible) {
         const profileMenuItem = document.querySelector('ul a[href="profile_ifNamber.html"]');
@@ -1764,308 +1825,23 @@ function startOTPTimer() {
     
     // Event listeners
     document.addEventListener('DOMContentLoaded', checkLoginStatus);
-    </script>
-    
-    <script>
-        // Constants
-    const AUTH_STORAGE_KEY = 'userData';
-    const NAV_ITEMS = {
-        PROFILE: {
-            href: 'profile_ifNamber.html',
-            text: 'প্রোফাইল'
-        },
-        MY_COURSES: {
-            href: 'my_course.html',
-            text: 'আমার কোর্স'
-        }
-    };
-    
-    // Navigation Manager
-    class NavigationManager {
-        constructor() {
-            this.navContainer = document.querySelector('.ulControl');
-            this.loginLink = document.querySelector('.just_Fix');
-            this.init();
-        }
-    
-        init() {
-            // Check login status on every page load
-            this.checkAuthState();
-            
-            // Add event listeners for navigation changes
-            this.setupEventListeners();
-        }
-    
-        checkAuthState() {
-            const userData = localStorage.getItem(AUTH_STORAGE_KEY);
-            
-            if (userData) {
-                this.showAuthenticatedNav();
-            } else {
-                this.showUnauthenticatedNav();
-            }
-        }
-    
-        showAuthenticatedNav() {
-            if (!this.navContainer) return;
-    
-            // Find the login link's parent element
-            const loginLi = this.loginLink?.closest('ul');
-            
-            // Create profile and courses menu items
-            Object.values(NAV_ITEMS).forEach(item => {
-                const menuItem = this.createMenuItem(item);
-                
-                // Insert before login link
-                if (loginLi) {
-                    this.navContainer.insertBefore(menuItem, loginLi);
-                } else {
-                    this.navContainer.appendChild(menuItem);
-                }
-            });
-    
-            // Update login link to show logout
-            if (this.loginLink) {
-                this.loginLink.textContent = 'লগআউট';
-                this.loginLink.href = '#';
-                this.loginLink.addEventListener('click', this.handleLogout.bind(this));
-            }
-        }
-    
-        showUnauthenticatedNav() {
-            if (!this.navContainer) return;
-    
-            // Remove authenticated menu items
-            Object.values(NAV_ITEMS).forEach(item => {
-                const existingItem = this.navContainer.querySelector(`a[href="${item.href}"]`);
-                if (existingItem) {
-                    const parentUl = existingItem.closest('ul');
-                    if (parentUl) {
-                        parentUl.remove();
-                    }
-                }
-            });
-    
-            // Reset login link
-            if (this.loginLink) {
-                this.loginLink.textContent = 'লগইন';
-                this.loginLink.href = 'LoginFrom.html';
-            }
-        }
-    
-        createMenuItem(item) {
-            const ul = document.createElement('ul');
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            
-            a.href = item.href;
-            a.textContent = item.text;
-            a.className = 'from_top';
-            
-            li.appendChild(a);
-            ul.appendChild(li);
-            
-            return ul;
-        }
-    
-        handleLogout(e) {
-            e.preventDefault();
-            
-            // Clear auth data
-            localStorage.removeItem(AUTH_STORAGE_KEY);
-            
-            // Reset navigation
-            this.showUnauthenticatedNav();
-            
-            // Redirect to home
-            window.location.href = 'TalimulIslamAcademy.html';
-        }
-    
-        setupEventListeners() {
-            // Listen for storage events (for multi-tab support)
-            window.addEventListener('storage', (e) => {
-                if (e.key === AUTH_STORAGE_KEY) {
-                    this.checkAuthState();
-                }
-            });
-        }
-    }
-    
-    // Initialize navigation manager on page load
-    document.addEventListener('DOMContentLoaded', () => {
-        new NavigationManager();
-    });
-    </script>
-    
-
-
-<script src="script.js"></script>
-<!-- for backend -->
-<script>
-    // login-form.js - আপনার মূল লগইন পেজের জন্য স্ক্রিপ্ট
-
-document.addEventListener('DOMContentLoaded', function() {
-    // সব ফর্ম লুকানো
-    document.getElementById('initialStep').style.display = 'block';
-    document.getElementById('verificationStep').style.display = 'none';
-    document.getElementById('registrationStep').style.display = 'none';
-
-    // এরর মেসেজ লুকানো
-    document.getElementById('errorMessage').style.display = 'none';
-    document.getElementById('verificationError').style.display = 'none';
-    document.getElementById('regErrorMessage').style.display = 'none';
-    document.getElementById('regSuccessMessage').style.display = 'none';
-    
-    // লগইন ফর্মে সাবমিট হ্যান্ডেল
-    document.getElementById('loginForm').addEventListener('submit', async function(event) {
-        event.preventDefault();
-        const userInput = document.getElementById('userInput').value.trim();
-        
-        // বাংলাদেশি মোবাইল নাম্বার চেক
-        const mobileRegex = /^(\+88)?01[3-9]\d{8}$/;
-        
-        // ইমেইল চেক
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        
-        if (mobileRegex.test(userInput) || emailRegex.test(userInput)) {
-            document.getElementById('errorMessage').style.display = 'none';
-            
-            // সার্ভারে OTP অনুরোধ পাঠানো
-            const response = await sendOTP(userInput);
-            
-            if (response.success) {
-                document.getElementById('initialStep').style.display = 'none';
-                document.getElementById('verificationStep').style.display = 'block';
-                startOTPTimer();
-            } else {
-                document.getElementById('errorMessage').textContent = response.message;
-                document.getElementById('errorMessage').style.display = 'block';
-            }
-        } else {
-            document.getElementById('errorMessage').style.display = 'block';
-        }
-    });
-    
-    // ভেরিফিকেশন ফর্ম হ্যান্ডেল
-    document.getElementById('verificationForm').addEventListener('submit', async function(event) {
-        event.preventDefault();
-        const verificationInput = document.getElementById('verificationInput').value.trim();
-        const userInput = document.getElementById('userInput').value.trim();
-        
-        if (!verificationInput) {
-            document.getElementById('verificationError').textContent = 'অনুগ্রহ করে OTP কোড দিন';
-            document.getElementById('verificationError').style.display = 'block';
-            return;
-        }
-        
-        // OTP যাচাই
-        const response = await verifyOTP(userInput, verificationInput);
-        
-        if (response.success) {
-            document.getElementById('verificationError').style.display = 'none';
-            
-            if (response.isNewUser) {
-                // নতুন ইউজারের জন্য রেজিস্ট্রেশন ফর্ম দেখানো
-                document.getElementById('verificationStep').style.display = 'none';
-                document.getElementById('registrationStep').style.display = 'block';
-            } else {
-                // পুরানো ইউজারের জন্য লগইন করে রিডাইরেক্ট
-                localStorage.setItem('authToken', response.token);
-                localStorage.setItem('userData', JSON.stringify(response.user));
-                window.location.href = 'profile_ifNamber.html';
-            }
-        } else {
-            document.getElementById('verificationError').textContent = 'ভুল OTP কোড। আবার চেষ্টা করুন।';
-            document.getElementById('verificationError').style.display = 'block';
-        }
-    });
-    
-    // রেজিস্ট্রেশন ফর্ম হ্যান্ডেল
-    document.getElementById('registrationForm').addEventListener('submit', async function(event) {
-        event.preventDefault();
-        const fullName = document.getElementById('fullName').value.trim();
-        const password = document.getElementById('regPassword').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
-        const contact = document.getElementById('userInput').value.trim();
-        
-        // ভ্যালিডেশন
-        if (password !== confirmPassword) {
-            document.getElementById('regErrorMessage').textContent = 'পাসওয়ার্ড মিলছে না';
-            document.getElementById('regErrorMessage').style.display = 'block';
-            return;
-        }
-        
-        if (password.length < 6) {
-            document.getElementById('regErrorMessage').textContent = 'পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে';
-            document.getElementById('regErrorMessage').style.display = 'block';
-            return;
-        }
-        
-        // রেজিস্ট্রেশন API কল
-        const response = await registerUser({
-            fullName,
-            contact,
-            password
-        });
-        
-        if (response.success) {
-            document.getElementById('regErrorMessage').style.display = 'none';
-            document.getElementById('regSuccessMessage').style.display = 'block';
-            
-            // টোকেন সংরক্ষণ ও রিডাইরেক্ট
-            localStorage.setItem('authToken', response.token);
-            localStorage.setItem('userData', JSON.stringify(response.user));
-            
-            // সফল হলে ১ সেকেন্ড পর প্রোফাইল পেজে নিয়ে যাওয়া
-            setTimeout(() => {
-                window.location.href = 'profile_ifNamber.html';
-            }, 1000);
-        } else {
-            document.getElementById('regErrorMessage').textContent = response.message;
-            document.getElementById('regErrorMessage').style.display = 'block';
-            document.getElementById('regSuccessMessage').style.display = 'none';
-        }
-    });
-    
-    // আবার কোড পাঠানোর বাটন হ্যান্ডেল
-    document.getElementById('resendButton').addEventListener('click', async function() {
-        const userInput = document.getElementById('userInput').value.trim();
-        const response = await sendOTP(userInput);
-        
-        if (response.success) {
-            startOTPTimer();
-            this.disabled = true;
-        } else {
-            alert(response.message);
-        }
-    });
-});
-
-// OTP টাইমার ফাংশন
-function startOTPTimer() {
-    const timerElement = document.getElementById('timer');
-    const resendButton = document.getElementById('resendButton');
-    let timeLeft = 60; // ৬০ সেকেন্ড টাইমার
-    
-    resendButton.disabled = true;
-    
-    const timerInterval = setInterval(() => {
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        
-        timerElement.textContent = 
-            `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            timerElement.textContent = '00:00';
-            resendButton.disabled = false;
-        }
-        
-        timeLeft--;
-    }, 1000);
-}
 </script>
+
+
+<!-- <script src="script.js"></script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- Footer Footer Footer Footer Footer Footer Footer    -->

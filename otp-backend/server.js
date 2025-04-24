@@ -13,14 +13,6 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Email transporter setup
-// const transporter = nodemailer.createTransport({
-//   service: 'gmail',
-//   auth: {
-//     user: process.env.EMAIL_USER,
-//     pass: process.env.EMAIL_PASSWORD
-//   }
-// });
-
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -28,7 +20,6 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS
   }
 });
-
 
 
 // API endpoint to send OTP

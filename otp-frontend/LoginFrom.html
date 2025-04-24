@@ -1183,7 +1183,8 @@ left: 100%;
 
 <script>
     // Constants
-const OTP_EXPIRY_TIME = 6 * 10; // 60 seconds
+const OTP_EXPIRY_TIME = 60; // 60 seconds
+const API_BASE_URL = "https://your-backend-url.onrender.com"; // Replace with your actual Render deployed URL
 
 // Global OTP Management
 let generatedOTP = '';
@@ -1235,16 +1236,16 @@ function validateForm(event) {
     }
 }
 
-// // OTP Handling
-// async function handleOTPSend(contact) {
-//     const result = await OTPManager.sendOTPApi(contact);
+// OTP Handling
+async function handleOTPSend(contact) {
+    const result = await OTPManager.sendOTPApi(contact);
     
-//     if (result.success) {
-//         OTPManager.startOTPTimer();
-//     } else {
-//         alert('OTP পাঠানো ব্যর্থ হয়েছে');
-//     }
-// }
+    if (result.success) {
+        OTPManager.startOTPTimer();
+    } else {
+        alert('OTP পাঠানো ব্যর্থ হয়েছে');
+    }
+}
 
 // Verification Handling
 function validateVerification(event) {
@@ -1400,49 +1401,7 @@ const UserManager = {
     }
 };
 
-// OTPManager - Handles OTP generation and verification
-// const OTPManager = {
-//     generateOTP() {
-//         const otp = Math.floor(1000 + Math.random() * 9000).toString();
-//         generatedOTP = otp;
-//         otpSentTime = Date.now();
-//         return otp;
-//     },
-
-//     async sendOTPApi(contact) {
-//         try {
-//             await new Promise(resolve => setTimeout(resolve, 1000));
-//             const otp = this.generateOTP();
-//             console.log(`OTP ${otp} sent to ${contact}`);
-//             return { success: true, otp: otp };
-//         } catch (error) {
-//             return { success: false, message: 'OTP পাঠাতে ব্যর্থ' };
-//         }
-//     },
-
-//     startOTPTimer() {
-//         startOTPTimer(); // Call the global function
-//     }
-// };
-
-
-
-
-
-
-
-
-// Add this to your existing JavaScript file
-// Replace API_URL with your actual Render API URL once deployed
-fetch('https://talimul-islamacademy1.onrender.com/api/send-otp', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ email, otp })
-})
-
-// OTPManager - Modified to use the backend API
+// OTPManager - Handles OTP generation and verification - UPDATED TO USE SERVER API
 const OTPManager = {
     generateOTP() {
         const otp = Math.floor(1000 + Math.random() * 9000).toString();
@@ -1452,18 +1411,18 @@ const OTPManager = {
     },
 
     async sendOTPApi(contact) {
+        // Check if it's an email (use server) or mobile (use client-side generation)
+        const emailRegex = /^[^\s@]+@(gmail\.com|[^\s@]+\.com)$/;
+        
         try {
-            const otp = this.generateOTP();
-            
-            // Check if the contact is an email
-            const isEmail = /^[^\s@]+@(gmail\.com|[^\s@]+\.com)$/.test(contact);
-            
-            // If it's an email, send OTP through the API
-            if (isEmail) {
-                const response = await fetch(`${API_URL}/api/send-otp`, {
+            if (emailRegex.test(contact)) {
+                // If email, use the server API
+                const otp = this.generateOTP();
+                
+                const response = await fetch(`${API_BASE_URL}/api/send-otp`, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
                         email: contact,
@@ -1471,27 +1430,22 @@ const OTPManager = {
                     })
                 });
                 
-                const result = await response.json();
+                const data = await response.json();
                 
-                if (!result.success) {
-                    console.error('Failed to send OTP to email:', result.message);
-                    return { success: false, message: 'OTP পাঠাতে ব্যর্থ' };
+                if (data.success) {
+                    return { success: true, otp: otp };
+                } else {
+                    return { success: false, message: data.message || 'OTP পাঠাতে ব্যর্থ' };
                 }
-                
-                console.log(`OTP ${otp} sent to email ${contact}`);
             } else {
-                // For mobile numbers, keep the existing console.log behavior
-                // In a real implementation, you would integrate with an SMS service
-                console.log(`OTP ${otp} sent to mobile ${contact}`);
-                
-                // Here you would add your SMS sending logic
-                // For now, we're just simulating it
+                // If mobile number, use client-side OTP generation (as previously)
                 await new Promise(resolve => setTimeout(resolve, 1000));
+                const otp = this.generateOTP();
+                console.log(`OTP ${otp} sent to ${contact}`);
+                return { success: true, otp: otp };
             }
-            
-            return { success: true, otp: otp };
         } catch (error) {
-            console.error('Error in sendOTPApi:', error);
+            console.error('OTP sending error:', error);
             return { success: false, message: 'OTP পাঠাতে ব্যর্থ' };
         }
     },
@@ -1500,22 +1454,6 @@ const OTPManager = {
         startOTPTimer(); // Call the global function
     }
 };
-
-// OTP Handling
-async function handleOTPSend(contact) {
-    const result = await OTPManager.sendOTPApi(contact);
-    
-    if (result.success) {
-        OTPManager.startOTPTimer();
-    } else {
-        alert('OTP পাঠানো ব্যর্থ হয়েছে');
-    }
-}
-
-
-
-
-
 
 // UIManager - Handles all UI updates
 const UIManager = {
@@ -1557,20 +1495,60 @@ const UIManager = {
     }
 };
 
-// Menu visibility and profile management functions
-function toggleProfileMenuVisibility(isVisible) {
-    const profileMenuItem = document.querySelector('ul a[href="profile_ifNamber.html"]');
-    const myCoursesMenuItem = document.querySelector('ul a[href="my_course.html"]');
+// Event Listeners for forms
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize navigation
+    new NavigationManager();
     
-    if (profileMenuItem) {
-        profileMenuItem.style.display = isVisible ? 'block' : 'none';
+    // Login Form
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', validateForm);
     }
-    if (myCoursesMenuItem) {
-        myCoursesMenuItem.style.display = isVisible ? 'block' : 'none';
-    }
-}
 
-// Navigation Manager Class
+    // Verification Form
+    const verificationForm = document.getElementById('verificationForm');
+    if (verificationForm) {
+        verificationForm.addEventListener('submit', validateVerification);
+    }
+
+    // Registration Form
+    const registrationForm = document.getElementById('registrationForm');
+    if (registrationForm) {
+        registrationForm.addEventListener('submit', handleRegistration);
+    }
+
+    // Resend OTP button
+    const resendButton = document.getElementById('resendButton');
+    if (resendButton) {
+        resendButton.addEventListener('click', async function() {
+            const userInput = document.getElementById('userInput').value.trim();
+            const response = await OTPManager.sendOTPApi(userInput);
+            
+            if (response.success) {
+                startOTPTimer();
+                this.disabled = true;
+            } else {
+                alert(response.message);
+            }
+        });
+    }
+
+    // Logout Handler
+    const loginController = document.querySelector('.Login_controller');
+    if (loginController) {
+        loginController.addEventListener('click', (e) => {
+            if (UserManager.isLoggedIn()) {
+                e.preventDefault();
+                UserManager.logout();
+                UIManager.toggleMenuItems(false);
+                window.location.href = 'TalimulIslamAcademy.html';
+            }
+        });
+    }
+});
+
+// Navigation Manager Class remains the same
 class NavigationManager {
     constructor() {
         this.navContainer = document.querySelector('.ulControl');
@@ -1703,150 +1681,10 @@ class NavigationManager {
         });
     }
 }
-
-// Event Listeners for forms
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize navigation
-    new NavigationManager();
-    
-    // Login Form
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        loginForm.addEventListener('submit', validateForm);
-    }
-
-    // Verification Form
-    const verificationForm = document.getElementById('verificationForm');
-    if (verificationForm) {
-        verificationForm.addEventListener('submit', validateVerification);
-    }
-
-    // Registration Form
-    const registrationForm = document.getElementById('registrationForm');
-    if (registrationForm) {
-        registrationForm.addEventListener('submit', handleRegistration);
-    }
-
-    // Resend OTP button
-    const resendButton = document.getElementById('resendButton');
-    if (resendButton) {
-        resendButton.addEventListener('click', async function() {
-            const userInput = document.getElementById('userInput').value.trim();
-            const response = await OTPManager.sendOTPApi(userInput);
-            
-            if (response.success) {
-                startOTPTimer();
-                this.disabled = true;
-            } else {
-                alert(response.message);
-            }
-        });
-    }
-
-    // Logout Handler
-    const loginController = document.querySelector('.Login_controller');
-    if (loginController) {
-        loginController.addEventListener('click', (e) => {
-            if (UserManager.isLoggedIn()) {
-                e.preventDefault();
-                UserManager.logout();
-                UIManager.toggleMenuItems(false);
-                window.location.href = 'TalimulIslamAcademy.html';
-            }
-        });
-    }
-});
-</script>   
-<!-- প্রোফাইল ম্যানেজমেন্টের জন্য -->
-<script>
-        // Menu visibility and profile management functions
-    function toggleProfileMenuVisibility(isVisible) {
-        const profileMenuItem = document.querySelector('ul a[href="profile_ifNamber.html"]');
-        const myCoursesMenuItem = document.querySelector('ul a[href="my_course.html"]');
-    }
-    
-    function updateProfileWithUserData(userData) {
-        const profileElements = {
-            name: document.querySelector('.details-content .name h5'),
-            contact: document.querySelector('.details-content .mobile h5'),
-            date: document.querySelector('.details-content .date h5')
-        };
-    
-        if (profileElements.name) {
-            profileElements.name.textContent = userData.fullName;
-        }
-        if (profileElements.contact) {
-            profileElements.contact.textContent = userData.contact;
-        }
-        if (profileElements.date) {
-            profileElements.date.textContent = userData.loginDate;
-        }
-    }
-    
-    // Registration handling
-    function handleRegistration(event) {
-        event.preventDefault();
-        const formData = {
-            fullName: document.getElementById('fullName').value.trim(),
-            password: document.getElementById('regPassword').value,
-            confirmPassword: document.getElementById('confirmPassword').value,
-            userInput: document.getElementById('userInput').value
-        };
-        
-        const errorMessage = document.getElementById('regErrorMessage');
-        
-        // Validation
-        if (formData.password !== formData.confirmPassword) {
-            errorMessage.textContent = 'পাসওয়ার্ড মিলছে না';
-            errorMessage.style.display = 'block';
-            return false;
-        }
-    
-        if (formData.password.length < 6) {
-            errorMessage.textContent = 'পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে';
-            errorMessage.style.display = 'block';
-            return false;
-        }
-    
-        // Create user data object
-        const userData = {
-            fullName: formData.fullName,
-            contact: formData.userInput,
-            loginTimestamp: Date.now(),
-            loginDate: new Date().toLocaleDateString('en-US', {
-                day: 'numeric',
-                month: 'short',
-                year: 'numeric'
-            })
-        };
-    
-        // Store and update
-        localStorage.setItem('userData', JSON.stringify(userData));
-        updateProfileWithUserData(userData);
-        toggleProfileMenuVisibility(true);
-        
-        window.location.href = 'profile_ifNamber.html';
-        return false;
-    }
-    
-    // Login status checking
-    function checkLoginStatus() {
-        const userData = JSON.parse(localStorage.getItem('userData'));
-        
-        if (userData) {
-            toggleProfileMenuVisibility(true);
-            updateProfileWithUserData(userData);
-        } else {
-            toggleProfileMenuVisibility(false);
-        }
-    }
-    
-    // Event listeners
-    document.addEventListener('DOMContentLoaded', checkLoginStatus);
-</script>
+</script>  
 
 
-<!-- <script src="script.js"></script> -->
+<script src="script.js"></script>
 
 
 

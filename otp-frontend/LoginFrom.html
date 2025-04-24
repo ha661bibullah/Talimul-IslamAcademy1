@@ -1235,16 +1235,16 @@ function validateForm(event) {
     }
 }
 
-// OTP Handling
-async function handleOTPSend(contact) {
-    const result = await OTPManager.sendOTPApi(contact);
+// // OTP Handling
+// async function handleOTPSend(contact) {
+//     const result = await OTPManager.sendOTPApi(contact);
     
-    if (result.success) {
-        OTPManager.startOTPTimer();
-    } else {
-        alert('OTP পাঠানো ব্যর্থ হয়েছে');
-    }
-}
+//     if (result.success) {
+//         OTPManager.startOTPTimer();
+//     } else {
+//         alert('OTP পাঠানো ব্যর্থ হয়েছে');
+//     }
+// }
 
 // Verification Handling
 function validateVerification(event) {
@@ -1434,7 +1434,7 @@ const UserManager = {
 
 // Add this to your existing JavaScript file
 // Replace API_URL with your actual Render API URL once deployed
-fetch('https://talimul-islamacademy1.onrender.com', {
+fetch('https://talimul-islamacademy1.onrender.com/api/send-otp', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
@@ -1500,6 +1500,18 @@ const OTPManager = {
         startOTPTimer(); // Call the global function
     }
 };
+
+// OTP Handling
+async function handleOTPSend(contact) {
+    const result = await OTPManager.sendOTPApi(contact);
+    
+    if (result.success) {
+        OTPManager.startOTPTimer();
+    } else {
+        alert('OTP পাঠানো ব্যর্থ হয়েছে');
+    }
+}
+
 
 
 

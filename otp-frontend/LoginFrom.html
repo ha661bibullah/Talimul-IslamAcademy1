@@ -1412,7 +1412,7 @@ const OTPManager = {
     async sendOTPApi(contact) {
         try {
             // এখানে আমরা ব্যাকএন্ড এপিআই কল করব
-            const response = await fetch('https://talimul-islamacademy1.onrender.com', {
+            const response = await fetch('https://talimul-islamacademy1.onrender.com/api/send-otp', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
